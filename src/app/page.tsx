@@ -3,7 +3,7 @@ import Image from "next/image"
 import backgroundImage from "../assets/background.png"
 import { ButtonSignIn } from "@/components/ButtonSignIn"
 
-export default function Home() {
+export default function Login() {
   return (
     <main className="flex items-center p-5">
       <Image

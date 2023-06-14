@@ -1,4 +1,7 @@
+"use client"
+
 import Image from "next/image"
+import { useRouter } from "next/navigation"
 import { ButtonHTMLAttributes } from "react"
 
 import GithubIcon from "../assets/icons/github.png"
@@ -21,10 +24,17 @@ export function ButtonSignIn({
   variant = "google",
   ...rest
 }: ButtonSignInProps) {
+  const router = useRouter()
+
+  function handleNavigate() {
+    router.push("/user/home")
+  }
+
   return (
     <button
       type="button"
-      className="w-full bg-gray-600 py-5 px-6 flex items-center gap-5 rounded-md text-gray-200 font-bold text-lg leading-short"
+      className="w-full bg-gray-600 py-5 px-6 flex items-center gap-5 rounded-md text-gray-200 font-bold text-lg leading-short hover:bg-gray-500 transition-colors"
+      onClick={handleNavigate}
       {...rest}
     >
       <Image src={variants[variant].icon} alt="" width={32} height={32} />

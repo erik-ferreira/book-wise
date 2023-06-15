@@ -1,5 +1,6 @@
-import { Sidebar } from "@/components/Sidebar"
 import { ReactNode } from "react"
+
+import { Sidebar } from "@/components/Sidebar"
 
 interface UserLayoutProps {
   children: ReactNode
@@ -7,7 +8,7 @@ interface UserLayoutProps {
 
 export default function UserLayout({ children }: UserLayoutProps) {
   return (
-    <div>
+    <div className="h-screen p-5 flex">
       <Sidebar />
       {children}
     </div>

@@ -1,7 +1,11 @@
+import { LineChart } from "lucide-react"
+
+import { Header } from "@/components/Header"
+
 export default function Home() {
   return (
-    <main className="p-5 h-screen">
-      <h1>Home</h1>
+    <main className="w-full pt-[4.5rem] pl-24 pr-[4.75rem]">
+      <Header label="Início" icon={LineChart} />
     </main>
   )
 }

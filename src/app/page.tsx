@@ -1,17 +1,18 @@
 import Image from "next/image"
 
-import backgroundImage from "../assets/background.png"
 import { ButtonSignIn } from "@/components/ButtonSignIn"
+
+import backgroundImage from "../assets/background.png"
 
 export default function Login() {
   return (
-    <main className="flex items-center p-5">
+    <main className="flex items-center p-5 h-screen">
       <Image
         src={backgroundImage}
         alt=""
         width={598}
         height={912}
-        className="h-bg-main max-w-[38%] w-full"
+        className="max-w-[38%] w-full h-full"
       />
 
       <div className="mx-auto w-[372px]">

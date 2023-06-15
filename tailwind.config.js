@@ -73,10 +73,6 @@ module.exports = {
         start: "#7FD1CC",
         end: "#9694F5",
       },
-
-      height: {
-        "bg-main": "calc(100vh - 40px)",
-      },
     },
   },
   plugins: [],

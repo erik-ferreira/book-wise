@@ -54,7 +54,7 @@ export function Sidebar() {
     <aside
       className="max-w-[14.5rem] w-full h-full
       pt-10 pb-6 rounded-lg bg-gray-700
-      flex flex-col items-center"
+      flex flex-col items-center bg-[url(../assets/background-sidebar.png)]"
     >
       <Image src={logoPng} alt="Book Wise" width={128} height={32} />
 

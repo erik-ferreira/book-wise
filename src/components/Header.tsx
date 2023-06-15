@@ -15,7 +15,7 @@ export function Header({
   inputSearchProps,
 }: HeaderProps) {
   return (
-    <header className="flex items-center justify-between mb-10 border">
+    <header className="flex items-center justify-between mb-10">
       <h1 className="flex items-center gap-3 font-bold text-2xl leading-short">
         <Icon className="w-8 h-8 text-green-100" />
         {label}

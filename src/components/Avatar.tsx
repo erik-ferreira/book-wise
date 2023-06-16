@@ -4,11 +4,17 @@ interface AvatarProps {
   variant?: "normal" | "large"
   username: string
   src: string
+  date?: string
 }
 
-export function Avatar({ variant = "normal", username, src }: AvatarProps) {
+export function Avatar({
+  variant = "normal",
+  username,
+  src,
+  date,
+}: AvatarProps) {
   const isAvatarProfile = variant === "normal"
-  const showDay = false
+  const showDay = !!date
 
   return (
     <div className="flex items-center gap-3">

@@ -1,7 +1,9 @@
 import { LineChart } from "lucide-react"
 
 import { Header } from "@/components/Header"
+import { Avatar } from "@/components/Avatar"
 import { TitleSection } from "@/components/TitleSection"
+import { Rating } from "@/components/Rating"
 
 export default function Home() {
   return (
@@ -12,7 +14,18 @@ export default function Home() {
         <section className="w-[608px]">
           <TitleSection label="Avaliações mais recentes" />
 
-          <article className="bg-gray-700 w-full h-[280px]">a</article>
+          <article className="bg-gray-700 w-full h-[280px] rounded-md p-6">
+            <header className="flex justify-between">
+              <Avatar
+                variant="large"
+                date="Hoje"
+                username="Erik Ferreira"
+                src="https://github.com/erik-ferreira.png"
+              />
+
+              <Rating totalStar={4} />
+            </header>
+          </article>
         </section>
 
         <section className="w-[324px]">

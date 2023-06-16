@@ -8,7 +8,7 @@ interface UserLayoutProps {
 
 export default function UserLayout({ children }: UserLayoutProps) {
   return (
-    <div className="h-screen p-5 flex">
+    <div className="flex p-5">
       <Sidebar />
       {children}
     </div>

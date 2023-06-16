@@ -54,9 +54,9 @@ export function Sidebar() {
 
   return (
     <aside
-      className="max-w-[14.5rem] w-full h-full
+      className="max-w-sidebar w-full max-h-sidebar
       pt-10 pb-6 rounded-lg bg-gray-700
-      flex flex-col items-center bg-[url(../assets/background-sidebar.png)]"
+      flex flex-col items-center bg-[url(../assets/background-sidebar.png)] bg-no-repeat bg-cover"
     >
       <Image src={logoPng} alt="Book Wise" width={128} height={32} />
 

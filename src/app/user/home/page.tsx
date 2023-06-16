@@ -2,6 +2,7 @@ import { LineChart } from "lucide-react"
 
 import { Header } from "@/components/Header"
 import { CardBook } from "@/components/CardBook"
+import { TitleSection } from "@/components/TitleSection"
 import { CardBookShort } from "@/components/CardBookShort"
 
 export default function Home() {
@@ -10,9 +11,25 @@ export default function Home() {
       <Header label="Início" icon={LineChart} />
 
       <div className="flex gap-16">
-        <CardBook title="Avaliações mais recentes" />
+        <section className="w-[608px]">
+          <TitleSection label="Avaliações mais recentes" />
 
-        <CardBookShort title="Livros populares" />
+          <div className="space-y-3">
+            <CardBook />
+            <CardBook />
+            <CardBook />
+          </div>
+        </section>
+
+        <section className="w-[324px]">
+          <TitleSection label="Livros populares" href="/all" />
+
+          <div className="space-y-3">
+            <CardBookShort />
+            <CardBookShort />
+            <CardBookShort />
+          </div>
+        </section>
       </div>
     </main>
   )

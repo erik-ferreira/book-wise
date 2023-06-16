@@ -3,6 +3,8 @@ import Image from "next/image"
 import { useMemo, ReactNode } from "react"
 import { LineChart, Glasses, LogOut, User } from "lucide-react"
 
+import { Avatar } from "./Avatar"
+
 import logoPng from "../assets/logo.png"
 
 interface OptionsSidebarProps {
@@ -80,25 +82,20 @@ export function Sidebar() {
         })}
       </ul>
 
-      <button
-        className="flex gap-3 items-center py-2 font-bold leading-base text-gray-200 mt-auto"
-        type="button"
-      >
+      <button className="flex gap-3 items-center py-2 mt-auto" type="button">
         {isSigned ? (
           <>
-            <Image
+            <Avatar
+              username="Erik Ferreira"
               src="https://github.com/erik-ferreira.png"
-              alt=""
-              width={32}
-              height={32}
-              className="rounded-full"
             />
-            Erik Ferreira
             <LogOut className="w-6 h-6 text-red-400" />
           </>
         ) : (
           <>
-            Fazer Login
+            <span className="text-gray-200 font-bold leading-base">
+              Fazer Login
+            </span>
             <LogOut className="w-6 h-6 text-green-100" />
           </>
         )}

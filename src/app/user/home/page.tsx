@@ -2,7 +2,7 @@ import { LineChart } from "lucide-react"
 
 import { Header } from "@/components/Header"
 import { CardBook } from "@/components/CardBook"
-import { TitleSection } from "@/components/TitleSection"
+import { CardBookShort } from "@/components/CardBookShort"
 
 export default function Home() {
   return (
@@ -12,11 +12,7 @@ export default function Home() {
       <div className="flex gap-16">
         <CardBook title="Avaliações mais recentes" />
 
-        <section className="w-[324px]">
-          <TitleSection label="Livros populares" href="/all" />
-
-          <article className="bg-gray-700 w-full h-[130px]">a</article>
-        </section>
+        <CardBookShort title="Livros populares" />
       </div>
     </main>
   )

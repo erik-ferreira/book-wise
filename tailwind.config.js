@@ -78,7 +78,7 @@ module.exports = {
         sidebar: "14.5rem",
       },
 
-      maxHeight: {
+      height: {
         sidebar: "calc(100vh - 40px)",
       },
     },

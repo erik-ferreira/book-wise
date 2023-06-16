@@ -27,7 +27,7 @@ export function ButtonSignIn({
   const router = useRouter()
 
   function handleNavigate() {
-    router.push("/user/home")
+    router.push("/home")
   }
 
   return (

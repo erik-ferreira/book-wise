@@ -1,13 +1,13 @@
 import { LineChart } from "lucide-react"
 
 import { Header } from "@/components/Header"
-import { CardBook } from "@/components/CardBook"
+import { CardBook } from "@/components/Books/CardBook"
 import { TitleSection } from "@/components/TitleSection"
-import { CardBookShort } from "@/components/CardBookShort"
+import { CardBookShort } from "@/components/Books/CardBookShort"
 
 export default function Home() {
   return (
-    <main className="w-full pt-[4.5rem] pl-24 pr-[4.75rem]">
+    <>
       <Header label="Início" icon={LineChart} />
 
       <div className="flex gap-16">
@@ -31,6 +31,6 @@ export default function Home() {
           </div>
         </section>
       </div>
-    </main>
+    </>
   )
 }

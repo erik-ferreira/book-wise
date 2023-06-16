@@ -1,8 +1,8 @@
 import Image from "next/image"
 
-import { Rating } from "./Rating"
+import { Rating } from "../Rating"
 
-import algoritmosImg from "../assets/books/algoritimos.png"
+import algoritmosImg from "../../assets/books/algoritimos.png"
 
 export function CardBookShort() {
   return (

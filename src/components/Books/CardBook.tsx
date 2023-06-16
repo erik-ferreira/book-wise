@@ -1,9 +1,9 @@
 import Image from "next/image"
 
-import { Rating } from "./Rating"
-import { Avatar } from "./Avatar"
+import { Rating } from "../Rating"
+import { Avatar } from "../Avatar"
 
-import hobbitBookPng from "../assets/books/hobbit.png"
+import hobbitBookPng from "../../assets/books/hobbit.png"
 
 export function CardBook() {
   return (

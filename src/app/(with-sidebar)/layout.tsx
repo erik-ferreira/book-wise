@@ -10,7 +10,8 @@ export default function UserLayout({ children }: UserLayoutProps) {
   return (
     <div className="flex p-5">
       <Sidebar />
-      {children}
+
+      <main className="w-full pt-[4.5rem] pl-24 pr-[4.75rem]">{children}</main>
     </div>
   )
 }

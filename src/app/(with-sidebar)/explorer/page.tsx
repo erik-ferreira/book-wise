@@ -1,7 +1,11 @@
+import { Glasses } from "lucide-react"
+
+import { Header } from "@/components/Header"
+
 export default function Explorer() {
   return (
-    <main>
-      <h1>Explorar</h1>
-    </main>
+    <>
+      <Header label="Explorar" icon={Glasses} />
+    </>
   )
 }

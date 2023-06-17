@@ -1,15 +1,15 @@
 "use client"
 
 import Link from "next/link"
+import { useMemo } from "react"
 import { usePathname } from "next/navigation"
-import { useMemo, ReactNode } from "react"
-import { LineChart, Glasses, User } from "lucide-react"
+import { LineChart, Glasses, User, LucideIcon } from "lucide-react"
 
 interface OptionsSidebarProps {
   id: number
   label: string
   href: string
-  icon: ReactNode
+  icon: LucideIcon
 }
 
 export function OptionsSidebar() {
@@ -22,16 +22,14 @@ export function OptionsSidebar() {
       {
         id: 1,
         label: "Início",
-
         href: "/home",
-        icon: <LineChart className="w-6 h-6" />,
+        icon: LineChart,
       },
       {
         id: 2,
         label: "Explorar",
-
         href: "/explorer",
-        icon: <Glasses className="w-6 h-6" />,
+        icon: Glasses,
       },
     ]
 
@@ -41,9 +39,8 @@ export function OptionsSidebar() {
         {
           id: 3,
           label: "Perfil",
-
           href: "/profile",
-          icon: <User className="w-6 h-6" />,
+          icon: User,
         },
       ]
     }
@@ -53,7 +50,7 @@ export function OptionsSidebar() {
 
   return (
     <ul className="mt-16 space-y-3">
-      {optionsSidebar.map((option) => {
+      {optionsSidebar.map(({ icon: Icon, ...option }) => {
         const stylesCondition =
           pathname === option.href
             ? "text-gray-100 before:from-start before:to-end"
@@ -67,7 +64,7 @@ export function OptionsSidebar() {
               before:w-1 before:h-6 before:rounded-full
               before:bg-gradient-to-b ${stylesCondition}`}
             >
-              {option.icon}
+              <Icon className="w-6 h-6" />
               {option.label}
             </Link>
           </li>

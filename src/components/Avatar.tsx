@@ -1,46 +1,72 @@
 import Image from "next/image"
+import classnames from "classnames"
 
+const sizes = {
+  small: {
+    size: 32,
+    container: "w-9 h-9",
+  },
+  normal: {
+    size: 40,
+    container: "w-11 h-11",
+  },
+  large: {
+    size: 72,
+    container: "w-[4.75rem] h-[4.75rem]",
+  },
+}
 interface AvatarProps {
-  variant?: "normal" | "large"
-  username: string
   src: string
-  date?: string
+  username: string
+  description?: string
+  size?: keyof typeof sizes
 }
 
 export function Avatar({
-  variant = "normal",
+  size = "small",
   username,
+  description,
   src,
-  date,
 }: AvatarProps) {
-  const isAvatarProfile = variant === "normal"
-  const showDay = !!date
+  const sizeDefault = sizes[size]
 
   return (
-    <div className="flex items-center gap-3">
+    <div
+      className={classnames("flex items-center gap-3", {
+        "flex-col": size === "large",
+      })}
+    >
       <div
-        className={`${isAvatarProfile ? "w-9 h-9" : "w-11 h-11"}
+        className={`${sizeDefault.container}
         rounded-full flex items-center justify-center bg-gradient-to-b from-start to-end`}
       >
         <Image
           src={src}
           alt=""
-          width={isAvatarProfile ? 32 : 40}
-          height={isAvatarProfile ? 32 : 40}
+          width={sizeDefault.size}
+          height={sizeDefault.size}
           className="rounded-full"
         />
       </div>
 
-      <div className="flex flex-col items-start">
+      <div
+        className={classnames("flex flex-col", {
+          "items-start": size === "normal",
+          "items-center": size === "large",
+        })}
+      >
         <span
-          className={`${
-            isAvatarProfile && "text-gray-200 text-sm"
-          } leading-base`}
+          className={classnames("leading-base", {
+            "text-sm text-gray-200": size === "small",
+            "text-xl font-bold leading-short": size === "large",
+          })}
         >
           {username}
         </span>
-        {showDay && (
-          <span className="text-gray-400 text-sm leading-base">Hoje</span>
+        {!!description && (
+          <span className="text-gray-400 text-sm leading-base">
+            {description}
+          </span>
         )}
       </div>
     </div>

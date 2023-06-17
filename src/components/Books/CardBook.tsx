@@ -10,9 +10,9 @@ export function CardBook() {
     <article className="bg-gray-700 w-full h-[280px] rounded-md p-6 space-y-8">
       <header className="flex justify-between">
         <Avatar
-          variant="large"
-          date="Hoje"
+          size="normal"
           username="Erik Ferreira"
+          description="Hoje"
           src="https://github.com/erik-ferreira.png"
         />
 

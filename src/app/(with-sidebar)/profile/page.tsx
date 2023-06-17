@@ -1,8 +1,9 @@
 import { User } from "lucide-react"
 
+import { Input } from "@/components/Input"
 import { Header } from "@/components/Header"
 import { BookUser } from "@/components/Books/BookUser"
-import { Input } from "@/components/Input"
+import { ProfileSection } from "@/components/ProfileSection"
 
 export default function Profile() {
   return (
@@ -17,7 +18,8 @@ export default function Profile() {
           <BookUser />
           <BookUser />
         </section>
-        Profile
+
+        <ProfileSection />
       </div>
     </>
   )

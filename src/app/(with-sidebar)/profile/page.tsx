@@ -14,7 +14,9 @@ export default function Profile() {
       />
 
       <div className="flex gap-16">
-        <section className="w-[608px]">
+        <section className="w-[608px] space-y-6">
+          <BookUser />
+          <BookUser />
           <BookUser />
         </section>
         Profile

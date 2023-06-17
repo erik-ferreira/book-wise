@@ -1,27 +1,37 @@
 import Image from "next/image"
-import hobbitImg from "../../assets/books/hobbit.png"
+
 import { Rating } from "../Rating"
+
+import hobbitImg from "../../assets/books/hobbit.png"
 
 export function BookUser() {
   return (
-    <article>
-      <time>Há 2 dias</time>
+    <article className="space-y-2">
+      <time className="text-sm leading-base text-gray-300">Há 2 dias</time>
 
       <div className="bg-gray-700 rounded-md p-6 space-y-6">
         <header className="flex gap-6">
-          <Image src={hobbitImg} alt="" width={98} height={134} />
+          <Image
+            src={hobbitImg}
+            alt=""
+            width={98}
+            height={134}
+            className="rounded"
+          />
 
-          <div>
-            <h2 className="font-bold leading-short mb-[2px]">O Hobbit</h2>
-            <p className="text-sm leading-base text-gray-400 mb-5">
-              J.R.R Tolkien
-            </p>
+          <div className="flex flex-col justify-between pb-2">
+            <div>
+              <h2 className="font-bold leading-short mb-[2px]">O Hobbit</h2>
+              <p className="text-sm leading-base text-gray-400 mb-5">
+                J.R.R Tolkien
+              </p>
+            </div>
 
             <Rating totalStar={4} />
           </div>
         </header>
 
-        <main>
+        <main className="text-sm leading-base text-gray-300">
           Tristique massa sed enim lacinia odio. Congue ut faucibus nunc vitae
           non. Nam feugiat vel morbi viverra vitae mi. Vitae fringilla ut et
           suspendisse enim suspendisse vitae. Leo non eget lacus sollicitudin

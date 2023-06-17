@@ -1,18 +1,17 @@
-import { LucideIcon, Search } from "lucide-react"
-import { InputHTMLAttributes } from "react"
+import { LucideIcon } from "lucide-react"
+
+import { Input } from "./Input"
 
 interface HeaderProps {
   icon: LucideIcon
   label: string
   showInputSearch?: boolean
-  inputSearchProps?: InputHTMLAttributes<HTMLInputElement>
 }
 
 export function Header({
   icon: Icon,
   label,
   showInputSearch = false,
-  inputSearchProps,
 }: HeaderProps) {
   return (
     <header className="flex items-center justify-between mb-10">
@@ -21,17 +20,7 @@ export function Header({
         {label}
       </h1>
 
-      {showInputSearch && (
-        <label className="max-w-[27rem] w-full px-5 flex items-center border border-gray-500 rounded focus-within:outline">
-          <input
-            type="text"
-            className="bg-transparent flex-1 py-[0.875rem] pr-2 outline-none placeholder:text-gray-400 placeholder:text-sm"
-            {...inputSearchProps}
-          />
-
-          <Search className="text-gray-500 w-5 h-5" />
-        </label>
-      )}
+      {showInputSearch && <Input placeholder="Buscar livro avaliado" />}
     </header>
   )
 }

@@ -5,7 +5,7 @@ import { Header } from "@/components/Header"
 export default function Explorer() {
   return (
     <>
-      <Header label="Explorar" icon={Glasses} />
+      <Header label="Explorar" icon={Glasses} showInputSearch />
     </>
   )
 }

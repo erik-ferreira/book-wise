@@ -44,7 +44,7 @@ export function ProfileSection() {
   ]
 
   return (
-    <section className="w-[324px] max-h-[600px] flex flex-col items-center border-l border-l-gray-700">
+    <section className="w-[324px] h-fit flex flex-col items-center border-l border-l-gray-700">
       <Avatar
         size="large"
         username="Erik Ferreira"
@@ -52,9 +52,9 @@ export function ProfileSection() {
         src="https://github.com/erik-ferreira.png"
       />
 
-      <div className="w-8 h-1 rounded-full bg-gradient-to-b from-start to-end my-8" />
+      <div className="w-8 h-1 rounded-full bg-gradient-to-b from-start to-end my-8 mx-auto" />
 
-      <ul className="space-y-10">
+      <ul className="space-y-10 py-5 px-14">
         {optionsProfile.map(({ icon: Icon, ...option }) => (
           <li key={option.id} className="flex gap-5 items-center">
             <Icon className="text-green-100 w-8 h-8" />

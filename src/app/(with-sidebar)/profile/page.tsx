@@ -11,7 +11,7 @@ export default function Profile() {
       <Header label="Início" icon={User} />
 
       <div className="flex gap-16">
-        <section className="w-[608px] space-y-6">
+        <section className="flex-1 space-y-6">
           <Input placeholder="Buscar livro avaliado" isFullWidth />
 
           <BookUser />

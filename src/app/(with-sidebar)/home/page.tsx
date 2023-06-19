@@ -11,7 +11,7 @@ export default function Home() {
       <Header label="Início" icon={LineChart} />
 
       <div className="flex gap-16">
-        <section className="w-[608px]">
+        <section className="flex-1">
           <TitleSection label="Avaliações mais recentes" />
 
           <div className="space-y-3">
@@ -21,7 +21,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="w-[324px]">
+        <section className="w-[30%] h-fit">
           <TitleSection label="Livros populares" href="/all" />
 
           <div className="space-y-3">

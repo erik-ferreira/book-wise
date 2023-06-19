@@ -44,7 +44,7 @@ export function ProfileSection() {
   ]
 
   return (
-    <section className="w-[324px] h-fit flex flex-col items-center border-l border-l-gray-700">
+    <section className="w-[30%] h-fit flex flex-col items-center border-l border-l-gray-700">
       <Avatar
         size="large"
         username="Erik Ferreira"

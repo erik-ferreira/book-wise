@@ -10,7 +10,7 @@ export function Sidebar() {
   const isSigned = true
 
   return (
-    <aside
+    <div
       className="max-w-sidebar w-full h-sidebar
       pt-10 pb-6 rounded-lg bg-gray-700
       flex flex-col items-center bg-[url(../assets/background-sidebar.png)] bg-no-repeat bg-cover"
@@ -37,6 +37,6 @@ export function Sidebar() {
           </>
         )}
       </button>
-    </aside>
+    </div>
   )
 }

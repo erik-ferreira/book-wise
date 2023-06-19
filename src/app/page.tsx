@@ -12,6 +12,7 @@ export default function Login() {
         alt=""
         width={598}
         height={912}
+        priority
         className="max-w-[38%] w-full h-full"
       />
 

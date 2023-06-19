@@ -16,7 +16,7 @@ export function BookUser() {
             alt=""
             width={98}
             height={134}
-            className="rounded"
+            className="rounded w-auto h-auto"
           />
 
           <div className="flex flex-col justify-between pb-2">

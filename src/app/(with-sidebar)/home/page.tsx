@@ -1,10 +1,10 @@
 import { LineChart } from "lucide-react"
 
 import { Header } from "@/components/Header"
-import { CardBook } from "@/components/Books/CardBook"
 import { TitleSection } from "@/components/TitleSection"
-import { CardBookShort } from "@/components/Books/CardBookShort"
-import { LastBookReadByUser } from "@/components/Books/LastBookReadByUser"
+import { CommentBook } from "@/components/Books/CommentBook"
+import { CardBookShort } from "@/components/Books/CardBook"
+import { LastUserCommentByBook } from "@/components/Books/LastUserCommentByBook"
 
 export default function Home() {
   return (
@@ -16,15 +16,15 @@ export default function Home() {
           <TitleSection label="Sua última leitura" />
 
           <div className="mb-10">
-            <LastBookReadByUser />
+            <LastUserCommentByBook />
           </div>
 
           <TitleSection label="Avaliações mais recentes" />
 
           <div className="space-y-3">
-            <CardBook />
-            <CardBook />
-            <CardBook />
+            <CommentBook />
+            <CommentBook />
+            <CommentBook />
           </div>
         </section>
 

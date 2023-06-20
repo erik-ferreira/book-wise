@@ -1,48 +1,44 @@
 import Image from "next/image"
+import classnames from "classnames"
 
 import { Rating } from "../Rating"
-import { Avatar } from "../Avatar"
 
-import hobbitBookPng from "../../assets/books/hobbit.png"
+import algoritmosImg from "../../assets/books/algoritimos.png"
 
-export function CardBook() {
+interface CardBookProps {
+  bookHasBeenRead?: boolean
+}
+
+export function CardBook({ bookHasBeenRead = false }: CardBookProps) {
   return (
-    <article className="bg-gray-700 w-full h-fit rounded-md p-6 space-y-8 card-primary-animation">
-      <header className="flex justify-between">
-        <Avatar
-          size="normal"
-          username="Erik Ferreira"
-          description="Hoje"
-          src="https://github.com/erik-ferreira.png"
-        />
+    <article
+      className={classnames(
+        "bg-gray-700 w-full h-fit rounded-md py-[1.125rem] px-5 flex gap-5 card-primary-animation",
+        { relative: bookHasBeenRead }
+      )}
+    >
+      {bookHasBeenRead && (
+        <span className="absolute -top-[2px] -right-[2px] uppercase font-bold text-xs text-green-100 bg-green-300 rounded-tr-sm rounded-bl-sm py-1 px-3 ">
+          Lido
+        </span>
+      )}
+
+      <Image
+        src={algoritmosImg}
+        width={64}
+        height={96}
+        alt=""
+        className="rounded-sm w-16 h-24"
+      />
+
+      <div className="flex flex-col justify-between">
+        <header>
+          <h2 className="font-bold leading-short">Entendendo Algoritmos</h2>
+          <p className="text-sm leading-base text-gray-400">J.R.R Tolkien</p>
+        </header>
 
         <Rating totalStar={4} />
-      </header>
-
-      <main className="flex gap-5">
-        <Image
-          src={hobbitBookPng}
-          width={108}
-          height={152}
-          alt=""
-          className="w-[108px] h-[152px] rounded"
-        />
-
-        <div>
-          <h2 className="font-bold leading-short">O Hobbit</h2>
-          <p className="text-sm leading-base text-gray-400 mb-5">
-            J.R.R Tolkien
-          </p>
-
-          <div className="w-full text-gray-300 text-sm leading-base overflow-hidden">
-            Semper et sapien proin vitae nisi. Feugiat neque integer donec et
-            aenean posuere amet ultrices. Cras fermentum id pulvinar varius leo
-            a in. Amet libero pharetra nunc elementum fringilla velit ipsum. Sed
-            vulputate massa velit nibh Semper et sapien proin vitae...
-            <strong className="text-purple-100">ver mais</strong>
-          </div>
-        </div>
-      </main>
+      </div>
     </article>
   )
 }

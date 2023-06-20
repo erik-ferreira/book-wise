@@ -4,7 +4,7 @@ import { Rating } from "../Rating"
 
 import hobbitImg from "../../assets/books/hobbit.png"
 
-export function BookUser() {
+export function CommentBookUser() {
   return (
     <article className="h-fit space-y-2">
       <time className="text-sm leading-base text-gray-300">Há 2 dias</time>

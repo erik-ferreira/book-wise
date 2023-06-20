@@ -4,7 +4,7 @@ import { Rating } from "../Rating"
 
 import hobbitBookPng from "../../assets/books/hobbit.png"
 
-export function LastBookReadByUser() {
+export function LastUserCommentByBook() {
   return (
     <article className="w-full h-fit bg-gray-600 rounded-md p-6 flex gap-6 card-secondary-animation">
       <Image

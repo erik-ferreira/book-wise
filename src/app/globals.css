@@ -6,3 +6,11 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
+
+.card-primary-animation {
+  @apply transition-colors border-2 border-transparent hover:cursor-pointer hover:border-2 hover:border-gray-600;
+}
+
+.card-secondary-animation {
+  @apply transition-colors border-2 border-transparent hover:cursor-pointer hover:border-2 hover:border-gray-500;
+}

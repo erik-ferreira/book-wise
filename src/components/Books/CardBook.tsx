@@ -7,7 +7,7 @@ import hobbitBookPng from "../../assets/books/hobbit.png"
 
 export function CardBook() {
   return (
-    <article className="bg-gray-700 w-full h-fit rounded-md p-6 space-y-8 transition-colors border-2 border-transparent hover:cursor-pointer hover:border-2 hover:border-gray-600">
+    <article className="bg-gray-700 w-full h-fit rounded-md p-6 space-y-8 card-primary-animation">
       <header className="flex justify-between">
         <Avatar
           size="normal"

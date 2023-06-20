@@ -6,7 +6,7 @@ import hobbitBookPng from "../../assets/books/hobbit.png"
 
 export function LastBookReadByUser() {
   return (
-    <article className="bg-gray-600 w-full rounded-md p-6 flex gap-6 transition-colors border-2 border-transparent hover:cursor-pointer hover:border-2 hover:border-gray-500">
+    <article className="w-full h-fit bg-gray-600 rounded-md p-6 flex gap-6 card-secondary-animation">
       <Image
         src={hobbitBookPng}
         width={108}

@@ -81,6 +81,10 @@ module.exports = {
       height: {
         sidebar: "calc(100vh - 40px)",
       },
+
+      gridTemplateColumns: {
+        books: "repeat(auto-fit, minmax(240px, 1fr))",
+      },
     },
   },
   plugins: [],

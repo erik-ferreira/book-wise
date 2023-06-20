@@ -6,7 +6,7 @@ import algoritmosImg from "../../assets/books/algoritimos.png"
 
 export function CardBookShort() {
   return (
-    <article className="bg-gray-700 w-full h-[130px] rounded-md py-[1.125rem] px-5 flex gap-5">
+    <article className="bg-gray-700 w-full h-[130px] rounded-md py-[1.125rem] px-5 flex gap-5 transition-colors border-2 border-transparent hover:cursor-pointer hover:border-2 hover:border-gray-600">
       <Image
         src={algoritmosImg}
         width={64}

@@ -9,7 +9,7 @@ export function BookUser() {
     <article className="space-y-2">
       <time className="text-sm leading-base text-gray-300">Há 2 dias</time>
 
-      <div className="bg-gray-700 rounded-md p-6 space-y-6">
+      <div className="bg-gray-700 rounded-md p-6 space-y-6 transition-colors border-2 border-transparent hover:cursor-pointer hover:border-2 hover:border-gray-600">
         <header className="flex gap-6">
           <Image
             src={hobbitImg}

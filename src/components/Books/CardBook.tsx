@@ -7,7 +7,7 @@ import hobbitBookPng from "../../assets/books/hobbit.png"
 
 export function CardBook() {
   return (
-    <article className="bg-gray-700 w-full h-[280px] rounded-md p-6 space-y-8 transition-colors border-2 border-transparent hover:cursor-pointer hover:border-2 hover:border-gray-600">
+    <article className="bg-gray-700 w-full h-fit rounded-md p-6 space-y-8 transition-colors border-2 border-transparent hover:cursor-pointer hover:border-2 hover:border-gray-600">
       <header className="flex justify-between">
         <Avatar
           size="normal"
@@ -34,7 +34,7 @@ export function CardBook() {
             J.R.R Tolkien
           </p>
 
-          <div className="w-full h-24 text-gray-300 text-sm leading-base overflow-hidden">
+          <div className="w-full text-gray-300 text-sm leading-base overflow-hidden">
             Semper et sapien proin vitae nisi. Feugiat neque integer donec et
             aenean posuere amet ultrices. Cras fermentum id pulvinar varius leo
             a in. Amet libero pharetra nunc elementum fringilla velit ipsum. Sed

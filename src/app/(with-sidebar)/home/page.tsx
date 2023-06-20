@@ -4,6 +4,7 @@ import { Header } from "@/components/Header"
 import { CardBook } from "@/components/Books/CardBook"
 import { TitleSection } from "@/components/TitleSection"
 import { CardBookShort } from "@/components/Books/CardBookShort"
+import { LastBookReadByUser } from "@/components/Books/LastBookReadByUser"
 
 export default function Home() {
   return (
@@ -12,6 +13,12 @@ export default function Home() {
 
       <div className="flex gap-16">
         <section className="flex-1">
+          <TitleSection label="Sua última leitura" />
+
+          <div className="mb-10">
+            <LastBookReadByUser />
+          </div>
+
           <TitleSection label="Avaliações mais recentes" />
 
           <div className="space-y-3">

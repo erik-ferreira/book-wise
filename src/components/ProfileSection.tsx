@@ -1,48 +1,8 @@
-import {
-  BookOpen,
-  Library,
-  UserCheck2,
-  Bookmark,
-  LucideIcon,
-} from "lucide-react"
-
 import { Profile } from "./Profile"
 
-interface OptionsProfileProps {
-  id: number
-  label: string | number
-  description: string
-  icon: LucideIcon
-}
+import { optionsProfile } from "../defaults/profile-options"
 
 export function ProfileSection() {
-  const optionsProfile: OptionsProfileProps[] = [
-    {
-      id: 1,
-      label: 3853,
-      description: "Páginas lidas",
-      icon: BookOpen,
-    },
-    {
-      id: 2,
-      label: 10,
-      description: "Livros avaliados",
-      icon: Library,
-    },
-    {
-      id: 3,
-      label: 8,
-      description: "Autores lidos",
-      icon: UserCheck2,
-    },
-    {
-      id: 4,
-      label: "Computação",
-      description: "Categoria mais lida",
-      icon: Bookmark,
-    },
-  ]
-
   return (
     <section className="w-[30%] h-fit flex flex-col items-center border-l border-l-gray-700">
       <Profile

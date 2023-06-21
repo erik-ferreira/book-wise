@@ -23,5 +23,3 @@ export function Rating({ size = "small", totalStar }: RatingProps) {
     </ul>
   )
 }
-
-// 16 - 20 - 28

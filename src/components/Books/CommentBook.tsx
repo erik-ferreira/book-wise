@@ -1,7 +1,7 @@
 import Image from "next/image"
 
 import { Rating } from "../Rating"
-import { Avatar } from "../Avatar"
+import { Profile } from "../Profile"
 
 import hobbitBookPng from "../../assets/books/hobbit.png"
 
@@ -15,12 +15,7 @@ export function CommentBook({ variant = "normal" }: CommentBookProps) {
   return (
     <article className="w-full h-fit bg-gray-700 rounded-md p-6 space-y-8 card-primary-animation">
       <header className="flex justify-between">
-        <Avatar
-          size="normal"
-          username="Erik Ferreira"
-          description="Hoje"
-          src="https://github.com/erik-ferreira.png"
-        />
+        <Profile username="Erik Ferreira" description="Hoje" />
 
         <Rating totalStar={4} />
       </header>

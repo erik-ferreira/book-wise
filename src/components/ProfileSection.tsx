@@ -6,7 +6,7 @@ import {
   LucideIcon,
 } from "lucide-react"
 
-import { Avatar } from "./Avatar"
+import { Profile } from "./Profile"
 
 interface OptionsProfileProps {
   id: number
@@ -45,11 +45,10 @@ export function ProfileSection() {
 
   return (
     <section className="w-[30%] h-fit flex flex-col items-center border-l border-l-gray-700">
-      <Avatar
+      <Profile
         size="large"
         username="Erik Ferreira"
         description="membro desde 2019"
-        src="https://github.com/erik-ferreira.png"
       />
 
       <div className="w-8 h-1 rounded-full bg-gradient-to-b from-start to-end my-8 mx-auto" />

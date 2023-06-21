@@ -1,7 +1,7 @@
 import Image from "next/image"
 import { LogOut } from "lucide-react"
 
-import { Avatar } from "./Avatar"
+import { Profile } from "./Profile"
 import { OptionsSidebar } from "./OptionsSidebar"
 
 import logoPng from "../assets/logo.png"
@@ -22,10 +22,7 @@ export function Sidebar() {
       <button className="flex gap-3 items-center py-2 mt-auto" type="button">
         {isSigned ? (
           <>
-            <Avatar
-              username="Erik Ferreira"
-              src="https://github.com/erik-ferreira.png"
-            />
+            <Profile size="small" username="Erik Ferreira" />
             <LogOut className="w-6 h-6 text-red-400" />
           </>
         ) : (

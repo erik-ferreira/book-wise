@@ -1,74 +1,41 @@
-import Image from "next/image"
+"use client"
+
+import * as AvatarUI from "@radix-ui/react-avatar"
 import classnames from "classnames"
 
-const sizes = {
-  small: {
-    size: 32,
-    container: "w-9 h-9",
-  },
-  normal: {
-    size: 40,
-    container: "w-11 h-11",
-  },
-  large: {
-    size: 72,
-    container: "w-[4.75rem] h-[4.75rem]",
-  },
-}
+export type SizeProps = "small" | "normal" | "large"
+
 interface AvatarProps {
-  src: string
-  username: string
-  description?: string
-  size?: keyof typeof sizes
+  size: SizeProps
 }
 
-export function Avatar({
-  size = "small",
-  username,
-  description,
-  src,
-}: AvatarProps) {
-  const sizeDefault = sizes[size]
-
+export function Avatar({ size }: AvatarProps) {
   return (
-    <div
-      className={classnames("flex items-center gap-3", {
-        "flex-col": size === "large",
-      })}
+    <AvatarUI.Root
+      className={classnames(
+        "rounded-full flex items-center justify-center bg-gradient-to-b from-start to-end",
+        {
+          "w-9 h-9": size === "small",
+          "w-11 h-11": size === "normal",
+          "w-[4.75rem] h-[4.75rem]": size === "large",
+        }
+      )}
     >
-      <div
-        className={`${sizeDefault.container}
-        rounded-full flex items-center justify-center bg-gradient-to-b from-start to-end`}
-      >
-        <Image
-          src={src}
-          alt=""
-          width={sizeDefault.size}
-          height={sizeDefault.size}
-          className="rounded-full"
-        />
-      </div>
-
-      <div
-        className={classnames("flex flex-col", {
-          "items-start": size === "normal",
-          "items-center": size === "large",
+      <AvatarUI.Image
+        src="https://github.com/erik-ferreira.png"
+        alt="Erik Ferreira"
+        className={classnames("rounded-full object-contain", {
+          "w-8 h-8": size === "small",
+          "w-10 h-10": size === "normal",
+          "w-[4.5rem] h-[4.5rem]": size === "large",
         })}
+      />
+      <AvatarUI.Fallback
+        className="font-bold text-gray-600 text-sm"
+        delayMs={600}
       >
-        <span
-          className={classnames("leading-base", {
-            "text-sm text-gray-200": size === "small",
-            "text-xl font-bold leading-short": size === "large",
-          })}
-        >
-          {username}
-        </span>
-        {!!description && (
-          <span className="text-gray-400 text-sm leading-base">
-            {description}
-          </span>
-        )}
-      </div>
-    </div>
+        CT
+      </AvatarUI.Fallback>
+    </AvatarUI.Root>
   )
 }

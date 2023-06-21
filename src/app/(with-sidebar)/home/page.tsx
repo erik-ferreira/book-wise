@@ -3,7 +3,7 @@ import { LineChart } from "lucide-react"
 import { Header } from "@/components/Header"
 import { TitleSection } from "@/components/TitleSection"
 import { CommentBook } from "@/components/Books/CommentBook"
-import { CardBookShort } from "@/components/Books/CardBook"
+import { CardBook } from "@/components/Books/CardBook"
 import { LastUserCommentByBook } from "@/components/Books/LastUserCommentByBook"
 
 export default function Home() {
@@ -32,9 +32,9 @@ export default function Home() {
           <TitleSection label="Livros populares" href="/all" />
 
           <div className="space-y-3">
-            <CardBookShort />
-            <CardBookShort />
-            <CardBookShort />
+            <CardBook />
+            <CardBook />
+            <CardBook />
           </div>
         </section>
       </div>

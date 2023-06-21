@@ -6,10 +6,10 @@ interface ButtonXCloseProps extends ButtonHTMLAttributes<HTMLButtonElement> {}
 export function ButtonXClose({ ...rest }: ButtonXCloseProps) {
   return (
     <button
-      className="w-10 h-10 p-2 bg-gray-600 text-purple-100 rounded-sm relative top-4 right-4 transition-colors hover:bg-gray-500"
+      className="w-6 h-6 text-gray-400 rounded-sm absolute top-6 right-12 transition-colors hover:bg-gray-600"
       {...rest}
     >
-      <X />
+      <X className="w-6 h-6" />
     </button>
   )
 }

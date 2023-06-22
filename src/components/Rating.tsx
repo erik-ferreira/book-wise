@@ -48,20 +48,27 @@ export function Rating({ size = "small", value, onUpdatedValue }: RatingProps) {
 
         return (
           <li key={star}>
-            <button
-              type="button"
-              onClick={() => handleUpdatedValue(star)}
-              onMouseEnter={() => {
-                if (ratingIsEditable) {
-                  setHoverRating(star)
-                }
-              }}
-            >
+            {ratingIsEditable ? (
+              <button
+                type="button"
+                onClick={() => handleUpdatedValue(star)}
+                onMouseEnter={() => {
+                  if (ratingIsEditable) {
+                    setHoverRating(star)
+                  }
+                }}
+              >
+                <Star
+                  className={`text-purple-100 ${sizes[size]}`}
+                  fill={fillStar}
+                />
+              </button>
+            ) : (
               <Star
                 className={`text-purple-100 ${sizes[size]}`}
                 fill={fillStar}
               />
-            </button>
+            )}
           </li>
         )
       })}

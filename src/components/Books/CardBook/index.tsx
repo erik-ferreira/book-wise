@@ -16,7 +16,7 @@ interface CardBookProps {
 export function CardBook({ bookHasBeenRead = false }: CardBookProps) {
   return (
     <Dialog.Root>
-      <Dialog.Trigger className="w-full text-start">
+      <Dialog.Trigger className="w-full text-start TRIGGERAQUI">
         <article
           className={classnames(
             "bg-gray-700 w-full h-fit rounded-md py-[1.125rem] px-5 flex gap-5 card-primary-animation",

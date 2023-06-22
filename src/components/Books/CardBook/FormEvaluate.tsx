@@ -10,6 +10,7 @@ import { DialogPortalSignIn } from "./DialogPortalSignIn"
 
 export function FormEvaluate() {
   const userSigned = false
+  const ButtonEvaluate = userSigned ? "button" : Dialog.Trigger
 
   const [valueRating, setValueRating] = useState(0)
   const [showFormEvaluate, setShowFormEvaluate] = useState(false)
@@ -29,12 +30,12 @@ export function FormEvaluate() {
       <TitleSection
         label="Avaliações"
         triggerRight={
-          <Dialog.Trigger
+          <ButtonEvaluate
             className="text-purple-100 text-sm font-bold leading-base flex items-center gap-2 py-1 px-2 rounded-sm hover:bg-purple-100 hover:bg-opacity-20 transition-colors"
             onClick={handleOpenFormEvaluate}
           >
             Avaliar
-          </Dialog.Trigger>
+          </ButtonEvaluate>
         }
       />
 
@@ -62,7 +63,7 @@ export function FormEvaluate() {
         </form>
       )}
 
-      <DialogPortalSignIn />
+      {!userSigned && <DialogPortalSignIn />}
     </Dialog.Root>
   )
 }

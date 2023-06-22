@@ -5,6 +5,7 @@ import { Profile } from "./Profile"
 import { OptionsSidebar } from "./OptionsSidebar"
 
 import logoPng from "../assets/logo.png"
+import Link from "next/link"
 
 export function Sidebar() {
   const isSigned = true
@@ -15,7 +16,9 @@ export function Sidebar() {
       pt-10 pb-6 rounded-lg bg-gray-700
       flex flex-col items-center bg-[url(../assets/background-sidebar.png)] bg-no-repeat bg-cover"
     >
-      <Image src={logoPng} alt="Book Wise" width={128} height={32} />
+      <Link href="/">
+        <Image src={logoPng} alt="Book Wise" width={128} height={32} />
+      </Link>
 
       <OptionsSidebar />
 

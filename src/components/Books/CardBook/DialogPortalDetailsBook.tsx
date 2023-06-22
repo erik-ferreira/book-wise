@@ -12,8 +12,15 @@ import algoritmosImg from "../../../assets/books/algoritimos.png"
 export function DialogPortalDetailsBook() {
   return (
     <Dialog.Portal>
-      <Dialog.Overlay className="fixed inset-0 bg-black/60" />
-      <Dialog.Content className="fixed top-0 right-0 w-[660px] h-full bg-gray-800 pt-16 pb-8 px-12 overflow-y-scroll">
+      <Dialog.Overlay
+        className="fixed inset-0 bg-black/60
+      data-[state=open]:animate-overlay-show data-[state=closed]:animate-overlay-hide"
+      />
+      <Dialog.Content
+        className="fixed top-0 right-0 w-[660px] h-full 
+      bg-gray-800 pt-16 pb-8 px-12 overflow-y-scroll 
+      data-[state=open]:animate-open-content data-[state=closed]:animate-close-content"
+      >
         <Dialog.Close asChild>
           <ButtonXClose />
         </Dialog.Close>

@@ -85,7 +85,54 @@ module.exports = {
       gridTemplateColumns: {
         books: "repeat(auto-fit, minmax(240px, 1fr))",
       },
+
+      keyframes: {
+        openContent: {
+          from: { width: 0 },
+          to: { width: 660 },
+        },
+        closeContent: {
+          from: { width: 660 },
+          to: { width: 0 },
+        },
+        overlayShow: {
+          from: { opacity: 0 },
+          to: { opacity: 1 },
+        },
+        overlayHide: {
+          from: { opacity: 1 },
+          to: { opacity: 0 },
+        },
+        contentSignInShow: {
+          from: { opacity: 0, transform: "translate(-50%, -48%) scale(0.96)" },
+          to: { opacity: 1, transform: "translate(-50%, -50%) scale(1)" },
+        },
+      },
+      animation: {
+        "open-content": "openContent 0.25s",
+        "close-content": "closeContent 0.25s",
+        "overlay-show": "overlayShow 0.25s",
+        "overlay-hide": "overlayHide 0.25s",
+        "content-sign-in-show": "contentSignInShow 0.25s",
+      },
     },
   },
   plugins: [],
 }
+
+// keyframes: {
+//   slideIn: {
+//     from: { width: 0 },
+//     to: { width: "var(--radix-collapsible-content-width)" },
+//   },
+
+//   slideOut: {
+//     from: { width: "var(--radix-collapsible-content-width)" },
+//     to: { width: 0 },
+//   },
+// },
+
+// animation: {
+//   slideIn: "slideIn 0.25s",
+//   slideOut: "slideOut 0.25s",
+// },

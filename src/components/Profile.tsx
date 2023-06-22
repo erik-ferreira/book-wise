@@ -3,15 +3,17 @@ import classnames from "classnames"
 import { Avatar, type SizeProps } from "./Avatar"
 
 interface ProfileProps {
+  size?: SizeProps
   username: string
   description?: string
-  size?: SizeProps
+  usernameIsBold?: boolean
 }
 
 export function Profile({
   size = "normal",
   username,
   description,
+  usernameIsBold = false,
 }: ProfileProps) {
   return (
     <div
@@ -30,6 +32,7 @@ export function Profile({
         <span
           className={classnames("leading-base", {
             "text-sm text-gray-200": size === "small",
+            "font-bold leading-short": usernameIsBold,
             "text-xl font-bold leading-short": size === "large",
           })}
         >

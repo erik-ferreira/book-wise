@@ -4,8 +4,9 @@ import { BookOpen, Bookmark } from "lucide-react"
 
 import { Rating } from "../../Rating"
 import { CommentBook } from "../CommentBook"
-import { TitleSection } from "../../TitleSection"
+import { FormEvaluate } from "./FormEvaluate"
 import { ButtonXClose } from "../../ButtonXClose"
+
 import algoritmosImg from "../../../assets/books/algoritimos.png"
 
 export function DialogPortal() {
@@ -75,7 +76,7 @@ export function DialogPortal() {
           </ul>
         </article>
 
-        <TitleSection label="Avaliações" showButtonEvaluate />
+        <FormEvaluate />
 
         <div className="space-y-3">
           <CommentBook variant="short" />

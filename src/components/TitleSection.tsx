@@ -5,12 +5,14 @@ interface TitleSectionProps {
   label: string
   href?: string
   showButtonEvaluate?: boolean
+  onClickEvaluate?: () => void
 }
 
 export function TitleSection({
   label,
   href,
   showButtonEvaluate = false,
+  onClickEvaluate,
 }: TitleSectionProps) {
   return (
     <div className="flex items-center justify-between mb-4">
@@ -27,7 +29,10 @@ export function TitleSection({
       )}
 
       {showButtonEvaluate && (
-        <button className="text-purple-100 text-sm font-bold leading-base flex items-center gap-2 py-1 px-2 rounded-sm hover:bg-purple-100 hover:bg-opacity-20 transition-colors">
+        <button
+          className="text-purple-100 text-sm font-bold leading-base flex items-center gap-2 py-1 px-2 rounded-sm hover:bg-purple-100 hover:bg-opacity-20 transition-colors"
+          onClick={onClickEvaluate}
+        >
           Avaliar
         </button>
       )}

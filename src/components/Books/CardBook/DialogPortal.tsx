@@ -39,7 +39,7 @@ export function DialogPortal() {
               </header>
 
               <div>
-                <Rating totalStar={4} size="normal" />
+                <Rating value={4} size="normal" />
                 <span className="text-sm leading-base text-gray-400">
                   3 avaliações
                 </span>

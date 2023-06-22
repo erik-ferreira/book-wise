@@ -45,7 +45,7 @@ export function CardBook({ bookHasBeenRead = false }: CardBookProps) {
               </p>
             </header>
 
-            <Rating totalStar={4} />
+            <Rating value={4} />
           </div>
         </article>
       </Dialog.Trigger>

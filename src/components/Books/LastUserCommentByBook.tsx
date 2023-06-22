@@ -20,7 +20,7 @@ export function LastUserCommentByBook() {
             <time className="text-sm leading-base text-gray-300">
               Há 2 dias
             </time>
-            <Rating totalStar={4} />
+            <Rating value={4} />
           </div>
 
           <h2 className="font-bold leading-short">O Hobbit</h2>

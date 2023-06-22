@@ -7,6 +7,7 @@ import { TitleSection } from "@/components/TitleSection"
 import { ButtonAction } from "@/components/ButtonAction"
 
 export function FormEvaluate() {
+  const [valueRating, setValueRating] = useState(0)
   const [showFormEvaluate, setShowFormEvaluate] = useState(false)
 
   function handleOpenFormEvaluate() {
@@ -29,7 +30,11 @@ export function FormEvaluate() {
         <form className="w-full h-fit bg-gray-700 rounded-md p-6 mb-3">
           <div className="flex items-center justify-between">
             <Profile username="Erik Ferreira" usernameIsBold />
-            <Rating totalStar={4} size="large" />
+            <Rating
+              size="large"
+              value={valueRating}
+              onUpdatedValue={(newValue) => setValueRating(newValue)}
+            />
           </div>
 
           <TextArea placeholder="Escreva sua avaliação" />

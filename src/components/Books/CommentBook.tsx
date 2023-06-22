@@ -17,7 +17,7 @@ export function CommentBook({ variant = "normal" }: CommentBookProps) {
       <header className="flex justify-between">
         <Profile username="Erik Ferreira" description="Hoje" />
 
-        <Rating totalStar={4} />
+        <Rating value={4} />
       </header>
 
       <main className="flex gap-5">

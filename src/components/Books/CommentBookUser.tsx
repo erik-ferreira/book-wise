@@ -27,7 +27,7 @@ export function CommentBookUser() {
               </p>
             </div>
 
-            <Rating totalStar={4} />
+            <Rating value={4} />
           </div>
         </header>
 

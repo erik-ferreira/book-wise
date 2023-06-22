@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { Star } from "lucide-react"
 
 const sizes = {
@@ -7,16 +8,58 @@ const sizes = {
 }
 interface RatingProps {
   size?: keyof typeof sizes
-  totalStar: number
+  value: number
+  onUpdatedValue?: (newValue: number) => void
 }
 
-export function Rating({ size = "small", totalStar }: RatingProps) {
+export function Rating({ size = "small", value, onUpdatedValue }: RatingProps) {
+  const ratingIsEditable = !!onUpdatedValue
+  const [hoverRating, setHoverRating] = useState(0)
+
+  function handleUpdatedValue(newValue: number) {
+    if (ratingIsEditable) {
+      onUpdatedValue(newValue)
+    }
+  }
+
+  function calculateFilledStar(star: number) {
+    if (hoverRating >= star) {
+      return "#8381D9"
+    } else if (!hoverRating && value >= star) {
+      return "#8381D9"
+    }
+
+    return "transparent"
+  }
+
   return (
-    <ul className="flex gap-1">
+    <ul
+      className="flex gap-1"
+      onMouseLeave={() => {
+        if (ratingIsEditable) {
+          setHoverRating(0)
+        }
+      }}
+    >
       {[1, 2, 3, 4, 5].map((star) => {
+        const fillStar = calculateFilledStar(star)
+
         return (
           <li key={star}>
-            <Star className={`text-purple-100 ${sizes[size]}`} />
+            <button
+              type="button"
+              onClick={() => handleUpdatedValue(star)}
+              onMouseEnter={() => {
+                if (ratingIsEditable) {
+                  setHoverRating(star)
+                }
+              }}
+            >
+              <Star
+                className={`text-purple-100 ${sizes[size]}`}
+                fill={fillStar}
+              />
+            </button>
           </li>
         )
       })}

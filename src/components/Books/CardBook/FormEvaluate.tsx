@@ -1,17 +1,23 @@
 import { useState } from "react"
+import * as Dialog from "@radix-ui/react-dialog"
 
-import { Rating } from "@/components/Rating"
-import { Profile } from "@/components/Profile"
-import { TextArea } from "@/components/TextArea"
-import { TitleSection } from "@/components/TitleSection"
-import { ButtonAction } from "@/components/ButtonAction"
+import { Rating } from "../../Rating"
+import { Profile } from "../../Profile"
+import { TextArea } from "../../TextArea"
+import { TitleSection } from "../../TitleSection"
+import { ButtonAction } from "../../ButtonAction"
+import { DialogPortalSignIn } from "./DialogPortalSignIn"
 
 export function FormEvaluate() {
+  const userSigned = false
+
   const [valueRating, setValueRating] = useState(0)
   const [showFormEvaluate, setShowFormEvaluate] = useState(false)
 
   function handleOpenFormEvaluate() {
-    setShowFormEvaluate(true)
+    if (userSigned) {
+      setShowFormEvaluate(true)
+    }
   }
 
   function handleCloseFormEvaluate() {
@@ -19,11 +25,17 @@ export function FormEvaluate() {
   }
 
   return (
-    <>
+    <Dialog.Root>
       <TitleSection
         label="Avaliações"
-        showButtonEvaluate
-        onClickEvaluate={handleOpenFormEvaluate}
+        triggerRight={
+          <Dialog.Trigger
+            className="text-purple-100 text-sm font-bold leading-base flex items-center gap-2 py-1 px-2 rounded-sm hover:bg-purple-100 hover:bg-opacity-20 transition-colors"
+            onClick={handleOpenFormEvaluate}
+          >
+            Avaliar
+          </Dialog.Trigger>
+        }
       />
 
       {showFormEvaluate && (
@@ -49,6 +61,8 @@ export function FormEvaluate() {
           </div>
         </form>
       )}
-    </>
+
+      <DialogPortalSignIn />
+    </Dialog.Root>
   )
 }

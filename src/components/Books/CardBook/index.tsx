@@ -5,7 +5,7 @@ import classnames from "classnames"
 import * as Dialog from "@radix-ui/react-dialog"
 
 import { Rating } from "../../Rating"
-import { DialogPortal } from "./DialogPortal"
+import { DialogPortalDetailsBook } from "./DialogPortalDetailsBook"
 
 import algoritmosImg from "../../../assets/books/algoritimos.png"
 
@@ -50,7 +50,7 @@ export function CardBook({ bookHasBeenRead = false }: CardBookProps) {
         </article>
       </Dialog.Trigger>
 
-      <DialogPortal />
+      <DialogPortalDetailsBook />
     </Dialog.Root>
   )
 }

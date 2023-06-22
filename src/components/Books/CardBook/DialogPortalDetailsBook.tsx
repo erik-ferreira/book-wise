@@ -9,7 +9,7 @@ import { ButtonXClose } from "../../ButtonXClose"
 
 import algoritmosImg from "../../../assets/books/algoritimos.png"
 
-export function DialogPortal() {
+export function DialogPortalDetailsBook() {
   return (
     <Dialog.Portal>
       <Dialog.Overlay className="fixed inset-0 bg-black/60" />

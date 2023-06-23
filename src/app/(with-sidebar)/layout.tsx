@@ -11,7 +11,9 @@ export default function UserLayout({ children }: UserLayoutProps) {
     <main className="flex p-5">
       <Sidebar />
 
-      <div className="w-full pt-[4.5rem] pl-24 pr-[4.75rem]">{children}</div>
+      {/* <div className="w-full pt-[4.5rem] pl-24 pr-[4.75rem] h-sidebar overflow-y-scroll">
+        {children}
+      </div> */}
     </main>
   )
 }

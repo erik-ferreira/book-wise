@@ -50,7 +50,7 @@ export function OptionsSidebar() {
   }, [isSigned])
 
   return (
-    <ul className="mt-16 space-y-3">
+    <ul className="space-y-3">
       {optionsSidebar.map(({ icon: Icon, ...option }) => {
         const isRouteActive = pathname === option.href
 

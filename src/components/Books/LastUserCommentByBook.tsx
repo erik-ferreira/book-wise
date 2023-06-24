@@ -6,7 +6,7 @@ import hobbitBookPng from "../../assets/books/hobbit.png"
 
 export function LastUserCommentByBook() {
   return (
-    <article className="w-full h-fit bg-gray-600 rounded-md p-6 flex gap-6 card-secondary-animation">
+    <article className="w-full h-fit bg-gray-600 rounded-md p-6 flex items-center gap-6 card-secondary-animation max-[1130px]:flex-col">
       <Image
         src={hobbitBookPng}
         width={108}
@@ -24,15 +24,15 @@ export function LastUserCommentByBook() {
           </div>
 
           <h2 className="font-bold leading-short">O Hobbit</h2>
-          <p className="text-sm leading-base text-gray-400 mb-5">
+          <p className="text-sm leading-base text-gray-400 mb-5 max-[1130px]:mb-0">
             J.R.R Tolkien
           </p>
         </header>
 
-        <main className="w-full mt-6 text-gray-300 text-sm leading-base overflow-hidden">
+        <main className="w-full mt-6 text-gray-300 text-sm leading-base overflow-hidden max-[1130px]:mt-3">
           Semper et sapien proin vitae nisi. Feugiat neque integer donec et
-          aenean posuere amet ultrices. Cras fermentum id pulvinar varius leo a
-          ...
+          aenean posuere amet ultrices. Cras fermentum id pulvinar varius leo
+          a...
         </main>
       </div>
     </article>

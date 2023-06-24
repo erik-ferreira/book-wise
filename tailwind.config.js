@@ -76,6 +76,8 @@ module.exports = {
 
       maxWidth: {
         sidebar: "14.5rem",
+        "sidebar-md": "12rem",
+        "sidebar-sm": "11rem",
       },
 
       height: {

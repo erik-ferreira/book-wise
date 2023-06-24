@@ -11,16 +11,23 @@ import algoritmosImg from "../../../assets/books/algoritimos.png"
 
 interface CardBookProps {
   bookHasBeenRead?: boolean
+  cardBookIsHome?: boolean
 }
 
-export function CardBook({ bookHasBeenRead = false }: CardBookProps) {
+export function CardBook({
+  bookHasBeenRead = false,
+  cardBookIsHome = false,
+}: CardBookProps) {
   return (
     <Dialog.Root>
-      <Dialog.Trigger className="w-full text-start TRIGGERAQUI">
+      <Dialog.Trigger className="w-full text-start">
         <article
           className={classnames(
             "bg-gray-700 w-full h-fit rounded-md py-[1.125rem] px-5 flex gap-5 card-primary-animation",
-            { relative: bookHasBeenRead }
+            { relative: bookHasBeenRead },
+            {
+              "max-[1200px]:flex-col max-[1200px]:items-center": cardBookIsHome,
+            }
           )}
         >
           {bookHasBeenRead && (
@@ -37,8 +44,15 @@ export function CardBook({ bookHasBeenRead = false }: CardBookProps) {
             className="rounded-sm w-16 h-24"
           />
 
-          <div className="flex flex-col justify-between">
-            <header>
+          <div
+            className={classnames("flex flex-col justify-between", {
+              "max-[1200px]:flex-col-reverse max-[1200px]:items-center max-[1200px]:gap-2":
+                cardBookIsHome,
+            })}
+          >
+            <header
+              className={cardBookIsHome ? "max-[1200px]:text-center" : ""}
+            >
               <h2 className="font-bold leading-short">Entendendo Algoritmos</h2>
               <p className="text-sm leading-base text-gray-400">
                 J.R.R Tolkien

@@ -14,13 +14,13 @@ export function CommentBook({ variant = "normal" }: CommentBookProps) {
 
   return (
     <article className="w-full h-fit bg-gray-700 rounded-md p-6 space-y-8 card-primary-animation">
-      <header className="flex justify-between">
+      <header className="flex justify-between max-[930px]:flex-col max-[930px]:items-center max-[930px]:gap-4">
         <Profile username="Erik Ferreira" description="Hoje" />
 
         <Rating value={4} />
       </header>
 
-      <main className="flex gap-5">
+      <main className="flex items-center gap-5 max-[1130px]:flex-col">
         {isCommentNormal && (
           <Image
             src={hobbitBookPng}

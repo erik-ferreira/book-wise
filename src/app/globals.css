@@ -3,15 +3,15 @@
 @tailwind utilities;
 
 html {
-  @media (max-width: 1024px) {
+  @media (max-width: 1023px) {
     font-size: 93.75%;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     font-size: 87.5%;
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 639px) {
     font-size: 75%;
   }
 }
@@ -19,6 +19,10 @@ html {
 body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+.responsive-sidebar {
+  @apply max-[800px]:max-w-sidebar-md max-md:max-w-sidebar-sm;
 }
 
 .card-primary-animation {

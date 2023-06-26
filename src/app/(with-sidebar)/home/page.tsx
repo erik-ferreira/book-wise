@@ -29,7 +29,7 @@ export default function Home() {
         </section>
 
         <section className="w-[30%] h-fit">
-          <TitleSection label="Livros populares" href="/all" />
+          <TitleSection label="Livros populares" />
 
           <div className="space-y-3">
             <CardBook cardBookIsHome />

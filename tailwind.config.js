@@ -20,6 +20,10 @@ module.exports = {
         10: "2.5rem",
       },
 
+      padding: {
+        18: "4.5rem",
+      },
+
       fontSize: {
         xs: "0.75rem",
         sm: "0.875rem",
@@ -78,6 +82,7 @@ module.exports = {
         sidebar: "14.5rem",
         "sidebar-md": "12rem",
         "sidebar-sm": "11rem",
+        "sidebar-all": "calc(100vw - 40px)",
       },
 
       height: {

@@ -21,8 +21,16 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-.responsive-sidebar {
-  @apply max-[800px]:max-w-sidebar-md max-md:max-w-sidebar-sm;
+.responsive-sidebar-without-toggle {
+  @apply max-[800px]:max-w-sidebar-md max-md:max-w-sidebar-sm max-[650px]:hidden;
+}
+
+.responsive-sidebar-with-toggle {
+  @apply max-[650px]:max-w-sidebar-all max-[650px]:z-10 max-[650px]:fixed max-[650px]:inset-5;
+}
+
+.sidebar-show {
+  @apply block;
 }
 
 .card-primary-animation {

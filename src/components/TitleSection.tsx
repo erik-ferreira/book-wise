@@ -8,7 +8,6 @@ interface TitleSectionProps {
   triggerRight?: ReactNode
 }
 
-// max-[1200px]:
 export function TitleSection({ label, href, triggerRight }: TitleSectionProps) {
   return (
     <div className="flex items-center justify-between mb-4">

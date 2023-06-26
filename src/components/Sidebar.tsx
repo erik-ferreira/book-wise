@@ -21,7 +21,7 @@ export function Sidebar() {
       {!showSidebar && (
         <button
           className="w-8 h-8 items-center justify-center z-20 hidden
-        max-[650px]:flex max-[650px]:absolute max-[650px]:top-5 max-[650px]:left-12"
+        max-[650px]:flex max-[650px]:absolute max-[650px]:top-5 max-[650px]:left-3"
           onClick={() => setShowSidebar(true)}
         >
           <Menu className="w-7 h-7 text-green-100" />
@@ -29,6 +29,7 @@ export function Sidebar() {
       )}
 
       <aside
+        data-sidebar={showSidebar}
         className={classnames(
           "max-w-sidebar w-full h-sidebar pt-10 pb-6 rounded-lg bg-gray-700 flex flex-col items-center bg-[url(../assets/background-sidebar.png)] bg-no-repeat bg-cover",
           { "responsive-sidebar-without-toggle": !showSidebar },

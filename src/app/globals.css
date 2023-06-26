@@ -26,7 +26,7 @@ body {
 }
 
 .responsive-sidebar-with-toggle {
-  @apply max-[650px]:max-w-sidebar-all max-[650px]:z-10 max-[650px]:fixed max-[650px]:inset-5;
+  @apply max-[650px]:max-w-sidebar-all max-[650px]:z-10 max-[650px]:fixed max-[650px]:inset-[20px];
 }
 
 .sidebar-show {

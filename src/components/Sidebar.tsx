@@ -3,11 +3,13 @@
 import Link from "next/link"
 import Image from "next/image"
 import { useState } from "react"
-import classnames from "classnames"
-import { LogOut, Menu, X } from "lucide-react"
+import { LogOut } from "lucide-react"
 
 import { Profile } from "./Profile"
 import { OptionsSidebar } from "./OptionsSidebar"
+import { ButtonToggleSidebar } from "./ButtonToggleSidebar"
+
+import { twMerge } from "@/utils/tw-merge"
 
 import logoPng from "../assets/logo.png"
 
@@ -19,30 +21,24 @@ export function Sidebar() {
   return (
     <>
       {!showSidebar && (
-        <button
-          className="w-8 h-8 items-center justify-center z-20 hidden
-        max-[650px]:flex max-[650px]:absolute max-[650px]:top-5 max-[650px]:left-3"
-          onClick={() => setShowSidebar(true)}
-        >
-          <Menu className="w-7 h-7 text-green-100" />
-        </button>
+        <ButtonToggleSidebar onClick={() => setShowSidebar(true)} />
       )}
 
       <aside
-        data-sidebar={showSidebar}
-        className={classnames(
+        className={twMerge(
           "max-w-sidebar w-full h-sidebar pt-10 pb-6 rounded-lg bg-gray-700 flex flex-col items-center bg-[url(../assets/background-sidebar.png)] bg-no-repeat bg-cover",
-          { "responsive-sidebar-without-toggle": !showSidebar },
-          { "responsive-sidebar-with-toggle peer": showSidebar }
+          {
+            "responsive-sidebar-without-toggle": !showSidebar,
+          },
+          {
+            "responsive-sidebar-with-toggle": showSidebar,
+          }
         )}
       >
-        <button
-          className="w-8 h-8 items-center justify-center z-20 hidden
-        max-[650px]:flex max-[650px]:absolute max-[650px]:top-5 max-[650px]:right-5"
+        <ButtonToggleSidebar
+          variant="close"
           onClick={() => setShowSidebar(false)}
-        >
-          <X className="w-7 h-7 text-green-100" />
-        </button>
+        />
 
         <Link href="/" className="relative w-32 h-8 mb-16 max-lg:mb-10">
           <Image src={logoPng} alt="Book Wise" fill />

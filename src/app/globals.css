@@ -29,10 +29,6 @@ body {
   @apply max-[650px]:max-w-sidebar-all max-[650px]:z-10 max-[650px]:fixed max-[650px]:inset-[20px];
 }
 
-.sidebar-show {
-  @apply block;
-}
-
 .card-primary-animation {
   @apply transition-colors border-2 border-transparent hover:cursor-pointer hover:border-2 hover:border-gray-600;
 }

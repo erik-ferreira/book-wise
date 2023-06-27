@@ -4,6 +4,8 @@ import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { ButtonHTMLAttributes } from "react"
 
+import { twMerge } from "@/utils/tw-merge"
+
 import GithubIcon from "../assets/icons/github.png"
 import GoogleIcon from "../assets/icons/google.png"
 import RocketIcon from "../assets/icons/rocket.png"
@@ -22,6 +24,7 @@ interface ButtonSignInProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export function ButtonSignIn({
   variant = "google",
+  className,
   ...rest
 }: ButtonSignInProps) {
   const router = useRouter()
@@ -33,7 +36,10 @@ export function ButtonSignIn({
   return (
     <button
       type="button"
-      className="w-full bg-gray-600 py-5 px-6 flex items-center gap-5 rounded-md text-gray-200 font-bold text-lg leading-short hover:bg-gray-500 transition-colors"
+      className={twMerge(
+        "w-full bg-gray-600 py-5 px-6 flex items-center gap-5 rounded-md text-gray-200 font-bold text-lg leading-short hover:bg-gray-500 transition-colors",
+        className
+      )}
       onClick={handleNavigate}
       {...rest}
     >

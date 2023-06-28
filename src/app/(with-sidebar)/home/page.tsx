@@ -9,7 +9,7 @@ import { ContainerPagesWithSidebar } from "@/components/ContainerPagesWithSideba
 
 export default function Home() {
   return (
-    <ContainerPagesWithSidebar className="max-[450px]:pr-0 peer-[.responsive-sidebar-with-toggle]:overflow-y-hidden">
+    <ContainerPagesWithSidebar className="max-[450px]:pr-0">
       <Header label="Início" icon={LineChart} />
 
       <div className="flex gap-16 max-lg:gap-12 max-[450px]:flex-col">

@@ -10,19 +10,19 @@ export function CommentBookUser() {
       <time className="text-sm leading-base text-gray-300">Há 2 dias</time>
 
       <div className="bg-gray-700 rounded-md p-6 space-y-6">
-        <header className="flex gap-6">
+        <header className="flex gap-6 max-[900px]:flex-col max-[900px]:items-center">
           <Image
             src={hobbitImg}
             alt=""
             width={98}
             height={134}
-            className="rounded w-auto h-auto"
+            className="rounded w-[6.125rem] h-[8.375rem]"
           />
 
-          <div className="flex flex-col justify-between pb-2">
-            <div>
+          <div className="flex flex-col justify-between pb-2 gap-5 max-[900px]:flex-col-reverse">
+            <div className="max-[900px]:text-center">
               <h2 className="font-bold leading-short mb-[2px]">O Hobbit</h2>
-              <p className="text-sm leading-base text-gray-400 mb-5">
+              <p className="text-sm leading-base text-gray-400">
                 J.R.R Tolkien
               </p>
             </div>

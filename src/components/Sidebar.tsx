@@ -18,11 +18,17 @@ export function Sidebar() {
 
   const [showSidebar, setShowSidebar] = useState(false)
 
+  function handleOpenSidebar() {
+    setShowSidebar(true)
+  }
+
+  function handleCloseSidebar() {
+    setShowSidebar(false)
+  }
+
   return (
     <>
-      {!showSidebar && (
-        <ButtonToggleSidebar onClick={() => setShowSidebar(true)} />
-      )}
+      {!showSidebar && <ButtonToggleSidebar onClick={handleOpenSidebar} />}
 
       <aside
         className={twMerge(
@@ -35,16 +41,13 @@ export function Sidebar() {
           }
         )}
       >
-        <ButtonToggleSidebar
-          variant="close"
-          onClick={() => setShowSidebar(false)}
-        />
+        <ButtonToggleSidebar variant="close" onClick={handleCloseSidebar} />
 
         <Link href="/" className="relative w-32 h-8 mb-16 max-lg:mb-10">
           <Image src={logoPng} alt="Book Wise" fill />
         </Link>
 
-        <OptionsSidebar />
+        <OptionsSidebar onHandleNavigate={handleCloseSidebar} />
 
         <button
           className="flex gap-3 items-center py-2 mt-auto teste"

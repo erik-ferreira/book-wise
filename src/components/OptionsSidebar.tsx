@@ -6,19 +6,23 @@ import classnames from "classnames"
 import { usePathname } from "next/navigation"
 import { LineChart, Glasses, User, LucideIcon } from "lucide-react"
 
-interface OptionsSidebarProps {
+interface OptionsProps {
   id: number
   label: string
   href: string
   icon: LucideIcon
 }
 
-export function OptionsSidebar() {
+interface OptionsSidebarProps {
+  onHandleNavigate?: () => void
+}
+
+export function OptionsSidebar({ onHandleNavigate }: OptionsSidebarProps) {
   const pathname = usePathname()
 
   const isSigned = true
 
-  const optionsSidebar = useMemo<OptionsSidebarProps[]>(() => {
+  const optionsSidebar = useMemo<OptionsProps[]>(() => {
     let options = [
       {
         id: 1,
@@ -66,6 +70,7 @@ export function OptionsSidebar() {
                 },
                 { "text-gray-400": !isRouteActive }
               )}
+              onClick={onHandleNavigate}
             >
               <Icon className="w-6 h-6" />
               {option.label}

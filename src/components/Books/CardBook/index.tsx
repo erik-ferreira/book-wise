@@ -26,7 +26,8 @@ export function CardBook({
             "bg-gray-700 w-full h-fit rounded-md py-[1.125rem] px-5 flex gap-5 card-primary-animation",
             { relative: bookHasBeenRead },
             {
-              "max-[1200px]:flex-col max-[1200px]:items-center": cardBookIsHome,
+              "max-[1200px]:flex-col max-[1200px]:items-center max-[450px]:min-w-[120px]":
+                cardBookIsHome,
             }
           )}
         >

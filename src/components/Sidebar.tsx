@@ -31,7 +31,7 @@ export function Sidebar() {
             "responsive-sidebar-without-toggle": !showSidebar,
           },
           {
-            "responsive-sidebar-with-toggle": showSidebar,
+            "responsive-sidebar-with-toggle peer": showSidebar,
           }
         )}
       >

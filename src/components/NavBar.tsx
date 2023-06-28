@@ -25,23 +25,21 @@ export function NavBar() {
   }
 
   return (
-    <div>
-      <ul className="flex gap-3">
-        {categoriesFiltered.map((category) => (
-          <li key={category.id}>
-            <button
-              className={classnames(
-                "py-1 px-4 rounded-full flex items-center justify-center leading-short border transition-colors hover:text-gray-100 hover:border-purple-100 hover:bg-purple-200",
-                { "bg-purple-200 border-purple-200": category.active },
-                { "border-purple-100 text-purple-100": !category.active }
-              )}
-              onClick={() => handleToggleCategoryActive(category.id)}
-            >
-              {category.label}
-            </button>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ul className="flex gap-3 flex-wrap">
+      {categoriesFiltered.map((category) => (
+        <li key={category.id}>
+          <button
+            className={classnames(
+              "py-1 px-4 rounded-full flex items-center justify-center leading-short border whitespace-nowrap transition-colors hover:text-gray-100 hover:border-purple-100 hover:bg-purple-200",
+              { "bg-purple-200 border-purple-200": category.active },
+              { "border-purple-100 text-purple-100": !category.active }
+            )}
+            onClick={() => handleToggleCategoryActive(category.id)}
+          >
+            {category.label}
+          </button>
+        </li>
+      ))}
+    </ul>
   )
 }

@@ -9,7 +9,7 @@ export function CommentBookUser() {
     <article className="h-fit space-y-2">
       <time className="text-sm leading-base text-gray-300">Há 2 dias</time>
 
-      <div className="bg-gray-700 rounded-md p-6 space-y-6 card-primary-animation">
+      <div className="bg-gray-700 rounded-md p-6 space-y-6">
         <header className="flex gap-6">
           <Image
             src={hobbitImg}

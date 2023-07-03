@@ -96,12 +96,22 @@ module.exports = {
       keyframes: {
         openContent: {
           from: { width: 0 },
-          to: { width: 660 },
+          to: { width: "41.25rem" },
         },
         closeContent: {
-          from: { width: 660 },
+          from: { width: "41.25rem" },
           to: { width: 0 },
         },
+
+        openContentFull: {
+          from: { width: 0 },
+          to: { width: "100%" },
+        },
+        closeContentFull: {
+          from: { width: "100%" },
+          to: { width: 0 },
+        },
+
         overlayShow: {
           from: { opacity: 0 },
           to: { opacity: 1 },
@@ -118,6 +128,10 @@ module.exports = {
       animation: {
         "open-content": "openContent 0.25s",
         "close-content": "closeContent 0.25s",
+
+        "open-content-full": "openContentFull 0.25s",
+        "close-content-full": "closeContentFull 0.25s",
+
         "overlay-show": "overlayShow 0.25s",
         "overlay-hide": "overlayHide 0.25s",
         "content-sign-in-show": "contentSignInShow 0.25s",

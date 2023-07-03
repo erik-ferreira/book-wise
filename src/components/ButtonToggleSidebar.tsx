@@ -18,7 +18,7 @@ export function ButtonToggleSidebar({
   return (
     <button
       className={twMerge(
-        "w-8 h-8 items-center justify-center z-20 hidden max-[650px]:flex max-[650px]:absolute max-[650px]:top-5",
+        "w-8 h-8 items-center justify-center z-10 hidden max-[650px]:flex max-[650px]:absolute max-[650px]:top-5",
         { "max-[650px]:left-3": variant === "open" },
         { "max-[650px]:right-5": variant === "close" }
       )}

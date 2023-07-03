@@ -16,11 +16,7 @@ export function DialogPortalDetailsBook() {
         className="fixed inset-0 bg-black/60
       data-[state=open]:animate-overlay-show data-[state=closed]:animate-overlay-hide"
       />
-      <Dialog.Content
-        className="fixed top-0 right-0 w-[660px] h-full 
-      bg-gray-800 pt-16 pb-8 px-12 overflow-y-scroll 
-      data-[state=open]:animate-open-content data-[state=closed]:animate-close-content"
-      >
+      <Dialog.Content className="fixed top-0 right-0 w-[41.25rem] h-full bg-gray-800 pt-16 pb-8 px-12 overflow-y-scroll z-20 data-[state=open]:animate-open-content data-[state=closed]:animate-close-content max-[650px]:w-full max-[650px]:data-[state=open]:animate-open-content-full max-[650px]:data-[state=closed]:animate-close-content-full">
         <Dialog.Close asChild>
           <ButtonXClose />
         </Dialog.Close>

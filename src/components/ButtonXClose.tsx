@@ -16,7 +16,7 @@ export function ButtonXClose({
       className={classnames(
         `w-6 h-6 text-gray-400 rounded-sm transition-colors hover:bg-gray-600 ${className}`,
         {
-          "absolute op-6 right-12": isAbsolute,
+          "absolute top-6 right-12": isAbsolute,
         }
       )}
       {...rest}

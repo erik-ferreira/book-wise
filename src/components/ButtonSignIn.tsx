@@ -43,7 +43,9 @@ export function ButtonSignIn({
       onClick={handleNavigate}
       {...rest}
     >
-      <Image src={variants[variant].icon} alt="" width={32} height={32} />
+      <div className="relative w-8 h-8">
+        <Image src={variants[variant].icon} alt="" fill />
+      </div>
       {variants[variant].title}
     </button>
   )

@@ -4,6 +4,7 @@ import { Rating } from "../Rating"
 import { Profile } from "../Profile"
 
 import hobbitBookPng from "../../assets/books/hobbit.png"
+import { twMerge } from "../../utils/tw-merge"
 
 interface CommentBookProps {
   variant?: "normal" | "short"
@@ -14,7 +15,12 @@ export function CommentBook({ variant = "normal" }: CommentBookProps) {
 
   return (
     <article className="w-full h-fit bg-gray-700 rounded-md p-6 space-y-8 max-[450px]:min-w-[230px]">
-      <header className="flex justify-between max-[930px]:flex-col max-[930px]:items-center max-[930px]:gap-4">
+      <header
+        className={twMerge("flex justify-between", {
+          isCommentNormal:
+            "max-[930px]:flex-col max-[930px]:items-center max-[930px]:gap-4",
+        })}
+      >
         <Profile username="Erik Ferreira" description="Hoje" />
 
         <Rating value={4} />

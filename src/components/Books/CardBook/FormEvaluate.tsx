@@ -9,7 +9,7 @@ import { ButtonAction } from "../../ButtonAction"
 import { DialogPortalSignIn } from "./DialogPortalSignIn"
 
 export function FormEvaluate() {
-  const userSigned = false
+  const userSigned = true
   const ButtonEvaluate = userSigned ? "button" : Dialog.Trigger
 
   const [valueRating, setValueRating] = useState(0)
@@ -41,7 +41,7 @@ export function FormEvaluate() {
 
       {showFormEvaluate && (
         <form className="w-full h-fit bg-gray-700 rounded-md p-6 mb-3">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between max-[375px]:flex-col max-[375px]:gap-5">
             <Profile username="Erik Ferreira" usernameIsBold />
             <Rating
               size="large"

@@ -22,16 +22,16 @@ export function DialogPortalDetailsBook() {
         </Dialog.Close>
 
         <article className="w-full h-fit bg-gray-700 px-8 pt-6 pb-4 rounded-[10px] space-y-10 mb-11">
-          <div className="flex gap-8">
+          <div className="flex gap-8 max-[375px]:flex-col max-[375px]:items-center">
             <Image
               src={algoritmosImg}
               width={170}
               height={242}
               alt=""
-              className="rounded-sm w-[170px] h-[242px]"
+              className="rounded-sm w-[10.625rem] h-[15.125rem]"
             />
 
-            <div className="flex flex-col justify-between">
+            <div className="w-full flex flex-col justify-between max-[375px]:gap-4 max-[375px]:items-center max-[375px]:text-center">
               <header>
                 <h2 className="font-bold leading-short text-lg">
                   Entendendo Algoritmos
@@ -50,8 +50,8 @@ export function DialogPortalDetailsBook() {
             </div>
           </div>
 
-          <ul className="flex items-center gap-14 py-6 border-t border-t-gray-600">
-            <li className="flex gap-5 items-center">
+          <ul className="flex items-center gap-14 py-6 border-t border-t-gray-600 max-[375px]:flex-col max-[375px]:gap-5">
+            <li className="flex gap-5 items-center max-[375px]:w-full">
               <BookOpen className="text-green-100 w-8 h-8" />
 
               <div className="flex flex-col">
@@ -64,7 +64,7 @@ export function DialogPortalDetailsBook() {
               </div>
             </li>
 
-            <li className="flex gap-5 items-center">
+            <li className="flex gap-5 items-center max-[375px]:w-full">
               <Bookmark className="text-green-100 w-8 h-8" />
 
               <div className="flex flex-col">

@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image"
+import { signIn } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import { ButtonHTMLAttributes } from "react"
 
@@ -29,8 +30,14 @@ export function ButtonSignIn({
 }: ButtonSignInProps) {
   const router = useRouter()
 
-  function handleNavigate() {
-    router.push("/home")
+  function handleSignIn() {
+    if (variant === "visitor") {
+      router.push("/home")
+    } else if (variant === "google") {
+      signIn("google")
+    } else if (variant === "github") {
+      signIn("github")
+    }
   }
 
   return (
@@ -40,7 +47,7 @@ export function ButtonSignIn({
         "w-full bg-gray-600 py-5 px-6 flex items-center gap-5 rounded-md text-gray-200 font-bold text-lg leading-short hover:bg-gray-500 transition-colors",
         className
       )}
-      onClick={handleNavigate}
+      onClick={handleSignIn}
       {...rest}
     >
       <div className="relative w-8 h-8">

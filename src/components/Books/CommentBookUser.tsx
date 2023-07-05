@@ -1,6 +1,6 @@
 import Image from "next/image"
 
-import { Rating } from "../Rating"
+import { RatingStars } from "../RatingStars"
 
 import hobbitImg from "../../assets/books/hobbit.png"
 
@@ -27,7 +27,7 @@ export function CommentBookUser() {
               </p>
             </div>
 
-            <Rating value={4} />
+            <RatingStars stars={4} />
           </div>
         </header>
 

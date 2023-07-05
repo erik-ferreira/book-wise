@@ -1,6 +1,6 @@
 import { LucideIcon } from "lucide-react"
 
-import { Input } from "./Input"
+import { Input } from "./Form/Input"
 
 interface HeaderProps {
   icon: LucideIcon

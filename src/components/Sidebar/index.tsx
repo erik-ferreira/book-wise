@@ -6,13 +6,13 @@ import { useState } from "react"
 import { LogOut } from "lucide-react"
 import { useSession, signOut } from "next-auth/react"
 
-import { Profile } from "./Profile"
+import { Profile } from "../Profile"
 import { OptionsSidebar } from "./OptionsSidebar"
-import { ButtonToggleSidebar } from "./ButtonToggleSidebar"
+import { ButtonToggleSidebar } from "../ButtonToggleSidebar"
 
 import { twMerge } from "@/utils/tw-merge"
 
-import logoPng from "../assets/logo.png"
+import logoPng from "../../assets/logo.png"
 
 export function Sidebar() {
   const session = useSession()

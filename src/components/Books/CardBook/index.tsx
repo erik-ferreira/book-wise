@@ -4,7 +4,7 @@ import Image from "next/image"
 import classnames from "classnames"
 import * as Dialog from "@radix-ui/react-dialog"
 
-import { Rating } from "../../Rating"
+import { RatingStars } from "../../RatingStars"
 import { DialogPortalDetailsBook } from "./DialogPortalDetailsBook"
 
 import algoritmosImg from "../../../assets/books/algoritimos.png"
@@ -60,7 +60,7 @@ export function CardBook({
               </p>
             </header>
 
-            <Rating value={4} />
+            <RatingStars stars={4} />
           </div>
         </article>
       </Dialog.Trigger>

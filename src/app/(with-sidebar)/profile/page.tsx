@@ -1,7 +1,7 @@
 import { User } from "lucide-react"
 
-import { Input } from "@/components/Input"
 import { Header } from "@/components/Header"
+import { Input } from "@/components/Form/Input"
 import { ProfileSection } from "@/components/ProfileSection"
 import { CommentBookUser } from "@/components/Books/CommentBookUser"
 import { ContainerPagesWithSidebar } from "@/components/ContainerPagesWithSidebar"

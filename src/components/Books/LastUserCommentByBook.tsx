@@ -1,6 +1,6 @@
 import Image from "next/image"
 
-import { Rating } from "../Rating"
+import { RatingStars } from "../RatingStars"
 
 import hobbitBookPng from "../../assets/books/hobbit.png"
 
@@ -20,7 +20,7 @@ export function LastUserCommentByBook() {
             <time className="text-sm leading-base text-gray-300">
               Há 2 dias
             </time>
-            <Rating value={4} />
+            <RatingStars stars={4} />
           </div>
 
           <h2 className="font-bold leading-short">O Hobbit</h2>

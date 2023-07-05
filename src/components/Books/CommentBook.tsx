@@ -1,7 +1,7 @@
 import Image from "next/image"
 
-import { Rating } from "../Rating"
 import { Profile } from "../Profile"
+import { RatingStars } from "../RatingStars"
 
 import hobbitBookPng from "../../assets/books/hobbit.png"
 import { twMerge } from "../../utils/tw-merge"
@@ -23,7 +23,7 @@ export function CommentBook({ variant = "normal" }: CommentBookProps) {
       >
         <Profile username="Erik Ferreira" description="Hoje" />
 
-        <Rating value={4} />
+        <RatingStars stars={4} />
       </header>
 
       <main className="flex items-center gap-5 max-[1130px]:flex-col">

@@ -2,9 +2,9 @@ import Image from "next/image"
 import * as Dialog from "@radix-ui/react-dialog"
 import { BookOpen, Bookmark } from "lucide-react"
 
-import { Rating } from "../../Rating"
 import { CommentBook } from "../CommentBook"
 import { FormEvaluate } from "./FormEvaluate"
+import { RatingStars } from "../../RatingStars"
 import { ButtonXClose } from "../../ButtonXClose"
 
 import algoritmosImg from "../../../assets/books/algoritimos.png"
@@ -42,7 +42,7 @@ export function DialogPortalDetailsBook() {
               </header>
 
               <div>
-                <Rating value={4} size="normal" />
+                <RatingStars stars={4} />
                 <span className="text-sm leading-base text-gray-400">
                   3 avaliações
                 </span>

@@ -1,16 +1,11 @@
 import Image from "next/image"
 
-import { getServerSession } from "next-auth"
-import { authOptions } from "./api/auth/[...nextauth]/route"
-
 import { ButtonSignIn } from "@/components/ButtonSignIn"
 
 import logoPng from "../assets/logo-large.png"
 import backgroundImage from "../assets/background.png"
 
 export default async function Login() {
-  getServerSession(authOptions)
-
   return (
     <main className="flex items-center p-5 h-screen">
       <Image

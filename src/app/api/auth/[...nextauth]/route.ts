@@ -21,6 +21,18 @@ export function buildNextAuthOptions(
         clientSecret: process.env.GITHUB_SECRET ?? "",
       }),
     ],
+    callbacks: {
+      async redirect({ url, baseUrl }) {
+        if (baseUrl.endsWith("/home")) {
+          return "/"
+        }
+
+        return "/home"
+      },
+      async session({ session, user }) {
+        return { ...session, user }
+      },
+    },
   }
 }
 

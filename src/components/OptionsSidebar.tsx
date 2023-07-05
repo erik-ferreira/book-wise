@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { useMemo } from "react"
 import classnames from "classnames"
+import { useSession } from "next-auth/react"
 import { usePathname } from "next/navigation"
 import { LineChart, Glasses, User, LucideIcon } from "lucide-react"
 
@@ -19,8 +20,9 @@ interface OptionsSidebarProps {
 
 export function OptionsSidebar({ onHandleNavigate }: OptionsSidebarProps) {
   const pathname = usePathname()
+  const session = useSession()
 
-  const isSigned = true
+  const isSigned = session.status === "authenticated"
 
   const optionsSidebar = useMemo<OptionsProps[]>(() => {
     let options = [

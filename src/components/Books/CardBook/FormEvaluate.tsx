@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useSession } from "next-auth/react"
 import * as Dialog from "@radix-ui/react-dialog"
 
 import { Rating } from "../../Rating"
@@ -9,14 +10,15 @@ import { ButtonAction } from "../../ButtonAction"
 import { DialogPortalSignIn } from "./DialogPortalSignIn"
 
 export function FormEvaluate() {
-  const userSigned = true
-  const ButtonEvaluate = userSigned ? "button" : Dialog.Trigger
+  const session = useSession()
+  const isSigned = session.status === "authenticated"
+  const ButtonEvaluate = isSigned ? "button" : Dialog.Trigger
 
   const [valueRating, setValueRating] = useState(0)
   const [showFormEvaluate, setShowFormEvaluate] = useState(false)
 
   function handleOpenFormEvaluate() {
-    if (userSigned) {
+    if (isSigned) {
       setShowFormEvaluate(true)
     }
   }
@@ -63,7 +65,7 @@ export function FormEvaluate() {
         </form>
       )}
 
-      {!userSigned && <DialogPortalSignIn />}
+      {!isSigned && <DialogPortalSignIn />}
     </Dialog.Root>
   )
 }

@@ -4,6 +4,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { useState } from "react"
 import { LogOut } from "lucide-react"
+import { useSession, signOut } from "next-auth/react"
 
 import { Profile } from "./Profile"
 import { OptionsSidebar } from "./OptionsSidebar"
@@ -14,7 +15,8 @@ import { twMerge } from "@/utils/tw-merge"
 import logoPng from "../assets/logo.png"
 
 export function Sidebar() {
-  const isSigned = true
+  const session = useSession()
+  const isSigned = session.status === "authenticated"
 
   const [showSidebar, setShowSidebar] = useState(false)
 
@@ -49,24 +51,23 @@ export function Sidebar() {
 
         <OptionsSidebar onHandleNavigate={handleCloseSidebar} />
 
-        <button
-          className="flex gap-3 items-center py-2 mt-auto teste"
-          type="button"
-        >
-          {isSigned ? (
-            <>
-              <Profile size="small" username="Erik Ferreira" />
-              <LogOut className="w-6 h-6 text-red-400 max-lg:w-5 max-lg:h-5" />
-            </>
-          ) : (
-            <>
-              <span className="text-gray-200 font-bold leading-base">
-                Fazer Login
-              </span>
-              <LogOut className="w-6 h-6 text-green-100 max-lg:w-5 max-lg:h-5" />
-            </>
-          )}
-        </button>
+        {isSigned ? (
+          <button
+            className="flex gap-3 items-center py-2 mt-auto"
+            type="button"
+            onClick={() => signOut()}
+          >
+            <Profile size="small" username="Erik Ferreira" />
+            <LogOut className="w-6 h-6 text-red-400 max-lg:w-5 max-lg:h-5" />
+          </button>
+        ) : (
+          <Link href="/" className="flex gap-3 items-center py-2 mt-auto">
+            <span className="text-gray-200 font-bold leading-base">
+              Fazer Login
+            </span>
+            <LogOut className="w-6 h-6 text-green-100 max-lg:w-5 max-lg:h-5" />
+          </Link>
+        )}
       </aside>
     </>
   )

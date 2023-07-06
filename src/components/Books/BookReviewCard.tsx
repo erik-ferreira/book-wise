@@ -6,11 +6,11 @@ import { RatingStars } from "../RatingStars"
 import hobbitBookPng from "../../assets/books/hobbit.png"
 import { twMerge } from "../../utils/tw-merge"
 
-interface CommentBookProps {
+interface BookReviewCardProps {
   variant?: "normal" | "short"
 }
 
-export function CommentBook({ variant = "normal" }: CommentBookProps) {
+export function BookReviewCard({ variant = "normal" }: BookReviewCardProps) {
   const isCommentNormal = variant === "normal"
 
   return (

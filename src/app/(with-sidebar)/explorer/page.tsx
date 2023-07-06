@@ -2,7 +2,7 @@ import { Glasses } from "lucide-react"
 
 import { Header } from "@/components/Header"
 import { Categories } from "@/components/Categories"
-import { CardBook } from "@/components/Books/CardBook"
+import { PopularBookCard } from "@/components/Books/PopularBookCard"
 import { ContainerPagesWithSidebar } from "@/components/ContainerPagesWithSidebar"
 
 export default function Explorer() {
@@ -13,35 +13,35 @@ export default function Explorer() {
       <Categories />
 
       <div className="grid grid-cols-books gap-5 mt-12">
-        <CardBook bookHasBeenRead />
-        <CardBook />
-        <CardBook />
-        <CardBook />
-        <CardBook />
-        <CardBook />
-        <CardBook />
-        <CardBook />
-        <CardBook />
-        <CardBook />
-        <CardBook />
-        <CardBook />
-        <CardBook />
-        <CardBook />
-        <CardBook />
-        <CardBook />
-        <CardBook />
-        <CardBook />
-        <CardBook />
-        <CardBook />
-        <CardBook />
-        <CardBook />
-        <CardBook />
-        <CardBook />
-        <CardBook />
-        <CardBook />
-        <CardBook />
-        <CardBook />
-        <CardBook />
+        <PopularBookCard bookHasBeenRead />
+        <PopularBookCard />
+        <PopularBookCard />
+        <PopularBookCard />
+        <PopularBookCard />
+        <PopularBookCard />
+        <PopularBookCard />
+        <PopularBookCard />
+        <PopularBookCard />
+        <PopularBookCard />
+        <PopularBookCard />
+        <PopularBookCard />
+        <PopularBookCard />
+        <PopularBookCard />
+        <PopularBookCard />
+        <PopularBookCard />
+        <PopularBookCard />
+        <PopularBookCard />
+        <PopularBookCard />
+        <PopularBookCard />
+        <PopularBookCard />
+        <PopularBookCard />
+        <PopularBookCard />
+        <PopularBookCard />
+        <PopularBookCard />
+        <PopularBookCard />
+        <PopularBookCard />
+        <PopularBookCard />
+        <PopularBookCard />
       </div>
     </ContainerPagesWithSidebar>
   )

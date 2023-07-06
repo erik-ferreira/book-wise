@@ -2,7 +2,7 @@ import Image from "next/image"
 import * as Dialog from "@radix-ui/react-dialog"
 import { BookOpen, Bookmark } from "lucide-react"
 
-import { CommentBook } from "../CommentBook"
+import { CommentBook } from "../BookReviewCard"
 import { FormEvaluate } from "./FormEvaluate"
 import { RatingStars } from "../../RatingStars"
 import { ButtonXClose } from "../../ButtonXClose"

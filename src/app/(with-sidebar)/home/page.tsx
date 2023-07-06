@@ -1,10 +1,10 @@
 import { LineChart } from "lucide-react"
 
 import { Header } from "@/components/Header"
-import { CardBook } from "@/components/Books/CardBook"
 import { TitleSection } from "@/components/TitleSection"
-import { CommentBook } from "@/components/Books/CommentBook"
-import { LastUserCommentByBook } from "@/components/Books/LastUserCommentByBook"
+import { BookReviewCard } from "@/components/Books/BookReviewCard"
+import { PopularBookCard } from "@/components/Books/PopularBookCard"
+import { LastReviewByUserToBook } from "@/components/Books/LastReviewByUserToBook"
 import { ContainerPagesWithSidebar } from "@/components/ContainerPagesWithSidebar"
 
 export default function Home() {
@@ -17,15 +17,15 @@ export default function Home() {
           <TitleSection label="Sua última leitura" />
 
           <div className="mb-10 max-[450px]:pr-10">
-            <LastUserCommentByBook />
+            <LastReviewByUserToBook />
           </div>
 
           <TitleSection label="Avaliações mais recentes" />
 
           <div className="flex flex-col gap-3 max-[450px]:flex-row max-[450px]:overflow-x-auto max-[450px]:pb-1">
-            <CommentBook />
-            <CommentBook />
-            <CommentBook />
+            <BookReviewCard />
+            <BookReviewCard />
+            <BookReviewCard />
           </div>
         </section>
 
@@ -33,9 +33,9 @@ export default function Home() {
           <TitleSection label="Livros populares" />
 
           <div className="flex flex-col gap-3 max-[450px]:flex-row max-[450px]:overflow-x-auto max-[450px]:pb-1">
-            <CardBook cardBookIsHome />
-            <CardBook cardBookIsHome />
-            <CardBook cardBookIsHome />
+            <PopularBookCard cardBookInHome />
+            <PopularBookCard cardBookInHome />
+            <PopularBookCard cardBookInHome />
           </div>
         </section>
       </div>

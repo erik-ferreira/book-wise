@@ -3,7 +3,7 @@ import { User } from "lucide-react"
 import { Header } from "@/components/Header"
 import { Input } from "@/components/Form/Input"
 import { ProfileSection } from "@/components/ProfileSection"
-import { CommentBookUser } from "@/components/Books/CommentBookUser"
+import { UserBookReviewCard } from "@/components/Books/UserBookReviewCard"
 import { ContainerPagesWithSidebar } from "@/components/ContainerPagesWithSidebar"
 
 export default function Profile() {
@@ -15,9 +15,9 @@ export default function Profile() {
         <section className="flex-1 space-y-6">
           <Input placeholder="Buscar livro avaliado" isFullWidth />
 
-          <CommentBookUser />
-          <CommentBookUser />
-          <CommentBookUser />
+          <UserBookReviewCard />
+          <UserBookReviewCard />
+          <UserBookReviewCard />
         </section>
 
         <ProfileSection />

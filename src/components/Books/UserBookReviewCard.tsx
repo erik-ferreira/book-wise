@@ -4,7 +4,7 @@ import { RatingStars } from "../RatingStars"
 
 import hobbitImg from "../../assets/books/hobbit.png"
 
-export function CommentBookUser() {
+export function UserBookReviewCard() {
   return (
     <article className="h-fit space-y-2">
       <time className="text-sm leading-base text-gray-300">Há 2 dias</time>

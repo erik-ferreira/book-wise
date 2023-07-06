@@ -9,15 +9,15 @@ import { DialogPortalDetailsBook } from "./DialogPortalDetailsBook"
 
 import algoritmosImg from "../../../assets/books/algoritimos.png"
 
-interface CardBookProps {
+interface PopularBookCardProps {
   bookHasBeenRead?: boolean
-  cardBookIsHome?: boolean
+  cardBookInHome?: boolean
 }
 
-export function CardBook({
+export function PopularBookCard({
   bookHasBeenRead = false,
-  cardBookIsHome = false,
-}: CardBookProps) {
+  cardBookInHome = false,
+}: PopularBookCardProps) {
   return (
     <Dialog.Root>
       <Dialog.Trigger className="w-full text-start">
@@ -27,7 +27,7 @@ export function CardBook({
             { relative: bookHasBeenRead },
             {
               "max-[1200px]:flex-col max-[1200px]:items-center max-[450px]:min-w-[120px]":
-                cardBookIsHome,
+                cardBookInHome,
             }
           )}
         >
@@ -48,11 +48,11 @@ export function CardBook({
           <div
             className={classnames("flex flex-col justify-between", {
               "max-[1200px]:flex-col-reverse max-[1200px]:items-center max-[1200px]:gap-2":
-                cardBookIsHome,
+                cardBookInHome,
             })}
           >
             <header
-              className={cardBookIsHome ? "max-[1200px]:text-center" : ""}
+              className={cardBookInHome ? "max-[1200px]:text-center" : ""}
             >
               <h2 className="font-bold leading-short">Entendendo Algoritmos</h2>
               <p className="text-sm leading-base text-gray-400">

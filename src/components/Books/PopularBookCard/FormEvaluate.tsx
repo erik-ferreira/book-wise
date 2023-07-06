@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useSession } from "next-auth/react"
 import * as Dialog from "@radix-ui/react-dialog"
 
-import { RatingStars } from "../../RatingStars"
+import { RatingStarsInput } from "../../RatingStars/Input"
 import { Profile } from "../../Profile"
 import { TextArea } from "../../Form/TextArea"
 import { TitleSection } from "../../TitleSection"
@@ -14,7 +14,7 @@ export function FormEvaluate() {
   const isSigned = session.status === "authenticated"
   const ButtonEvaluate = isSigned ? "button" : Dialog.Trigger
 
-  // const [valueRating, setValueRating] = useState(0)
+  const [valueRating, setValueRating] = useState(1)
   const [showFormEvaluate, setShowFormEvaluate] = useState(false)
 
   function handleOpenFormEvaluate() {
@@ -45,7 +45,7 @@ export function FormEvaluate() {
         <form className="w-full h-fit bg-gray-700 rounded-md p-6 mb-3">
           <div className="flex items-center justify-between max-[375px]:flex-col max-[375px]:gap-5">
             <Profile username="Erik Ferreira" usernameIsBold />
-            <RatingStars stars={4} />
+            <RatingStarsInput stars={valueRating} onStars={setValueRating} />
           </div>
 
           <TextArea placeholder="Escreva sua avaliação" />

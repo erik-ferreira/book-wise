@@ -1,3 +1,4 @@
+import { cookies } from "next/headers"
 import NextAuth, { NextAuthOptions } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import GitHubProvider from "next-auth/providers/github"
@@ -17,12 +18,10 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async redirect({ baseUrl }) {
-      if (baseUrl.endsWith("/home")) {
-        return "/"
-      }
+    async signIn({ user }) {
+      cookies().set("@bookwise:userId", user?.id)
 
-      return "/home"
+      return true
     },
     async session({ session, user }) {
       return { ...session, user }

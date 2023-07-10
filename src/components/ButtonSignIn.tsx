@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation"
 import { ButtonHTMLAttributes } from "react"
 
 import { twMerge } from "@/utils/tw-merge"
+import { deleteCookie } from "@/utils/delete-cookie"
 
 import GithubIcon from "../assets/icons/github.png"
 import GoogleIcon from "../assets/icons/google.png"
@@ -32,6 +33,8 @@ export function ButtonSignIn({
 
   function handleSignIn() {
     if (variant === "visitor") {
+      deleteCookie({ cookieName: "next-auth.session-token" })
+
       router.push("/home")
     } else if (variant === "google") {
       signIn("google")

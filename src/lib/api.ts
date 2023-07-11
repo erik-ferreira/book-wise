@@ -1,5 +1,14 @@
-import axios from "axios"
+/* eslint-disable no-undef */
 
-export const api = axios.create({
-  baseURL: "/api",
-})
+export async function api<T = any>(
+  input: RequestInfo | URL,
+  init?: RequestInit
+) {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_APP_URL}/api/${input}`,
+    init
+  )
+  const data = await response.json()
+
+  return data as T
+}

@@ -9,6 +9,34 @@ import { BookReviewCard } from "../BookReviewCard"
 
 import algoritmosImg from "../../../assets/books/algoritimos.png"
 
+const rating = {
+  id: "c461f246-de47-4b98-99ee-59e30faff199",
+  rate: 2,
+  description:
+    "Nec tempor nunc in egestas. Euismod nisi eleifend at et in sagittis. Penatibus id vestibulum imperdiet a at imperdiet lectus leo. Sit porta eget nec vitae sit vulputate eget",
+  created_at: "2023-07-11T02:00:39.264Z",
+  book_id: "375948a7-bca3-4b59-9f97-bfcde036b4ca",
+  user_id: "48e458c0-8b1e-4994-b85a-1e1cfcc9dd60",
+  user: {
+    id: "48e458c0-8b1e-4994-b85a-1e1cfcc9dd60",
+    name: "Jaxson Dias",
+    email: "jaxson@gmail.com",
+    avatar_url:
+      "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80",
+    created_at: "2023-07-11T02:00:39.264Z",
+  },
+  book: {
+    id: "375948a7-bca3-4b59-9f97-bfcde036b4ca",
+    name: "O Hobbit",
+    author: "J.R.R. Tolkien",
+    summary:
+      "Semper et sapien proin vitae nisi. Feugiat neque integer donec et aenean posuere amet ultrices. Cras fermentum id pulvinar varius leo a in. Amet libero pharetra nunc elementum fringilla velit ipsum. Sed vulputate massa velit nibh",
+    cover_url: "/books/o-hobbit.png",
+    total_pages: 360,
+    created_at: "2023-07-11T02:00:39.264Z",
+  },
+}
+
 export function DialogPortalDetailsBook() {
   return (
     <Dialog.Portal>
@@ -82,9 +110,9 @@ export function DialogPortalDetailsBook() {
         <FormEvaluate />
 
         <div className="space-y-3">
-          <BookReviewCard variant="short" />
-          <BookReviewCard variant="short" />
-          <BookReviewCard variant="short" />
+          <BookReviewCard variant="short" rating={rating} />
+          <BookReviewCard variant="short" rating={rating} />
+          <BookReviewCard variant="short" rating={rating} />
         </div>
       </Dialog.Content>
     </Dialog.Portal>

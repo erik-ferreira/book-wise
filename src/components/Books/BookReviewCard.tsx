@@ -8,11 +8,9 @@ import { Rating } from "@/dtos/Rating"
 import { twMerge } from "../../utils/tw-merge"
 import { formatDistanceDateToNow } from "../../utils/format-dates"
 
-import hobbitBookPng from "../../assets/books/hobbit.png"
-
 interface BookReviewCardProps {
   variant?: "normal" | "short"
-  rating?: Rating
+  rating: Rating
 }
 
 export function BookReviewCard({
@@ -20,9 +18,6 @@ export function BookReviewCard({
   rating,
 }: BookReviewCardProps) {
   const isCommentNormal = variant === "normal"
-  const descriptionProfile = rating?.created_at
-    ? formatDistanceDateToNow(new Date(rating?.created_at))
-    : ""
 
   return (
     <article className="w-full h-fit bg-gray-700 rounded-md p-6 space-y-8 max-[450px]:min-w-[230px]">
@@ -35,7 +30,7 @@ export function BookReviewCard({
         <Profile
           src={rating?.user?.avatar_url}
           username={rating?.user?.name || ""}
-          description={descriptionProfile}
+          description={formatDistanceDateToNow(new Date(rating?.created_at))}
         />
 
         <RatingStars stars={rating?.rate || 0} />
@@ -44,7 +39,7 @@ export function BookReviewCard({
       <main className="flex items-center gap-5 max-[1130px]:flex-col">
         {isCommentNormal && (
           <Image
-            src={rating?.book?.cover_url || hobbitBookPng}
+            src={rating?.book?.cover_url || ""}
             width={108}
             height={152}
             alt=""

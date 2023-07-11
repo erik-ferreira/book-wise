@@ -7,3 +7,7 @@ export interface Book {
   total_pages: number
   created_at: string
 }
+
+export interface BookMostRated extends Book {
+  ratingAverage: number
+}

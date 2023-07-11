@@ -10,9 +10,14 @@ import { LastReviewByUserToBook } from "@/components/Books/LastReviewByUserToBoo
 import { ContainerPagesWithSidebar } from "@/components/ContainerPagesWithSidebar"
 
 import { Rating } from "@/dtos/Rating"
+import { BookMostRated } from "@/dtos/Book"
 
 interface RatingResponse {
   ratings: Rating[]
+}
+
+interface BookMostRatedResponse {
+  booksMostRated: BookMostRated[]
 }
 
 async function getRecentBooksRatings(): Promise<Rating[]> {
@@ -22,8 +27,20 @@ async function getRecentBooksRatings(): Promise<Rating[]> {
   return data.ratings
 }
 
+async function getBooksMostRated(): Promise<BookMostRated[]> {
+  const revalidate = 60 * 60 * 24 // 1 day
+  const data = await api<BookMostRatedResponse>("/books/most-rated", {
+    next: { revalidate },
+  })
+
+  return data.booksMostRated
+}
+
 export default async function Home() {
-  const recentBooksRatings = await getRecentBooksRatings()
+  const [recentBooksRatings, booksMostRated] = await Promise.all([
+    getRecentBooksRatings(),
+    getBooksMostRated(),
+  ])
 
   return (
     <ContainerPagesWithSidebar className="max-[450px]:pr-0">
@@ -50,9 +67,9 @@ export default async function Home() {
           <TitleSection label="Livros populares" />
 
           <div className="flex flex-col gap-3 max-[450px]:flex-row max-[450px]:overflow-x-auto max-[450px]:pb-1">
-            <PopularBookCard cardBookInHome />
-            <PopularBookCard cardBookInHome />
-            <PopularBookCard cardBookInHome />
+            {booksMostRated.map((book) => (
+              <PopularBookCard key={book.id} book={book} cardBookInHome />
+            ))}
           </div>
         </section>
       </div>

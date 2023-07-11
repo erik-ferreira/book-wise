@@ -4,19 +4,21 @@ import Image from "next/image"
 import classnames from "classnames"
 import * as Dialog from "@radix-ui/react-dialog"
 
+import { BookMostRated } from "@/dtos/Book"
+
 import { RatingStars } from "../../RatingStars"
 import { DialogPortalDetailsBook } from "./DialogPortalDetailsBook"
-
-import algoritmosImg from "../../../assets/books/algoritimos.png"
 
 interface PopularBookCardProps {
   bookHasBeenRead?: boolean
   cardBookInHome?: boolean
+  book: BookMostRated
 }
 
 export function PopularBookCard({
   bookHasBeenRead = false,
   cardBookInHome = false,
+  book,
 }: PopularBookCardProps) {
   return (
     <Dialog.Root>
@@ -38,7 +40,7 @@ export function PopularBookCard({
           )}
 
           <Image
-            src={algoritmosImg}
+            src={book.cover_url || ""}
             width={64}
             height={96}
             alt=""
@@ -54,13 +56,13 @@ export function PopularBookCard({
             <header
               className={cardBookInHome ? "max-[1200px]:text-center" : ""}
             >
-              <h2 className="font-bold leading-short">Entendendo Algoritmos</h2>
+              <h2 className="font-bold leading-short">{book?.name}</h2>
               <p className="text-sm leading-base text-gray-400">
-                J.R.R Tolkien
+                {book?.author}
               </p>
             </header>
 
-            <RatingStars stars={4} />
+            <RatingStars stars={book?.ratingAverage} />
           </div>
         </article>
       </Dialog.Trigger>

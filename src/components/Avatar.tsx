@@ -1,15 +1,21 @@
 "use client"
 
-import * as AvatarUI from "@radix-ui/react-avatar"
 import classnames from "classnames"
+import * as AvatarUI from "@radix-ui/react-avatar"
+
+import { cutFirstLetterOfFirstTwoNames } from "@/utils/cutFirstLetterOfFirstTwoNames"
 
 export type SizeProps = "small" | "normal" | "large"
 
 interface AvatarProps {
+  src?: string
   size: SizeProps
+  username: string
 }
 
-export function Avatar({ size }: AvatarProps) {
+export function Avatar({ src, size, username }: AvatarProps) {
+  const fallback = cutFirstLetterOfFirstTwoNames(username)
+
   return (
     <AvatarUI.Root
       className={classnames(
@@ -22,7 +28,7 @@ export function Avatar({ size }: AvatarProps) {
       )}
     >
       <AvatarUI.Image
-        src="https://github.com/erik-ferreira.png"
+        src={src}
         alt="Erik Ferreira"
         className={classnames("rounded-full object-contain", {
           "w-8 h-8": size === "small",
@@ -34,7 +40,7 @@ export function Avatar({ size }: AvatarProps) {
         className="font-bold text-gray-600 text-sm"
         delayMs={600}
       >
-        CT
+        {fallback}
       </AvatarUI.Fallback>
     </AvatarUI.Root>
   )

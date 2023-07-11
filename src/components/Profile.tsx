@@ -3,6 +3,7 @@ import classnames from "classnames"
 import { Avatar, type SizeProps } from "./Avatar"
 
 interface ProfileProps {
+  src?: string
   size?: SizeProps
   username: string
   description?: string
@@ -10,6 +11,7 @@ interface ProfileProps {
 }
 
 export function Profile({
+  src,
   size = "normal",
   username,
   description,
@@ -21,7 +23,7 @@ export function Profile({
         "flex-col": size === "large",
       })}
     >
-      <Avatar size={size} />
+      <Avatar src={src} size={size} username={username} />
 
       <div
         className={classnames("flex flex-col", {

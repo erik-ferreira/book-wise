@@ -1,5 +1,7 @@
 import { LineChart } from "lucide-react"
 
+import { api } from "@/lib/api"
+
 import { Header } from "@/components/Header"
 import { TitleSection } from "@/components/TitleSection"
 import { BookReviewCard } from "@/components/Books/BookReviewCard"
@@ -7,7 +9,22 @@ import { PopularBookCard } from "@/components/Books/PopularBookCard"
 import { LastReviewByUserToBook } from "@/components/Books/LastReviewByUserToBook"
 import { ContainerPagesWithSidebar } from "@/components/ContainerPagesWithSidebar"
 
-export default function Home() {
+import { Rating } from "@/dtos/Rating"
+
+interface RatingResponse {
+  ratings: Rating[]
+}
+
+async function getRecentBooksRatings(): Promise<Rating[]> {
+  const revalidate = 60 * 60 * 24 // 1 day
+  const data = await api<RatingResponse>("/ratings", { next: { revalidate } })
+
+  return data.ratings
+}
+
+export default async function Home() {
+  const recentBooksRatings = await getRecentBooksRatings()
+
   return (
     <ContainerPagesWithSidebar className="max-[450px]:pr-0">
       <Header label="Início" icon={LineChart} />
@@ -23,9 +40,9 @@ export default function Home() {
           <TitleSection label="Avaliações mais recentes" />
 
           <div className="flex flex-col gap-3 max-[450px]:flex-row max-[450px]:overflow-x-auto max-[450px]:pb-1">
-            <BookReviewCard />
-            <BookReviewCard />
-            <BookReviewCard />
+            {recentBooksRatings.map((rating) => (
+              <BookReviewCard key={rating.id} rating={rating} />
+            ))}
           </div>
         </section>
 

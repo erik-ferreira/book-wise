@@ -4,13 +4,23 @@ import { useState } from "react"
 import classnames from "classnames"
 import * as ToggleGroup from "@radix-ui/react-toggle-group"
 
-import { categoriesDefault } from "../defaults/categories"
+import { Category } from "@/dtos/Category"
 
-export function Categories() {
-  const [categorySelected, setCategorySelected] = useState("1")
+interface CategoriesProps {
+  categories: Category[]
+}
+
+export function Categories({ categories }: CategoriesProps) {
+  const [categorySelected, setCategorySelected] = useState("")
 
   function handleChangeCategorySelected(id: string) {
-    setCategorySelected(id)
+    setCategorySelected((prevId) => {
+      if (prevId === id) {
+        return ""
+      }
+
+      return id
+    })
   }
 
   return (
@@ -19,7 +29,7 @@ export function Categories() {
       className="flex gap-3 flex-wrap list-none"
       onValueChange={handleChangeCategorySelected}
     >
-      {categoriesDefault.map((category) => {
+      {categories?.map((category) => {
         const isCategorySelected = category.id === categorySelected
 
         return (
@@ -34,7 +44,7 @@ export function Categories() {
               { "border-purple-100 text-purple-100": !isCategorySelected }
             )}
           >
-            {category.label}
+            {category.name}
           </ToggleGroup.Item>
         )
       })}

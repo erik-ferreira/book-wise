@@ -1,23 +1,35 @@
 import { Glasses } from "lucide-react"
 
+import { api } from "@/lib/api"
+
+import { Book } from "@/dtos/Book"
+
 import { Header } from "@/components/Header"
 import { Categories } from "@/components/Categories"
 import { PopularBookCard } from "@/components/Books/PopularBookCard"
 import { ContainerPagesWithSidebar } from "@/components/ContainerPagesWithSidebar"
 
-const book = {
-  id: "c8176d86-896a-4c21-9219-6bb28cccaa5f",
-  name: "14 Hábitos de Desenvolvedores Altamente Produtivos",
-  author: "Zeno Rocha",
-  summary:
-    "Nec tempor nunc in egestas. Euismod nisi eleifend at et in sagittis. Penatibus id vestibulum imperdiet a at imperdiet lectus leo. Sit porta eget nec vitae sit vulputate eget",
-  cover_url: "/books/14-habitos-de-desenvolvedores-altamente-produtivos.png",
-  total_pages: 160,
-  created_at: "2023-07-11T02:00:39.264Z",
-  ratingAverage: 4,
+interface AllBooksProps extends Book {
+  ratingAverage: number
 }
 
-export default function Explorer() {
+interface GetBooksResponse {
+  books: AllBooksProps[]
+}
+
+async function getBooks(): Promise<AllBooksProps[]> {
+  // const revalidate = 60 * 60 * 24 * 7 // 7 days
+  const data = await api<GetBooksResponse>("/books", {
+    // next: { revalidate },
+    cache: "no-cache",
+  })
+
+  return data.books
+}
+
+export default async function Explorer() {
+  const books = await getBooks()
+
   return (
     <ContainerPagesWithSidebar>
       <Header label="Explorar" icon={Glasses} showInputSearch />
@@ -25,35 +37,9 @@ export default function Explorer() {
       <Categories />
 
       <div className="grid grid-cols-books gap-5 mt-12">
-        <PopularBookCard book={book} bookHasBeenRead />
-        <PopularBookCard book={book} />
-        <PopularBookCard book={book} />
-        <PopularBookCard book={book} />
-        <PopularBookCard book={book} />
-        <PopularBookCard book={book} />
-        <PopularBookCard book={book} />
-        <PopularBookCard book={book} />
-        <PopularBookCard book={book} />
-        <PopularBookCard book={book} />
-        <PopularBookCard book={book} />
-        <PopularBookCard book={book} />
-        <PopularBookCard book={book} />
-        <PopularBookCard book={book} />
-        <PopularBookCard book={book} />
-        <PopularBookCard book={book} />
-        <PopularBookCard book={book} />
-        <PopularBookCard book={book} />
-        <PopularBookCard book={book} />
-        <PopularBookCard book={book} />
-        <PopularBookCard book={book} />
-        <PopularBookCard book={book} />
-        <PopularBookCard book={book} />
-        <PopularBookCard book={book} />
-        <PopularBookCard book={book} />
-        <PopularBookCard book={book} />
-        <PopularBookCard book={book} />
-        <PopularBookCard book={book} />
-        <PopularBookCard book={book} />
+        {books.map((book) => (
+          <PopularBookCard key={book.id} book={book} />
+        ))}
       </div>
     </ContainerPagesWithSidebar>
   )

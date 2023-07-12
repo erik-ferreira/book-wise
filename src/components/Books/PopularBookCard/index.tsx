@@ -48,15 +48,18 @@ export function PopularBookCard({
           />
 
           <div
-            className={classnames("flex flex-col justify-between", {
-              "max-[1200px]:flex-col-reverse max-[1200px]:items-center max-[1200px]:gap-2":
-                cardBookInHome,
-            })}
+            className={classnames(
+              "flex flex-col justify-between overflow-hidden",
+              {
+                "max-[1200px]:flex-col-reverse max-[1200px]:items-center max-[1200px]:gap-2":
+                  cardBookInHome,
+              }
+            )}
           >
             <header
               className={cardBookInHome ? "max-[1200px]:text-center" : ""}
             >
-              <h2 className="font-bold leading-short">{book?.name}</h2>
+              <h2 className="font-bold leading-short truncate">{book?.name}</h2>
               <p className="text-sm leading-base text-gray-400">
                 {book?.author}
               </p>

@@ -43,13 +43,6 @@ export default async function Explorer() {
       <Header label="Explorar" icon={Glasses} showInputSearch />
 
       <ContentPage categories={categories} books={books} />
-      {/* <Categories categories={categories} />
-
-      <div className="grid grid-cols-books gap-5 mt-12">
-        {books.map((book) => (
-          <PopularBookCard key={book.id} book={book} />
-        ))}
-      </div> */}
     </ContainerPagesWithSidebar>
   )
 }

@@ -7,6 +7,11 @@ export async function GET(req: NextRequest) {
       created_at: "desc",
     },
     include: {
+      categories: {
+        select: {
+          category: true,
+        },
+      },
       ratings: {
         orderBy: {
           created_at: "desc",
@@ -27,6 +32,8 @@ export async function GET(req: NextRequest) {
     const ratingAverage =
       amountRatings > 0 ? Math.floor(totalStarOnRating / amountRatings) : 0
 
+    const categories = book.categories.map((category) => category.category.id)
+
     const newBook = {
       id: book.id,
       name: book.name,
@@ -36,10 +43,11 @@ export async function GET(req: NextRequest) {
       total_pages: book.total_pages,
       created_at: book.created_at,
       ratingAverage,
+      categories,
     }
 
     return newBook
   })
 
-  return NextResponse.json({ books })
+  return NextResponse.json({ books, allBooks })
 }

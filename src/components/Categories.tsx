@@ -1,6 +1,5 @@
 "use client"
 
-import { useState } from "react"
 import classnames from "classnames"
 import * as ToggleGroup from "@radix-ui/react-toggle-group"
 
@@ -8,26 +7,20 @@ import { Category } from "@/dtos/Category"
 
 interface CategoriesProps {
   categories: Category[]
+  categorySelected: string
+  onChangeCategorySelected: (value: string) => void
 }
 
-export function Categories({ categories }: CategoriesProps) {
-  const [categorySelected, setCategorySelected] = useState("")
-
-  function handleChangeCategorySelected(id: string) {
-    setCategorySelected((prevId) => {
-      if (prevId === id) {
-        return ""
-      }
-
-      return id
-    })
-  }
-
+export function Categories({
+  categories,
+  categorySelected,
+  onChangeCategorySelected,
+}: CategoriesProps) {
   return (
     <ToggleGroup.Root
       type="single"
       className="flex gap-3 flex-wrap list-none"
-      onValueChange={handleChangeCategorySelected}
+      onValueChange={onChangeCategorySelected}
     >
       {categories?.map((category) => {
         const isCategorySelected = category.id === categorySelected

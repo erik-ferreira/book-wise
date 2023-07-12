@@ -2,17 +2,11 @@ import { Glasses } from "lucide-react"
 
 import { api } from "@/lib/api"
 
-import { Book } from "@/dtos/Book"
 import { Category } from "@/dtos/Category"
 
 import { Header } from "@/components/Header"
-import { Categories } from "@/components/Categories"
-import { PopularBookCard } from "@/components/Books/PopularBookCard"
+import { ContentPage, AllBooksProps } from "./ContentPage"
 import { ContainerPagesWithSidebar } from "@/components/ContainerPagesWithSidebar"
-
-interface AllBooksProps extends Book {
-  ratingAverage: number
-}
 
 interface GetBooksResponse {
   books: AllBooksProps[]
@@ -48,13 +42,14 @@ export default async function Explorer() {
     <ContainerPagesWithSidebar>
       <Header label="Explorar" icon={Glasses} showInputSearch />
 
-      <Categories categories={categories} />
+      <ContentPage categories={categories} books={books} />
+      {/* <Categories categories={categories} />
 
       <div className="grid grid-cols-books gap-5 mt-12">
         {books.map((book) => (
           <PopularBookCard key={book.id} book={book} />
         ))}
-      </div>
+      </div> */}
     </ContainerPagesWithSidebar>
   )
 }

@@ -1,18 +1,13 @@
+import { ReactNode } from "react"
 import { LucideIcon } from "lucide-react"
-
-import { Input } from "./Form/Input"
 
 interface HeaderProps {
   icon: LucideIcon
   label: string
-  showInputSearch?: boolean
+  elementRight?: ReactNode
 }
 
-export function Header({
-  icon: Icon,
-  label,
-  showInputSearch = false,
-}: HeaderProps) {
+export function Header({ icon: Icon, label, elementRight }: HeaderProps) {
   return (
     <header className="flex gap-4 items-center justify-between mb-10 max-[400px]:flex-col">
       <h1 className="flex items-center gap-3 font-bold text-2xl leading-short">
@@ -20,7 +15,7 @@ export function Header({
         {label}
       </h1>
 
-      {showInputSearch && <Input placeholder="Buscar livro avaliado" />}
+      {elementRight}
     </header>
   )
 }

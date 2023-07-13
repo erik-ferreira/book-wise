@@ -1,10 +1,7 @@
-import { Glasses } from "lucide-react"
-
 import { api } from "@/lib/api"
 
 import { Category } from "@/dtos/Category"
 
-import { Header } from "@/components/Header"
 import { ContentPage, AllBooksProps } from "./ContentPage"
 import { ContainerPagesWithSidebar } from "@/components/ContainerPagesWithSidebar"
 
@@ -40,8 +37,6 @@ export default async function Explorer() {
 
   return (
     <ContainerPagesWithSidebar>
-      <Header label="Explorar" icon={Glasses} showInputSearch />
-
       <ContentPage categories={categories} books={books} />
     </ContainerPagesWithSidebar>
   )

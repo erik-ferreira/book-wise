@@ -1,12 +1,26 @@
 "use client"
 
-import { useState } from "react"
+import { z } from "zod"
+import { Glasses } from "lucide-react"
+import { useMemo, useState } from "react"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
 
 import { Book } from "@/dtos/Book"
 import { Category } from "@/dtos/Category"
 
+import { Header } from "@/components/Header"
+import { Input } from "@/components/Form/Input"
 import { Categories } from "@/components/Categories"
 import { PopularBookCard } from "@/components/Books/PopularBookCard"
+
+const searchFormSchema = z.object({
+  search: z
+    .string()
+    .min(1, { message: "Preencha o campo para realizar a busca" }),
+})
+
+type SearchFormData = z.infer<typeof searchFormSchema>
 
 export interface AllBooksProps extends Book {
   ratingAverage: number
@@ -20,9 +34,27 @@ interface ContentPageProps {
 
 export function ContentPage({ categories, books }: ContentPageProps) {
   const [categorySelected, setCategorySelected] = useState("")
-  const filterBooks = categorySelected
-    ? books.filter((book) => book.categories.includes(categorySelected))
-    : books
+
+  const filterBooks: AllBooksProps[] = useMemo(() => {
+    const listBooks = categorySelected
+      ? books.filter((book) => book.categories.includes(categorySelected))
+      : books
+
+    return listBooks
+  }, [categorySelected, books])
+
+  const {
+    register,
+    handleSubmit,
+    clearErrors,
+    formState: { errors },
+  } = useForm<SearchFormData>({
+    resolver: zodResolver(searchFormSchema),
+  })
+
+  async function handleSubmitSearch(data: SearchFormData) {
+    console.log(data)
+  }
 
   function handleChangeCategorySelected(id: string) {
     setCategorySelected((prevId) => {
@@ -36,6 +68,23 @@ export function ContentPage({ categories, books }: ContentPageProps) {
 
   return (
     <>
+      <Header
+        label="Explorar"
+        icon={Glasses}
+        elementRight={
+          <form
+            className="max-w-[27rem] w-full"
+            onSubmit={handleSubmit(handleSubmitSearch)}
+          >
+            <Input
+              placeholder="Buscar"
+              error={errors?.search?.message}
+              {...register("search", { onBlur: () => clearErrors() })}
+            />
+          </form>
+        }
+      />
+
       <Categories
         categories={categories}
         categorySelected={categorySelected}

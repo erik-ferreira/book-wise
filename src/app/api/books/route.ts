@@ -6,8 +6,10 @@ import { authOptions } from "../auth/[...nextauth]/route"
 
 export async function GET(req: NextRequest) {
   const queryParams = req.nextUrl.searchParams
-
   const bookOrAuthorSearch = queryParams.get("bookOrAuthor") || ""
+
+  const session = await getServerSession(authOptions)
+  const userId = session?.user.id
 
   const allBooks = await prisma.book.findMany({
     where: {
@@ -31,6 +33,7 @@ export async function GET(req: NextRequest) {
         },
         select: {
           rate: true,
+          user_id: true,
         },
       },
     },
@@ -47,6 +50,12 @@ export async function GET(req: NextRequest) {
 
     const categories = book.categories.map((category) => category.category.id)
 
+    let bookWasRead = false
+
+    if (session) {
+      bookWasRead = book.ratings.some((rating) => rating.user_id === userId)
+    }
+
     const newBook = {
       id: book.id,
       name: book.name,
@@ -57,13 +66,11 @@ export async function GET(req: NextRequest) {
       created_at: book.created_at,
       ratingAverage,
       categories,
+      wasRead: bookWasRead,
     }
 
     return newBook
   })
-
-  const session = await getServerSession(authOptions)
-  console.log("SESSION", session)
 
   return NextResponse.json({ books })
 }

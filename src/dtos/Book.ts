@@ -10,11 +10,13 @@ export interface Book {
 
 export interface BookMostRated extends Book {
   ratingAverage: number
+  wasRead: boolean
 }
 
 export interface AllPropsBook extends Book {
   ratingAverage: number
   categories: string[]
+  wasRead: boolean
 }
 
 export interface GetBooksResponse {

@@ -10,13 +10,11 @@ import { RatingStars } from "../../RatingStars"
 import { DialogPortalDetailsBook } from "./DialogPortalDetailsBook"
 
 interface PopularBookCardProps {
-  bookHasBeenRead?: boolean
   cardBookInHome?: boolean
   book: BookMostRated
 }
 
 export function PopularBookCard({
-  bookHasBeenRead = false,
   cardBookInHome = false,
   book,
 }: PopularBookCardProps) {
@@ -26,14 +24,14 @@ export function PopularBookCard({
         <article
           className={classnames(
             "bg-gray-700 w-full h-fit rounded-md py-[1.125rem] px-5 flex gap-5 card-primary-animation",
-            { relative: bookHasBeenRead },
+            { relative: book.wasRead },
             {
               "max-[1200px]:flex-col max-[1200px]:items-center max-[450px]:min-w-[120px]":
                 cardBookInHome,
             }
           )}
         >
-          {bookHasBeenRead && (
+          {book.wasRead && (
             <span className="absolute -top-[2px] -right-[2px] uppercase font-bold text-xs text-green-100 bg-green-300 rounded-tr-sm rounded-bl-sm py-1 px-3 ">
               Lido
             </span>

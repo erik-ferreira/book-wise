@@ -27,6 +27,11 @@ export const authOptions: NextAuthOptions = {
       return { ...session, user }
     },
   },
+  events: {
+    async signOut() {
+      cookies().delete("@bookwise:userId")
+    },
+  },
   pages: {
     signIn: "/",
   },

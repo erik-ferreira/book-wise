@@ -1,5 +1,8 @@
 import { prisma } from "@/lib/prisma"
+import { getServerSession } from "next-auth"
 import { NextRequest, NextResponse } from "next/server"
+
+import { authOptions } from "../auth/[...nextauth]/route"
 
 export async function GET(req: NextRequest) {
   const queryParams = req.nextUrl.searchParams
@@ -58,6 +61,9 @@ export async function GET(req: NextRequest) {
 
     return newBook
   })
+
+  const session = await getServerSession(authOptions)
+  console.log("SESSION", session)
 
   return NextResponse.json({ books })
 }

@@ -3,6 +3,9 @@ import { NextRequest, NextResponse } from "next/server"
 
 export async function GET(req: NextRequest) {
   const allBooks = await prisma.book.findMany({
+    where: {
+      OR: [{ name: { contains: "14" } }, { author: { contains: "14" } }],
+    },
     orderBy: {
       created_at: "desc",
     },
@@ -49,5 +52,5 @@ export async function GET(req: NextRequest) {
     return newBook
   })
 
-  return NextResponse.json({ books, allBooks })
+  return NextResponse.json({ books })
 }

@@ -6,8 +6,10 @@ import { useMemo, useState } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 
-import { Book } from "@/dtos/Book"
+import { api } from "@/lib/api"
+
 import { Category } from "@/dtos/Category"
+import { AllPropsBook, GetBooksResponse } from "@/dtos/Book"
 
 import { Header } from "@/components/Header"
 import { Input } from "@/components/Form/Input"
@@ -22,26 +24,22 @@ const searchFormSchema = z.object({
 
 type SearchFormData = z.infer<typeof searchFormSchema>
 
-export interface AllBooksProps extends Book {
-  ratingAverage: number
-  categories: string[]
-}
-
 interface ContentPageProps {
   categories: Category[]
-  books: AllBooksProps[]
+  books: AllPropsBook[]
 }
 
 export function ContentPage({ categories, books }: ContentPageProps) {
   const [categorySelected, setCategorySelected] = useState("")
+  const [listBooks, setListBooks] = useState(books)
 
-  const filterBooks: AllBooksProps[] = useMemo(() => {
-    const listBooks = categorySelected
-      ? books.filter((book) => book.categories.includes(categorySelected))
-      : books
+  const filterBooks: AllPropsBook[] = useMemo(() => {
+    const booksFiltered = categorySelected
+      ? listBooks.filter((book) => book.categories.includes(categorySelected))
+      : listBooks
 
-    return listBooks
-  }, [categorySelected, books])
+    return booksFiltered
+  }, [categorySelected, listBooks])
 
   const {
     register,
@@ -53,7 +51,11 @@ export function ContentPage({ categories, books }: ContentPageProps) {
   })
 
   async function handleSubmitSearch(data: SearchFormData) {
-    console.log(data)
+    const dataResponse = await api<GetBooksResponse>(
+      `/books?bookOrAuthor=${data.search}`
+    )
+
+    setListBooks(dataResponse.books)
   }
 
   function handleChangeCategorySelected(id: string) {
@@ -64,6 +66,12 @@ export function ContentPage({ categories, books }: ContentPageProps) {
 
       return id
     })
+  }
+
+  function onChangeInput(value: string) {
+    if (value === "") {
+      handleSubmitSearch({ search: "" })
+    }
   }
 
   return (
@@ -79,7 +87,10 @@ export function ContentPage({ categories, books }: ContentPageProps) {
             <Input
               placeholder="Buscar"
               error={errors?.search?.message}
-              {...register("search", { onBlur: () => clearErrors() })}
+              {...register("search", {
+                onBlur: () => clearErrors(),
+                onChange: (e) => onChangeInput(e.target.value),
+              })}
             />
           </form>
         }

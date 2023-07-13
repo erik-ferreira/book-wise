@@ -11,3 +11,12 @@ export interface Book {
 export interface BookMostRated extends Book {
   ratingAverage: number
 }
+
+export interface AllPropsBook extends Book {
+  ratingAverage: number
+  categories: string[]
+}
+
+export interface GetBooksResponse {
+  books: AllPropsBook[]
+}

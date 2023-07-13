@@ -2,9 +2,16 @@ import { prisma } from "@/lib/prisma"
 import { NextRequest, NextResponse } from "next/server"
 
 export async function GET(req: NextRequest) {
+  const queryParams = req.nextUrl.searchParams
+
+  const bookOrAuthorSearch = queryParams.get("bookOrAuthor") || ""
+
   const allBooks = await prisma.book.findMany({
     where: {
-      OR: [{ name: { contains: "14" } }, { author: { contains: "14" } }],
+      OR: [
+        { name: { contains: bookOrAuthorSearch } },
+        { author: { contains: bookOrAuthorSearch } },
+      ],
     },
     orderBy: {
       created_at: "desc",

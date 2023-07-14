@@ -103,9 +103,9 @@ export function ContentPage({ categories, books }: ContentPageProps) {
       />
 
       <div className="grid grid-cols-books gap-5 mt-12">
-        {filterBooks.map((book) => (
+        {/* {filterBooks.map((book) => (
           <PopularBookCard key={book.id} book={book} />
-        ))}
+        ))} */}
       </div>
     </>
   )

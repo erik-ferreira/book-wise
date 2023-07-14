@@ -4,6 +4,8 @@ import { NextRequest, NextResponse } from "next/server"
 
 import { authOptions } from "../auth/[...nextauth]/route"
 
+import { formatBooks } from "@/utils/format-books"
+
 export async function GET(req: NextRequest) {
   const queryParams = req.nextUrl.searchParams
   const bookOrAuthorSearch = queryParams.get("bookOrAuthor") || ""
@@ -31,46 +33,14 @@ export async function GET(req: NextRequest) {
         orderBy: {
           created_at: "desc",
         },
-        select: {
-          rate: true,
-          user_id: true,
+        include: {
+          user: true,
         },
       },
     },
   })
 
-  const books = allBooks.map((book) => {
-    const amountRatings = book.ratings?.length
-    const totalStarOnRating = book.ratings.reduce(
-      (sum, rating) => sum + rating.rate,
-      0
-    )
-    const ratingAverage =
-      amountRatings > 0 ? Math.floor(totalStarOnRating / amountRatings) : 0
-
-    const categories = book.categories.map((category) => category.category.id)
-
-    let bookWasRead = false
-
-    if (session) {
-      bookWasRead = book.ratings.some((rating) => rating.user_id === userId)
-    }
-
-    const newBook = {
-      id: book.id,
-      name: book.name,
-      author: book.author,
-      summary: book.summary,
-      cover_url: book.cover_url,
-      total_pages: book.total_pages,
-      created_at: book.created_at,
-      ratingAverage,
-      categories,
-      wasRead: bookWasRead,
-    }
-
-    return newBook
-  })
+  const books = formatBooks({ hasSession: !!session, userId, books: allBooks })
 
   return NextResponse.json({ books })
 }

@@ -1,3 +1,5 @@
+import { Rating } from "./Rating"
+
 export interface Book {
   id: string
   name: string
@@ -11,6 +13,9 @@ export interface Book {
 export interface BookMostRated extends Book {
   ratingAverage: number
   wasRead: boolean
+  amountRatings: number
+  categories: string[]
+  ratings: Rating[]
 }
 
 export interface AllPropsBook extends Book {

@@ -2,7 +2,7 @@ import Image from "next/image"
 import * as Dialog from "@radix-ui/react-dialog"
 import { BookOpen, Bookmark } from "lucide-react"
 
-import { BookMostRated } from "@/dtos/Book"
+import { BookFormattedProps } from "@/dtos/Book"
 
 import { FormEvaluate } from "./FormEvaluate"
 import { RatingStars } from "../../RatingStars"
@@ -10,7 +10,7 @@ import { ButtonXClose } from "../../ButtonXClose"
 import { BookReviewCard } from "../BookReviewCard"
 
 interface DialogPortalDetailsBookProps {
-  book: BookMostRated
+  book: BookFormattedProps
 }
 
 export function DialogPortalDetailsBook({

@@ -1,7 +1,5 @@
 import { Prisma } from "@prisma/client"
 
-import { Rating } from "./Rating"
-
 export interface Book {
   id: string
   name: string
@@ -29,22 +27,6 @@ export interface BookFormattedProps extends Book {
   teste: "Erik"
 }
 
-export interface BookMostRated extends Book {
-  ratingAverage: number
-  wasRead: boolean
-  amountRatings: number
-  categories: string[]
-  ratings: Rating[]
-}
-
-export interface AllPropsBook extends Book {
-  ratingAverage: number
-  categories: string[]
-  wasRead: boolean
-  ratings: Rating[]
-  amountRatings: number
-}
-
 export interface GetBooksResponse {
-  books: AllPropsBook[]
+  books: BookFormattedProps[]
 }

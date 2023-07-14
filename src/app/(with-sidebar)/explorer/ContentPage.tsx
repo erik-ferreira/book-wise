@@ -9,7 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { api } from "@/lib/api"
 
 import { Category } from "@/dtos/Category"
-import { AllPropsBook, GetBooksResponse } from "@/dtos/Book"
+import { BookFormattedProps, GetBooksResponse } from "@/dtos/Book"
 
 import { Header } from "@/components/Header"
 import { Input } from "@/components/Form/Input"
@@ -26,14 +26,14 @@ type SearchFormData = z.infer<typeof searchFormSchema>
 
 interface ContentPageProps {
   categories: Category[]
-  books: AllPropsBook[]
+  books: BookFormattedProps[]
 }
 
 export function ContentPage({ categories, books }: ContentPageProps) {
   const [categorySelected, setCategorySelected] = useState("")
   const [listBooks, setListBooks] = useState(books)
 
-  const filterBooks: AllPropsBook[] = useMemo(() => {
+  const filterBooks: BookFormattedProps[] = useMemo(() => {
     const booksFiltered = categorySelected
       ? listBooks.filter((book) => book.categories.includes(categorySelected))
       : listBooks

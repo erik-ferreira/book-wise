@@ -1,7 +1,7 @@
 import { api } from "@/lib/api"
 
 import { Category } from "@/dtos/Category"
-import { AllPropsBook, GetBooksResponse } from "@/dtos/Book"
+import { BookFormattedProps, GetBooksResponse } from "@/dtos/Book"
 
 import { ContentPage } from "./ContentPage"
 import { ContainerPagesWithSidebar } from "@/components/ContainerPagesWithSidebar"
@@ -10,7 +10,7 @@ interface GetCategoriesResponse {
   categories: Category[]
 }
 
-async function getBooks(): Promise<AllPropsBook[]> {
+async function getBooks(): Promise<BookFormattedProps[]> {
   // const revalidate = 60 * 60 * 24 * 7 // 7 days
   const data = await api<GetBooksResponse>("/books", {
     // next: { revalidate },

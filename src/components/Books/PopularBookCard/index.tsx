@@ -4,14 +4,14 @@ import Image from "next/image"
 import classnames from "classnames"
 import * as Dialog from "@radix-ui/react-dialog"
 
-import { BookMostRated } from "@/dtos/Book"
+import { BookFormattedProps } from "@/dtos/Book"
 
 import { RatingStars } from "../../RatingStars"
 import { DialogPortalDetailsBook } from "./DialogPortalDetailsBook"
 
 interface PopularBookCardProps {
   cardBookInHome?: boolean
-  book: BookMostRated
+  book: BookFormattedProps
 }
 
 export function PopularBookCard({

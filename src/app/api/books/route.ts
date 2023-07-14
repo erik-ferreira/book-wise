@@ -42,5 +42,5 @@ export async function GET(req: NextRequest) {
 
   const books = formatBooks({ hasSession: !!session, userId, books: allBooks })
 
-  return NextResponse.json({ books })
+  return NextResponse.json({ books }, { status: 200 })
 }

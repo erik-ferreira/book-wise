@@ -22,7 +22,10 @@ interface BookMostRatedResponse {
 
 async function getRecentBooksRatings(): Promise<Rating[]> {
   const revalidate = 60 * 60 * 24 // 1 day
-  const data = await api<RatingResponse>("/ratings", { next: { revalidate } })
+  const data = await api<RatingResponse>("/ratings", {
+    // next: { revalidate }
+    cache: "no-cache",
+  })
 
   return data.ratings
 }
@@ -30,7 +33,8 @@ async function getRecentBooksRatings(): Promise<Rating[]> {
 async function getBooksMostRated(): Promise<BookFormattedProps[]> {
   const revalidate = 60 * 60 * 24 // 1 day
   const data = await api<BookMostRatedResponse>("/books/most-rated", {
-    next: { revalidate },
+    // next: { revalidate },
+    cache: "no-cache",
   })
 
   return data.booksMostRated

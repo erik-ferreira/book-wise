@@ -35,7 +35,9 @@ export function ContentPage({ categories, books }: ContentPageProps) {
 
   const filterBooks: BookFormattedProps[] = useMemo(() => {
     const booksFiltered = categorySelected
-      ? listBooks.filter((book) => book.categories.includes(categorySelected))
+      ? listBooks.filter((book) =>
+          book.categoriesIds.includes(categorySelected)
+        )
       : listBooks
 
     return booksFiltered
@@ -103,9 +105,9 @@ export function ContentPage({ categories, books }: ContentPageProps) {
       />
 
       <div className="grid grid-cols-books gap-5 mt-12">
-        {/* {filterBooks.map((book) => (
+        {filterBooks.map((book) => (
           <PopularBookCard key={book.id} book={book} />
-        ))} */}
+        ))}
       </div>
     </>
   )

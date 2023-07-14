@@ -16,7 +16,7 @@ interface DialogPortalDetailsBookProps {
 export function DialogPortalDetailsBook({
   book,
 }: DialogPortalDetailsBookProps) {
-  const formatCategories = book.categories.join(", ")
+  const formatCategories = book.categoriesNames.join(", ")
 
   return (
     <Dialog.Portal>

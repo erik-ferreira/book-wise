@@ -4,14 +4,16 @@ interface FormatBookProps {
   books: DefaultResponseDbBookProps[]
   hasSession?: boolean
   userId?: string
+  sortOrder?: boolean
 }
 
 export function formatBooks({
   books,
   hasSession = false,
   userId,
+  sortOrder = false,
 }: FormatBookProps): BookFormattedProps[] {
-  const formattedBooks = books.map((book) => {
+  let formattedBooks = books.map((book) => {
     const amountRatings = book.ratings?.length
     const totalStarOnRating = book.ratings.reduce(
       (sum, rating) => sum + rating.rate,
@@ -20,8 +22,11 @@ export function formatBooks({
     const ratingAverage =
       amountRatings > 0 ? Math.floor(totalStarOnRating / amountRatings) : 0
 
-    const categories = book?.categories?.map(
+    const categoriesIds = book?.categories?.map(
       (category) => category?.category?.id
+    )
+    const categoriesNames = book?.categories?.map(
+      (category) => category?.category?.name
     )
 
     let bookWasRead = false
@@ -41,13 +46,20 @@ export function formatBooks({
       wasRead: bookWasRead,
       ratingAverage,
       amountRatings,
-      categories,
+      categoriesIds,
+      categoriesNames,
       ratings: book.ratings,
       teste: "Erik",
     } as BookFormattedProps
 
     return newBook
   })
+
+  if (sortOrder) {
+    formattedBooks = formattedBooks.sort(
+      (a, b) => b.ratingAverage - a.ratingAverage
+    )
+  }
 
   return formattedBooks
 }

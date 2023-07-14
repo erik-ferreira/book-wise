@@ -22,7 +22,8 @@ export interface BookFormattedProps extends Book {
   ratingAverage: number
   wasRead: boolean
   amountRatings: number
-  categories: string[]
+  categoriesIds: string[]
+  categoriesNames: string[]
   ratings: Prisma.RatingGetPayload<Prisma.RatingArgs>[]
   teste: "Erik"
 }

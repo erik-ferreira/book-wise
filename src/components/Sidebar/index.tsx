@@ -15,8 +15,8 @@ import { twMerge } from "@/utils/tw-merge"
 import logoPng from "../../assets/logo.png"
 
 export function Sidebar() {
-  const session = useSession()
-  const isSigned = session.status === "authenticated"
+  const { status, data } = useSession()
+  const isSigned = status === "authenticated"
 
   const [showSidebar, setShowSidebar] = useState(false)
 
@@ -57,7 +57,11 @@ export function Sidebar() {
             type="button"
             onClick={() => signOut()}
           >
-            <Profile size="small" username="Erik Ferreira" />
+            <Profile
+              size="small"
+              username={data?.user.name || ""}
+              src={data?.user.avatar_url || ""}
+            />
             <LogOut className="w-6 h-6 text-red-400 max-lg:w-5 max-lg:h-5" />
           </button>
         ) : (

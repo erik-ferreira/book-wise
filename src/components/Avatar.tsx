@@ -3,7 +3,7 @@
 import classnames from "classnames"
 import * as AvatarUI from "@radix-ui/react-avatar"
 
-import { cutFirstLetterOfFirstTwoNames } from "@/utils/cutFirstLetterOfFirstTwoNames"
+import { cutFirstLetterOfFirstTwoNames } from "@/utils/cut-first-letter-of-first-two-names"
 
 export type SizeProps = "small" | "normal" | "large"
 

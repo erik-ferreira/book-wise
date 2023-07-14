@@ -58,7 +58,7 @@ export function BookReviewCard({
           )}
 
           <div className="w-full text-gray-300 text-sm leading-base overflow-hidden">
-            {rating?.book?.summary}...
+            {rating?.description}...
             <strong className="text-purple-100">ver mais</strong>
           </div>
         </div>

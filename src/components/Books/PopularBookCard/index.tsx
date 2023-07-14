@@ -68,7 +68,7 @@ export function PopularBookCard({
         </article>
       </Dialog.Trigger>
 
-      <DialogPortalDetailsBook />
+      <DialogPortalDetailsBook book={book} />
     </Dialog.Root>
   )
 }

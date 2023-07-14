@@ -1,5 +1,6 @@
 import { Prisma } from "@prisma/client"
 
+import { Rating } from "./Rating"
 export interface Book {
   id: string
   name: string
@@ -24,8 +25,7 @@ export interface BookFormattedProps extends Book {
   amountRatings: number
   categoriesIds: string[]
   categoriesNames: string[]
-  ratings: Prisma.RatingGetPayload<Prisma.RatingArgs>[]
-  teste: "Erik"
+  ratings: Rating[]
 }
 
 export interface GetBooksResponse {

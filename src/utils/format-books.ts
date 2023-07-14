@@ -1,4 +1,5 @@
 import { BookFormattedProps, DefaultResponseDbBookProps } from "@/dtos/Book"
+// import { Rating } from "@/dtos/Rating"
 
 interface FormatBookProps {
   books: DefaultResponseDbBookProps[]
@@ -49,7 +50,6 @@ export function formatBooks({
       categoriesIds,
       categoriesNames,
       ratings: book.ratings,
-      teste: "Erik",
     } as BookFormattedProps
 
     return newBook

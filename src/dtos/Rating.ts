@@ -1,13 +1,9 @@
+import { Prisma } from "@prisma/client"
+
 import { Book } from "./Book"
 import { User } from "./User"
 
-export interface Rating {
-  id: string
-  rate: number
-  description: string
-  created_at: string
-  book_id: string
-  user_id: string
+export interface Rating extends Prisma.RatingGetPayload<Prisma.RatingArgs> {
   book?: Book
   user?: User
 }

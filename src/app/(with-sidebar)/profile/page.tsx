@@ -10,13 +10,13 @@ import { ContainerPagesWithSidebar } from "@/components/ContainerPagesWithSideba
 
 import { getServerSession } from "@/hook/getServerSession"
 
-import { User } from "@/dtos/User"
+import { UserProfile } from "@/dtos/User"
 
 interface ProfileResponse {
-  user: User
+  user: UserProfile
 }
 
-async function getProfileData(userId: string): Promise<User> {
+async function getProfileData(userId: string): Promise<UserProfile> {
   // const revalidate = 60 * 60 * 24 // 1 day
   const data = await api<ProfileResponse>(`/profile/${userId}`, {
     // next: { revalidate }

@@ -1,6 +1,8 @@
 import { prisma } from "@/lib/prisma"
 import { NextRequest, NextResponse } from "next/server"
 
+import { UserProfile } from "@/dtos/User"
+
 interface CategoryReadProps {
   [key: string]: number
 }
@@ -79,5 +81,16 @@ export async function GET(
     }
   }
 
-  return NextResponse.json({ user })
+  const userProfile = {
+    name: user.name,
+    avatar_url: user.avatar_url,
+    created_at: user.created_at.toString(),
+    totalAuthorsRead,
+    totalPagesRead,
+    totalRatedBooks,
+    mostReadCategory,
+    // profileOptions,
+  } as UserProfile
+
+  return NextResponse.json({ user: userProfile })
 }

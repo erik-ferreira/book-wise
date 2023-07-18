@@ -1,5 +1,5 @@
 import ptBR from "date-fns/locale/pt-BR"
-import { formatDistanceToNow } from "date-fns"
+import { getYear, formatDistanceToNow } from "date-fns"
 
 export function formatDistanceDateToNow(date: Date) {
   const phraseDistance = formatDistanceToNow(date, { locale: ptBR })
@@ -16,4 +16,10 @@ export function formatDistanceDateToNow(date: Date) {
     .join("")
 
   return dateFormatted
+}
+
+export function formatYear(date: Date) {
+  const year = getYear(date)
+
+  return year
 }

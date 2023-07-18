@@ -2,13 +2,22 @@ import { Profile } from "./Profile"
 
 import { optionsProfile } from "../defaults/profile-options"
 
-export function ProfileSection() {
+import { User } from "@/dtos/User"
+
+import { formatYear } from "@/utils/format-dates"
+
+interface ProfileSectionProps {
+  user: User
+}
+
+export function ProfileSection({ user }: ProfileSectionProps) {
   return (
     <section className="w-[30%] h-fit flex flex-col items-center border-l border-l-gray-700 max-xl:w-[35%]">
       <Profile
         size="large"
-        username="Erik Ferreira"
-        description="membro desde 2019"
+        src={user.avatar_url}
+        username={user.name}
+        description={`membro desde ${formatYear(new Date(user.created_at))}`}
       />
 
       <div className="w-8 h-1 rounded-full bg-gradient-to-b from-start to-end my-8 mx-auto" />

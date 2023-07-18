@@ -18,17 +18,21 @@ export async function GET(
 
   const user = await prisma.user.findUnique({
     where: { id: user_id },
-    // include: {
-    //   ratings: {
-    //     take: 1,
-    //     orderBy: {
-    //       created_at: "desc",
-    //     },
-    //     include: {
-    //       book: true,
-    //     },
-    //   },
-    // },
+    include: {
+      ratings: {
+        include: {
+          book: {
+            include: {
+              categories: {
+                include: {
+                  category: true,
+                },
+              },
+            },
+          },
+        },
+      },
+    },
   })
 
   if (!user) {
@@ -39,6 +43,16 @@ export async function GET(
       { status: 400 }
     )
   }
+
+  const totalPagesRead = user.ratings.reduce(
+    (sum, rating) => sum + rating.book.total_pages,
+    0
+  )
+  const totalRatedBooks = user.ratings.length
+  const allAuthors = user.ratings.map((rating) => rating.book.author)
+  const totalAuthorsRead = allAuthors.filter(
+    (author, index) => allAuthors.indexOf(author) === index
+  ).length
 
   return NextResponse.json({ user })
 }

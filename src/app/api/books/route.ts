@@ -1,17 +1,12 @@
 import { prisma } from "@/lib/prisma"
-import { getServerSession } from "next-auth"
 import { NextRequest, NextResponse } from "next/server"
-
-import { authOptions } from "../auth/[...nextauth]/route"
 
 import { formatBooks } from "@/utils/format-books"
 
 export async function GET(req: NextRequest) {
   const queryParams = req.nextUrl.searchParams
   const bookOrAuthorSearch = queryParams.get("bookOrAuthor") || ""
-
-  const session = await getServerSession(authOptions)
-  const userId = session?.user.id
+  const userId = queryParams.get("userId") || ""
 
   const allBooks = await prisma.book.findMany({
     where: {
@@ -40,7 +35,7 @@ export async function GET(req: NextRequest) {
     },
   })
 
-  const books = formatBooks({ hasSession: !!session, userId, books: allBooks })
+  const books = formatBooks({ hasSession: !!userId, userId, books: allBooks })
 
   return NextResponse.json({ books }, { status: 200 })
 }

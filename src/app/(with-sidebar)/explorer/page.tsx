@@ -5,14 +5,15 @@ import { BookFormattedProps, GetBooksResponse } from "@/dtos/Book"
 
 import { ContentPage } from "./ContentPage"
 import { ContainerPagesWithSidebar } from "@/components/ContainerPagesWithSidebar"
+import { getServerSession } from "@/hook/getServerSession"
 
 interface GetCategoriesResponse {
   categories: Category[]
 }
 
-async function getBooks(): Promise<BookFormattedProps[]> {
+async function getBooks(userId: string): Promise<BookFormattedProps[]> {
   // const revalidate = 60 * 60 * 24 * 7 // 7 days
-  const data = await api<GetBooksResponse>("/books", {
+  const data = await api<GetBooksResponse>(`/books?userId=${userId}`, {
     // next: { revalidate },
     cache: "no-cache",
   })
@@ -30,7 +31,11 @@ async function getCategories(): Promise<Category[]> {
 }
 
 export default async function Explorer() {
-  const [books, categories] = await Promise.all([getBooks(), getCategories()])
+  const session = await getServerSession()
+  const [books, categories] = await Promise.all([
+    getBooks(session?.user?.id || ""),
+    getCategories(),
+  ])
 
   return (
     <ContainerPagesWithSidebar>

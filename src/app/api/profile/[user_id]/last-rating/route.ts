@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/prisma"
 import { NextRequest, NextResponse } from "next/server"
 
-import { LastUserRatingProps } from "@/dtos/Rating"
+import { UserRatingProps } from "@/dtos/Rating"
 
 export async function GET(
   req: NextRequest,
@@ -44,7 +44,7 @@ export async function GET(
 
   const rating = user.ratings[0]
 
-  const lastUserRating: LastUserRatingProps = {
+  const lastUserRating: UserRatingProps = {
     rate: rating.rate,
     description: rating.description,
     created_at: rating.created_at.toString(),

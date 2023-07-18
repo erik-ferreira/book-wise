@@ -5,15 +5,15 @@ import { api } from "@/lib/api"
 import { RatingStars } from "../RatingStars"
 import { TitleSection } from "../TitleSection"
 
-import { LastUserRatingProps } from "@/dtos/Rating"
+import { UserRatingProps } from "@/dtos/Rating"
 
 import { formatDistanceDateToNow } from "../../utils/format-dates"
 
 interface LastUserRatingResponse {
-  lastUserRating: LastUserRatingProps
+  lastUserRating: UserRatingProps
 }
 
-async function getLastUserRating(userId: string): Promise<LastUserRatingProps> {
+async function getLastUserRating(userId: string): Promise<UserRatingProps> {
   // const revalidate = 60 * 60 * 24 // 1 day
   const data = await api<LastUserRatingResponse>(
     `/profile/${userId}/last-rating`,

@@ -1,7 +1,5 @@
 import { Prisma } from "@prisma/client"
 
-import { UserRatingProps } from "./Rating"
-
 export interface User {
   id: string
   name: string
@@ -15,7 +13,6 @@ export type UserProfile = Omit<User, "id" | "email"> & {
   totalRatedBooks: number
   totalAuthorsRead: number
   mostReadCategory: string
-  ratings: UserRatingProps[]
 }
 
 export type DefaultResponseDbUserProps =

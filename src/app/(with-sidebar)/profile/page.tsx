@@ -11,9 +11,14 @@ import { ContainerPagesWithSidebar } from "@/components/ContainerPagesWithSideba
 import { getServerSession } from "@/hook/getServerSession"
 
 import { UserProfile } from "@/dtos/User"
+import { UserRatingProps } from "@/dtos/Rating"
 
 interface ProfileResponse {
   user: UserProfile
+}
+
+interface UserRatingsResponse {
+  userRatings: UserRatingProps[]
 }
 
 async function getProfileData(userId: string): Promise<UserProfile> {
@@ -26,9 +31,22 @@ async function getProfileData(userId: string): Promise<UserProfile> {
   return data.user
 }
 
+async function getUserRatings(userId: string): Promise<UserRatingProps[]> {
+  // const revalidate = 60 * 60 * 24 // 1 day
+  const data = await api<UserRatingsResponse>(`/profile/${userId}/ratings`, {
+    // next: { revalidate }
+    cache: "no-cache",
+  })
+
+  return data.userRatings
+}
+
 export default async function Profile() {
   const session = await getServerSession()
-  const user = await getProfileData(session?.user.id!)
+  const [user, userRatings] = await Promise.all([
+    getProfileData(session?.user.id!),
+    getUserRatings(session?.user.id!),
+  ])
 
   return (
     <ContainerPagesWithSidebar className="max-xl:px-20">
@@ -38,11 +56,9 @@ export default async function Profile() {
         <section className="flex-1 space-y-6">
           <Input placeholder="Buscar livro avaliado" isFullWidth />
 
-          {user.ratings.map((rating) => (
+          {userRatings.map((rating) => (
             <UserBookReviewCard key={rating.id} rating={rating} />
           ))}
-          {/* <UserBookReviewCard /> */}
-          {/* <UserBookReviewCard /> */}
         </section>
 
         <ProfileSection user={user} />

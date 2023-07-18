@@ -2,7 +2,6 @@ import { prisma } from "@/lib/prisma"
 import { NextRequest, NextResponse } from "next/server"
 
 import { UserProfile } from "@/dtos/User"
-import { UserRatingProps } from "@/dtos/Rating"
 
 import { formatOptionsProfile } from "@/utils/format-options-profile"
 
@@ -56,20 +55,6 @@ export async function GET(
     mostReadCategory,
   } = formatOptionsProfile(user)
 
-  const ratings: UserRatingProps[] = user.ratings.map((rating) => {
-    return {
-      id: rating.id,
-      rate: rating.rate,
-      description: rating.description,
-      created_at: rating.created_at.toString(),
-      book: {
-        name: rating.book.name,
-        author: rating.book.author,
-        cover_url: rating.book.cover_url,
-      },
-    }
-  })
-
   const userProfile = {
     name: user.name,
     avatar_url: user.avatar_url,
@@ -78,7 +63,6 @@ export async function GET(
     totalPagesRead,
     totalRatedBooks,
     mostReadCategory,
-    ratings,
   } as UserProfile
 
   return NextResponse.json({ user: userProfile })

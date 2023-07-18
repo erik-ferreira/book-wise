@@ -3,9 +3,7 @@ import { NextRequest, NextResponse } from "next/server"
 
 import { UserProfile } from "@/dtos/User"
 
-interface CategoryReadProps {
-  [key: string]: number
-}
+import { formatOptionsProfile } from "@/utils/format-options-profile"
 
 export async function GET(
   req: NextRequest,
@@ -50,36 +48,12 @@ export async function GET(
     )
   }
 
-  const totalPagesRead = user.ratings.reduce(
-    (sum, rating) => sum + rating.book.total_pages,
-    0
-  )
-
-  const totalRatedBooks = user.ratings.length
-
-  const allAuthors = user.ratings.map((rating) => rating.book.author)
-  const totalAuthorsRead = allAuthors.filter(
-    (author, index) => allAuthors.indexOf(author) === index
-  ).length
-
-  // to calculate most read category
-  const categories = user.ratings.flatMap((rating) => {
-    return rating.book.categories.map((category) => category.category.name)
-  })
-  const categoriesRead = categories.reduce((acc, category) => {
-    acc[category] = (acc[category] || 0) + 1
-
-    return acc
-  }, {} as CategoryReadProps)
-
-  let mostReadCategory = ""
-  let maxValue = 0
-  for (const prop in categoriesRead) {
-    if (categoriesRead[prop] > maxValue) {
-      maxValue = categoriesRead[prop]
-      mostReadCategory = prop
-    }
-  }
+  const {
+    totalAuthorsRead,
+    totalPagesRead,
+    totalRatedBooks,
+    mostReadCategory,
+  } = formatOptionsProfile(user)
 
   const userProfile = {
     name: user.name,
@@ -89,8 +63,7 @@ export async function GET(
     totalPagesRead,
     totalRatedBooks,
     mostReadCategory,
-    // profileOptions,
   } as UserProfile
 
-  return NextResponse.json({ user: userProfile })
+  return NextResponse.json({ user: userProfile, userDAle: user })
 }

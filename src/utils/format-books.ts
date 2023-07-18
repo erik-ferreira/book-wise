@@ -1,5 +1,4 @@
 import { BookFormattedProps, DefaultResponseDbBookProps } from "@/dtos/Book"
-// import { Rating } from "@/dtos/Rating"
 
 interface FormatBookProps {
   books: DefaultResponseDbBookProps[]

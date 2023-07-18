@@ -45,6 +45,7 @@ export async function GET(
   const rating = user.ratings[0]
 
   const lastUserRating: UserRatingProps = {
+    id: rating.id,
     rate: rating.rate,
     description: rating.description,
     created_at: rating.created_at.toString(),

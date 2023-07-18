@@ -9,6 +9,7 @@ export interface Rating extends Prisma.RatingGetPayload<Prisma.RatingArgs> {
 }
 
 export interface UserRatingProps {
+  id: string
   rate: number
   description: string
   created_at: string

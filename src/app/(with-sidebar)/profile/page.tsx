@@ -38,9 +38,11 @@ export default async function Profile() {
         <section className="flex-1 space-y-6">
           <Input placeholder="Buscar livro avaliado" isFullWidth />
 
-          <UserBookReviewCard />
-          <UserBookReviewCard />
-          <UserBookReviewCard />
+          {user.ratings.map((rating) => (
+            <UserBookReviewCard key={rating.id} rating={rating} />
+          ))}
+          {/* <UserBookReviewCard /> */}
+          {/* <UserBookReviewCard /> */}
         </section>
 
         <ProfileSection user={user} />

@@ -7,3 +7,14 @@ export interface Rating extends Prisma.RatingGetPayload<Prisma.RatingArgs> {
   book?: Book
   user?: User
 }
+
+export interface LastUserRatingProps {
+  rate: number
+  description: string
+  created_at: string
+  book: {
+    name: string
+    author: string
+    cover_url: string
+  }
+}

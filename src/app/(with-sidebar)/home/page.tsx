@@ -9,6 +9,8 @@ import { PopularBookCard } from "@/components/Books/PopularBookCard"
 import { LastReviewByUserToBook } from "@/components/Books/LastReviewByUserToBook"
 import { ContainerPagesWithSidebar } from "@/components/ContainerPagesWithSidebar"
 
+import { getServerSession } from "@/hook/getServerSession"
+
 import { Rating } from "@/dtos/Rating"
 import { BookFormattedProps } from "@/dtos/Book"
 
@@ -21,7 +23,7 @@ interface BookMostRatedResponse {
 }
 
 async function getRecentBooksRatings(): Promise<Rating[]> {
-  const revalidate = 60 * 60 * 24 // 1 day
+  // const revalidate = 60 * 60 * 24 // 1 day
   const data = await api<RatingResponse>("/ratings", {
     // next: { revalidate }
     cache: "no-cache",
@@ -31,7 +33,7 @@ async function getRecentBooksRatings(): Promise<Rating[]> {
 }
 
 async function getBooksMostRated(): Promise<BookFormattedProps[]> {
-  const revalidate = 60 * 60 * 24 // 1 day
+  // const revalidate = 60 * 60 * 24 // 1 day
   const data = await api<BookMostRatedResponse>("/books/most-rated", {
     // next: { revalidate },
     cache: "no-cache",
@@ -41,6 +43,9 @@ async function getBooksMostRated(): Promise<BookFormattedProps[]> {
 }
 
 export default async function Home() {
+  const session = await getServerSession()
+  const isSigned = !!session
+
   const [recentBooksRatings, booksMostRated] = await Promise.all([
     getRecentBooksRatings(),
     getBooksMostRated(),
@@ -52,11 +57,7 @@ export default async function Home() {
 
       <div className="flex gap-16 max-lg:gap-12 max-[450px]:flex-col">
         <section className="flex-1">
-          <TitleSection label="Sua última leitura" />
-
-          <div className="mb-10 max-[450px]:pr-10">
-            <LastReviewByUserToBook />
-          </div>
+          {isSigned && <LastReviewByUserToBook userId={session?.user.id} />}
 
           <TitleSection label="Avaliações mais recentes" />
 

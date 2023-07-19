@@ -45,12 +45,6 @@ export function FormEvaluate() {
     console.log(data)
   }
 
-  function onChangeInput(value: string) {
-    if (value === "") {
-      // handleRatingBook({ search: "" })
-    }
-  }
-
   function handleOpenFormEvaluate() {
     if (isSigned) {
       setShowFormEvaluate(true)
@@ -99,7 +93,6 @@ export function FormEvaluate() {
             error={errors?.description?.message}
             {...register("description", {
               onBlur: () => clearErrors(),
-              onChange: (e) => onChangeInput(e.target.value),
             })}
           />
 

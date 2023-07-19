@@ -3,9 +3,8 @@ import { User as IconUser } from "lucide-react"
 import { api } from "@/lib/api"
 
 import { Header } from "@/components/Header"
-import { Input } from "@/components/Form/Input"
+import { ContentUserRatings } from "./ContentUserRatings"
 import { ProfileSection } from "@/components/ProfileSection"
-import { UserBookReviewCard } from "@/components/Books/UserBookReviewCard"
 import { ContainerPagesWithSidebar } from "@/components/ContainerPagesWithSidebar"
 
 import { getServerSession } from "@/hook/getServerSession"
@@ -53,13 +52,7 @@ export default async function Profile() {
       <Header label="Perfil" icon={IconUser} />
 
       <div className="flex gap-16">
-        <section className="flex-1 space-y-6">
-          <Input placeholder="Buscar livro avaliado" isFullWidth />
-
-          {userRatings.map((rating) => (
-            <UserBookReviewCard key={rating.id} rating={rating} />
-          ))}
-        </section>
+        <ContentUserRatings ratings={userRatings} />
 
         <ProfileSection user={user} />
       </div>

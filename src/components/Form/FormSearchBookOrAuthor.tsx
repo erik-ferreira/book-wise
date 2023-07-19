@@ -1,12 +1,20 @@
 import { z } from "zod"
 import { useForm } from "react-hook-form"
+import { useSession } from "next-auth/react"
 import { zodResolver } from "@hookform/resolvers/zod"
 
 import { api } from "@/lib/api"
 
 import { Input } from "./Input"
 
+import { UserRatingProps } from "@/dtos/Rating"
 import { GetBooksResponse, BookFormattedProps } from "@/dtos/Book"
+
+import { twMerge } from "@/utils/tw-merge"
+
+interface UserRatingsResponse {
+  userRatings: UserRatingProps[]
+}
 
 const searchFormSchema = z.object({
   search: z
@@ -17,12 +25,19 @@ const searchFormSchema = z.object({
 type SearchFormData = z.infer<typeof searchFormSchema>
 
 interface FormSearchBookOrAuthorProps {
-  onUpdateBooks: (books: BookFormattedProps[]) => void
+  page?: "explorer" | "profile"
+  onUpdateBooks?: (books: BookFormattedProps[]) => void
+  onUpdateUserRatings?: (ratings: UserRatingProps[]) => void
 }
 
 export function FormSearchBookOrAuthor({
-  onUpdateBooks,
+  page = "explorer",
+  onUpdateBooks = () => {},
+  onUpdateUserRatings = () => {},
 }: FormSearchBookOrAuthorProps) {
+  const session = useSession()
+  const isPageProfile = page === "profile"
+
   const {
     register,
     handleSubmit,
@@ -33,11 +48,20 @@ export function FormSearchBookOrAuthor({
   })
 
   async function handleSubmitSearch(data: SearchFormData) {
-    const dataResponse = await api<GetBooksResponse>(
-      `/books?bookOrAuthor=${data.search}`
-    )
+    if (isPageProfile) {
+      const userId = session.data?.user.id
+      const dataResponse = await api<UserRatingsResponse>(
+        `/profile/${userId}/ratings?bookOrAuthor=${data.search}`
+      )
 
-    onUpdateBooks(dataResponse.books)
+      onUpdateUserRatings(dataResponse.userRatings)
+    } else {
+      const dataResponse = await api<GetBooksResponse>(
+        `/books?bookOrAuthor=${data.search}`
+      )
+
+      onUpdateBooks(dataResponse.books)
+    }
   }
 
   function onChangeInput(value: string) {
@@ -48,11 +72,14 @@ export function FormSearchBookOrAuthor({
 
   return (
     <form
-      className="max-w-[27rem] w-full"
+      className={twMerge("w-full", {
+        "max-w-[27rem]": !isPageProfile,
+      })}
       onSubmit={handleSubmit(handleSubmitSearch)}
     >
       <Input
         placeholder="Buscar"
+        isFullWidth={isPageProfile}
         error={errors?.search?.message}
         {...register("search", {
           onBlur: () => clearErrors(),

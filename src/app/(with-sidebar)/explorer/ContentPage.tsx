@@ -1,28 +1,15 @@
 "use client"
 
-import { z } from "zod"
 import { Glasses } from "lucide-react"
 import { useMemo, useState } from "react"
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-
-import { api } from "@/lib/api"
 
 import { Category } from "@/dtos/Category"
-import { BookFormattedProps, GetBooksResponse } from "@/dtos/Book"
+import { BookFormattedProps } from "@/dtos/Book"
 
 import { Header } from "@/components/Header"
-import { Input } from "@/components/Form/Input"
+import { FormSearchBookOrAuthor } from "@/components/Form/FormSearchBookOrAuthor"
 import { Categories } from "@/components/Categories"
 import { PopularBookCard } from "@/components/Books/PopularBookCard"
-
-const searchFormSchema = z.object({
-  search: z
-    .string()
-    .min(1, { message: "Preencha o campo para realizar a busca" }),
-})
-
-type SearchFormData = z.infer<typeof searchFormSchema>
 
 interface ContentPageProps {
   categories: Category[]
@@ -43,23 +30,6 @@ export function ContentPage({ categories, books }: ContentPageProps) {
     return booksFiltered
   }, [categorySelected, listBooks])
 
-  const {
-    register,
-    handleSubmit,
-    clearErrors,
-    formState: { errors },
-  } = useForm<SearchFormData>({
-    resolver: zodResolver(searchFormSchema),
-  })
-
-  async function handleSubmitSearch(data: SearchFormData) {
-    const dataResponse = await api<GetBooksResponse>(
-      `/books?bookOrAuthor=${data.search}`
-    )
-
-    setListBooks(dataResponse.books)
-  }
-
   function handleChangeCategorySelected(id: string) {
     setCategorySelected((prevId) => {
       if (prevId === id) {
@@ -70,32 +40,12 @@ export function ContentPage({ categories, books }: ContentPageProps) {
     })
   }
 
-  function onChangeInput(value: string) {
-    if (value === "") {
-      handleSubmitSearch({ search: "" })
-    }
-  }
-
   return (
     <>
       <Header
         label="Explorar"
         icon={Glasses}
-        elementRight={
-          <form
-            className="max-w-[27rem] w-full"
-            onSubmit={handleSubmit(handleSubmitSearch)}
-          >
-            <Input
-              placeholder="Buscar"
-              error={errors?.search?.message}
-              {...register("search", {
-                onBlur: () => clearErrors(),
-                onChange: (e) => onChangeInput(e.target.value),
-              })}
-            />
-          </form>
-        }
+        elementRight={<FormSearchBookOrAuthor onUpdateBooks={setListBooks} />}
       />
 
       <Categories

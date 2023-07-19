@@ -39,7 +39,7 @@ export async function LastReviewByUserToBook({
     <>
       <TitleSection label="Sua última leitura" />
 
-      <article className="w-full h-fit bg-gray-600 rounded-md p-6 flex items-center gap-6 mb-10 card-secondary-animation max-[1130px]:flex-col max-[450px]:w-[90%]">
+      <article className="w-full h-fit bg-gray-600 rounded-md p-6 flex items-center gap-6 mb-10 max-[1130px]:flex-col max-[450px]:w-[90%]">
         <Image
           src={lastUserRating.book.cover_url}
           width={108}

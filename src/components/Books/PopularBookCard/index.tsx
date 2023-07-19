@@ -1,13 +1,14 @@
 "use client"
 
 import Image from "next/image"
-import classnames from "classnames"
 import * as Dialog from "@radix-ui/react-dialog"
 
 import { BookFormattedProps } from "@/dtos/Book"
 
 import { RatingStars } from "../../RatingStars"
 import { DialogPortalDetailsBook } from "./DialogPortalDetailsBook"
+
+import { twMerge } from "@/utils/tw-merge"
 
 interface PopularBookCardProps {
   cardBookInHome?: boolean
@@ -22,7 +23,7 @@ export function PopularBookCard({
     <Dialog.Root>
       <Dialog.Trigger className="w-full text-start">
         <article
-          className={classnames(
+          className={twMerge(
             "bg-gray-700 w-full h-fit rounded-md py-[1.125rem] px-5 flex gap-5 card-primary-animation",
             { relative: book.wasRead },
             {
@@ -46,16 +47,18 @@ export function PopularBookCard({
           />
 
           <div
-            className={classnames(
-              "flex flex-col justify-between overflow-hidden",
+            className={twMerge(
+              "w-full flex flex-col justify-between overflow-hidden",
               {
-                "max-[1200px]:flex-col-reverse max-[1200px]:items-center max-[1200px]:gap-2":
+                "max-[1200px]:flex-col-reverse max-[1200px]:gap-2":
                   cardBookInHome,
               }
             )}
           >
             <header
-              className={cardBookInHome ? "max-[1200px]:text-center" : ""}
+              className={twMerge({
+                "max-[1200px]:text-center": cardBookInHome,
+              })}
             >
               <h2 className="font-bold leading-short truncate">{book?.name}</h2>
               <p className="text-sm leading-base text-gray-400">
@@ -63,7 +66,10 @@ export function PopularBookCard({
               </p>
             </header>
 
-            <RatingStars stars={book?.ratingAverage} />
+            <RatingStars
+              stars={book?.ratingAverage}
+              className="max-[1200px]:mx-auto"
+            />
           </div>
         </article>
       </Dialog.Trigger>

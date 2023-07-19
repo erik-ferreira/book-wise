@@ -11,6 +11,9 @@ export async function GET(req: NextRequest) {
         include: {
           user: true,
         },
+        orderBy: {
+          created_at: "desc",
+        },
       },
       categories: {
         select: {

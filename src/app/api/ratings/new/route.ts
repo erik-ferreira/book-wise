@@ -38,11 +38,25 @@ export async function POST(req: NextRequest) {
 
   const userExists = await prisma.user.findUnique({
     where: { id: userId },
+    include: {
+      ratings: {
+        where: {
+          book_id: bookId,
+        },
+      },
+    },
   })
 
   if (!userExists) {
     return NextResponse.json(
       { message: "Usuário não encontrado" },
+      { status: 400 }
+    )
+  }
+
+  if (userExists.ratings.length > 0) {
+    return NextResponse.json(
+      { message: "Você já fez uma avaliação sobre este livro." },
       { status: 400 }
     )
   }

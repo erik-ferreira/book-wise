@@ -67,5 +67,8 @@ export async function POST(req: NextRequest) {
     },
   })
 
-  return NextResponse.json({ message: "Avaliação criada com sucesso" })
+  return NextResponse.json(
+    { message: "Avaliação criada com sucesso" },
+    { status: 201 }
+  )
 }

@@ -84,7 +84,7 @@ export function DialogPortalDetailsBook({
           </ul>
         </article>
 
-        <FormEvaluate />
+        <FormEvaluate bookId={book.id} />
 
         <div className="space-y-3">
           {book?.ratings.map((rating) => (

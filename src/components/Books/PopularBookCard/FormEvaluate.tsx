@@ -5,12 +5,14 @@ import { useSession } from "next-auth/react"
 import * as Dialog from "@radix-ui/react-dialog"
 import { zodResolver } from "@hookform/resolvers/zod"
 
-import { RatingStarsInput } from "../../RatingStars/Input"
+import { api } from "@/lib/api"
+
 import { Profile } from "../../Profile"
 import { TextArea } from "../../Form/TextArea"
 import { TitleSection } from "../../TitleSection"
 import { ButtonAction } from "../../ButtonAction"
 import { DialogPortalSignIn } from "./DialogPortalSignIn"
+import { RatingStarsInput } from "../../RatingStars/Input"
 
 const evaluateFormSchema = z.object({
   rate: z.number().int().min(1).max(5),
@@ -21,8 +23,16 @@ const evaluateFormSchema = z.object({
 
 type EvaluateFormData = z.infer<typeof evaluateFormSchema>
 
-export function FormEvaluate() {
+interface ResponseCreateRating {
+  message: string
+}
+interface FormEvaluateProps {
+  bookId: string
+}
+
+export function FormEvaluate({ bookId }: FormEvaluateProps) {
   const session = useSession()
+  const user = session.data?.user
   const isSigned = session.status === "authenticated"
   const ButtonEvaluate = isSigned ? "button" : Dialog.Trigger
 
@@ -42,7 +52,23 @@ export function FormEvaluate() {
   })
 
   async function handleRatingBook(data: EvaluateFormData) {
-    console.log(data)
+    try {
+      const body = JSON.stringify({
+        rate: data.rate,
+        description: data.description,
+        userId: user?.id,
+        bookId,
+      })
+
+      const response = await api<ResponseCreateRating>("/ratings/new", {
+        method: "POST",
+        body,
+      })
+
+      alert(response.message)
+    } catch (err: any) {
+      alert(err?.message)
+    }
   }
 
   function handleOpenFormEvaluate() {
@@ -75,7 +101,11 @@ export function FormEvaluate() {
           className="w-full h-fit bg-gray-700 rounded-md p-6 mb-3"
         >
           <div className="flex items-center justify-between max-[375px]:flex-col max-[375px]:gap-5">
-            <Profile username="Erik Ferreira" usernameIsBold />
+            <Profile
+              src={user?.avatar_url || ""}
+              username={user?.name || ""}
+              usernameIsBold
+            />
             <Controller
               name="rate"
               control={control}

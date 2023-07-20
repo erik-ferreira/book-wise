@@ -1,7 +1,10 @@
-import { prisma } from "@/lib/prisma"
 import { NextRequest, NextResponse } from "next/server"
 
+import { prisma } from "@/lib/prisma"
+
 import { UserRatingProps } from "@/dtos/User"
+
+import { removeAccentsAndToLowerCaseText } from "@/utils/remove-accents-and-to-lower-case-text"
 
 export async function GET(
   req: NextRequest,
@@ -54,11 +57,17 @@ export async function GET(
         },
       }
     })
-    .filter(
-      (rating) =>
-        rating.book.name.includes(bookOrAuthorSearch) ||
-        rating.book.author.includes(bookOrAuthorSearch)
-    )
+    .filter((rating) => {
+      const name = removeAccentsAndToLowerCaseText(rating.book.name)
+      const author = removeAccentsAndToLowerCaseText(rating.book.name)
+      const bookOrAuthorSearchFormat =
+        removeAccentsAndToLowerCaseText(bookOrAuthorSearch)
+
+      return (
+        name.includes(bookOrAuthorSearchFormat) ||
+        author.includes(bookOrAuthorSearchFormat)
+      )
+    })
 
   return NextResponse.json({ userRatings })
 }

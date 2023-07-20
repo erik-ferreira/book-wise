@@ -1,14 +1,14 @@
 import { api } from "@/lib/api"
 
-import { BookFormattedProps, GetBooksResponse } from "@/dtos/Book"
-
-interface BookMostRatedResponse {
-  booksMostRated: BookFormattedProps[]
-}
+import {
+  BookFormattedProps,
+  GetBooksResponse,
+  GetBooksMostRatedResponse,
+} from "@/dtos/Book"
 
 export async function getBooksMostRated(): Promise<BookFormattedProps[]> {
   // const revalidate = 60 * 60 * 24 // 1 day
-  const data = await api<BookMostRatedResponse>("/books/most-rated", {
+  const data = await api<GetBooksMostRatedResponse>("/books/most-rated", {
     // next: { revalidate },
     cache: "no-cache",
   })

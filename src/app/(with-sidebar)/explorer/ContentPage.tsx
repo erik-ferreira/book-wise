@@ -7,9 +7,9 @@ import { Category } from "@/dtos/Category"
 import { BookFormattedProps } from "@/dtos/Book"
 
 import { Header } from "@/components/Header"
-import { FormSearchBookOrAuthor } from "@/components/Form/FormSearchBookOrAuthor"
 import { Categories } from "@/components/Categories"
 import { PopularBookCard } from "@/components/Books/PopularBookCard"
+import { FormSearchBookOrAuthor } from "@/components/Form/FormSearchBookOrAuthor"
 
 interface ContentPageProps {
   categories: Category[]

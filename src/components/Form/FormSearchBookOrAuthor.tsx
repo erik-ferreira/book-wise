@@ -8,7 +8,7 @@ import { searchFormSchema, SearchFormData } from "@/schemas/search-form"
 
 import { Input } from "./Input"
 
-import { UserRatingProps } from "@/dtos/Rating"
+import { UserRatingProps } from "@/dtos/User"
 import { BookFormattedProps } from "@/dtos/Book"
 
 import { twMerge } from "@/utils/tw-merge"

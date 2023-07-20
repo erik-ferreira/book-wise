@@ -1,10 +1,6 @@
 import { api } from "@/lib/api"
 
-import { Category } from "@/dtos/Category"
-
-interface GetCategoriesResponse {
-  categories: Category[]
-}
+import { Category, GetCategoriesResponse } from "@/dtos/Category"
 
 export async function getCategories(): Promise<Category[]> {
   const revalidate = 60 * 60 * 24 * 7 // 7 days

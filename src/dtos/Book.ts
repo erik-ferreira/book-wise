@@ -28,6 +28,12 @@ export interface BookFormattedProps extends Book {
   ratings: Rating[]
 }
 
+// ----------------------- types response -----------------------
+
 export interface GetBooksResponse {
   books: BookFormattedProps[]
+}
+
+export interface GetBooksMostRatedResponse {
+  booksMostRated: BookFormattedProps[]
 }

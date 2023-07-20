@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/prisma"
 import { NextRequest, NextResponse } from "next/server"
 
-import { UserRatingProps } from "@/dtos/Rating"
+import { UserRatingProps } from "@/dtos/User"
 
 export async function GET(
   req: NextRequest,

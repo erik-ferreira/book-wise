@@ -1,15 +1,15 @@
 import { api } from "@/lib/api"
 
-import { UserProfile } from "@/dtos/User"
-import { UserRatingProps } from "@/dtos/Rating"
-
-interface ProfileResponse {
-  user: UserProfile
-}
+import {
+  UserProfile,
+  GetProfileDataResponse,
+  UserRatingProps,
+  GetUserRatingsResponse,
+} from "@/dtos/User"
 
 export async function getProfileData(userId: string): Promise<UserProfile> {
   // const revalidate = 60 * 60 * 24 // 1 day
-  const data = await api<ProfileResponse>(`/profile/${userId}`, {
+  const data = await api<GetProfileDataResponse>(`/profile/${userId}`, {
     // next: { revalidate }
     cache: "no-cache",
   })
@@ -19,16 +19,12 @@ export async function getProfileData(userId: string): Promise<UserProfile> {
 
 // ----------------------------------------------------
 
-interface UserRatingsResponse {
-  userRatings: UserRatingProps[]
-}
-
 export async function getUserRatings(
   userId: string,
   params?: URLSearchParams
 ): Promise<UserRatingProps[]> {
   // const revalidate = 60 * 60 * 24 // 1 day
-  const data = await api<UserRatingsResponse>(
+  const data = await api<GetUserRatingsResponse>(
     `/profile/${userId}/ratings?${params?.toString()}`,
     {
       // next: { revalidate }

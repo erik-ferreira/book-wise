@@ -5,7 +5,7 @@ import { useState } from "react"
 import { UserBookReviewCard } from "@/components/Books/UserBookReviewCard"
 import { FormSearchBookOrAuthor } from "@/components/Form/FormSearchBookOrAuthor"
 
-import { UserRatingProps } from "@/dtos/Rating"
+import { UserRatingProps } from "@/dtos/User"
 
 interface ContentUserRatingsProps {
   ratings: UserRatingProps[]

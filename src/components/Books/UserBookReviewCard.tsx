@@ -2,7 +2,7 @@ import Image from "next/image"
 
 import { RatingStars } from "../RatingStars"
 
-import { UserRatingProps } from "@/dtos/Rating"
+import { UserRatingProps } from "@/dtos/User"
 
 import { formatDistanceDateToNow } from "../../utils/format-dates"
 

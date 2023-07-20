@@ -51,11 +51,15 @@ export function BookReviewCard({
             width={108}
             height={152}
             alt=""
-            className="w-[108px] h-[152px] rounded"
+            className="w-[108px] h-[9.5rem] rounded"
           />
         )}
 
-        <div>
+        <div
+          className={twMerge("w-full", {
+            "min-[1131px]:h-[9.5rem]": isCommentNormal,
+          })}
+        >
           {isCommentNormal && (
             <>
               <h2 className="font-bold leading-short">{rating?.book?.name}</h2>
@@ -66,8 +70,10 @@ export function BookReviewCard({
           )}
 
           <div className="w-full text-gray-300 text-sm leading-base overflow-hidden">
-            {rating?.description}...
-            <strong className="text-purple-100">ver mais</strong>
+            {rating?.description}
+            {rating?.description.endsWith("...") && (
+              <strong className="text-purple-100">ver mais</strong>
+            )}
           </div>
         </div>
       </main>

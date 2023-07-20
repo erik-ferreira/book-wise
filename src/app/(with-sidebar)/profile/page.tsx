@@ -1,44 +1,12 @@
 import { User as IconUser } from "lucide-react"
 
-import { api } from "@/lib/api"
+import { getServerSession } from "@/hook/getServerSession"
+import { getProfileData, getUserRatings } from "@/requests/profile"
 
 import { Header } from "@/components/Header"
 import { ContentUserRatings } from "./ContentUserRatings"
 import { ProfileSection } from "@/components/ProfileSection"
 import { ContainerPagesWithSidebar } from "@/components/ContainerPagesWithSidebar"
-
-import { getServerSession } from "@/hook/getServerSession"
-
-import { UserProfile } from "@/dtos/User"
-import { UserRatingProps } from "@/dtos/Rating"
-
-interface ProfileResponse {
-  user: UserProfile
-}
-
-interface UserRatingsResponse {
-  userRatings: UserRatingProps[]
-}
-
-async function getProfileData(userId: string): Promise<UserProfile> {
-  // const revalidate = 60 * 60 * 24 // 1 day
-  const data = await api<ProfileResponse>(`/profile/${userId}`, {
-    // next: { revalidate }
-    cache: "no-cache",
-  })
-
-  return data.user
-}
-
-async function getUserRatings(userId: string): Promise<UserRatingProps[]> {
-  // const revalidate = 60 * 60 * 24 // 1 day
-  const data = await api<UserRatingsResponse>(`/profile/${userId}/ratings`, {
-    // next: { revalidate }
-    cache: "no-cache",
-  })
-
-  return data.userRatings
-}
 
 export default async function Profile() {
   const session = await getServerSession()

@@ -1,30 +1,11 @@
 import Image from "next/image"
 
-import { api } from "@/lib/api"
+import { getLastUserRating } from "@/requests/ratings"
 
 import { RatingStars } from "../RatingStars"
 import { TitleSection } from "../TitleSection"
 
-import { UserRatingProps } from "@/dtos/Rating"
-
 import { formatDistanceDateToNow } from "../../utils/format-dates"
-
-interface LastUserRatingResponse {
-  lastUserRating: UserRatingProps
-}
-
-async function getLastUserRating(userId: string): Promise<UserRatingProps> {
-  // const revalidate = 60 * 60 * 24 // 1 day
-  const data = await api<LastUserRatingResponse>(
-    `/profile/${userId}/last-rating`,
-    {
-      // next: { revalidate },
-      cache: "no-cache",
-    }
-  )
-
-  return data.lastUserRating
-}
 
 interface LastReviewByUserToBookProps {
   userId: string

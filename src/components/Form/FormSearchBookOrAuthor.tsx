@@ -2,19 +2,16 @@ import { useForm } from "react-hook-form"
 import { useSession } from "next-auth/react"
 import { zodResolver } from "@hookform/resolvers/zod"
 
-import { api } from "@/lib/api"
+import { getBooks } from "@/requests/books"
+import { getUserRatings } from "@/requests/profile"
 import { searchFormSchema, SearchFormData } from "@/schemas/search-form"
 
 import { Input } from "./Input"
 
 import { UserRatingProps } from "@/dtos/Rating"
-import { GetBooksResponse, BookFormattedProps } from "@/dtos/Book"
+import { BookFormattedProps } from "@/dtos/Book"
 
 import { twMerge } from "@/utils/tw-merge"
-
-interface UserRatingsResponse {
-  userRatings: UserRatingProps[]
-}
 
 interface FormSearchBookOrAuthorProps {
   page?: "explorer" | "profile"
@@ -28,6 +25,7 @@ export function FormSearchBookOrAuthor({
   onUpdateUserRatings = () => {},
 }: FormSearchBookOrAuthorProps) {
   const session = useSession()
+  const userId = session?.data?.user?.id || ""
   const isPageProfile = page === "profile"
 
   const {
@@ -39,20 +37,30 @@ export function FormSearchBookOrAuthor({
     resolver: zodResolver(searchFormSchema),
   })
 
+  async function handleGetBooksWithSearch(search: string) {
+    const paramsToGetBooks = new URLSearchParams()
+    paramsToGetBooks.append("userId", userId)
+    paramsToGetBooks.append("bookOrAuthor", search)
+
+    const books = await getBooks(paramsToGetBooks)
+
+    onUpdateBooks(books)
+  }
+
+  async function handleGetUserRatings(search: string) {
+    const paramsToGetUserRatings = new URLSearchParams()
+    paramsToGetUserRatings.append("bookOrAuthor", search)
+
+    const ratings = await getUserRatings(userId, paramsToGetUserRatings)
+
+    onUpdateUserRatings(ratings)
+  }
+
   async function handleSubmitSearch(data: SearchFormData) {
     if (isPageProfile) {
-      const userId = session.data?.user.id
-      const dataResponse = await api<UserRatingsResponse>(
-        `/profile/${userId}/ratings?bookOrAuthor=${data.search}`
-      )
-
-      onUpdateUserRatings(dataResponse.userRatings)
+      handleGetUserRatings(data.search)
     } else {
-      const dataResponse = await api<GetBooksResponse>(
-        `/books?bookOrAuthor=${data.search}`
-      )
-
-      onUpdateBooks(dataResponse.books)
+      handleGetBooksWithSearch(data.search)
     }
   }
 

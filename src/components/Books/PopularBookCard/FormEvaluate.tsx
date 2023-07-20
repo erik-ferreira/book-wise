@@ -4,7 +4,7 @@ import { useSession } from "next-auth/react"
 import * as Dialog from "@radix-ui/react-dialog"
 import { zodResolver } from "@hookform/resolvers/zod"
 
-import { api } from "@/lib/api"
+import { createRating } from "@/requests/ratings"
 import { evaluateFormSchema, EvaluateFormData } from "@/schemas/evaluate-form"
 
 import { Profile } from "../../Profile"
@@ -14,9 +14,6 @@ import { ButtonAction } from "../../ButtonAction"
 import { DialogPortalSignIn } from "./DialogPortalSignIn"
 import { RatingStarsInput } from "../../RatingStars/Input"
 
-interface ResponseCreateRating {
-  message: string
-}
 interface FormEvaluateProps {
   bookId: string
 }
@@ -51,12 +48,9 @@ export function FormEvaluate({ bookId }: FormEvaluateProps) {
         bookId,
       })
 
-      const response = await api<ResponseCreateRating>("/ratings/new", {
-        method: "POST",
-        body,
-      })
+      const message = await createRating(body)
 
-      alert(response.message)
+      alert(message)
     } catch (err: any) {
       alert(err?.message)
     }

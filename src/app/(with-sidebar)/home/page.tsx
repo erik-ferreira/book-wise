@@ -1,6 +1,7 @@
 import { LineChart } from "lucide-react"
 
-import { api } from "@/lib/api"
+import { getBooksMostRated } from "@/requests/books"
+import { getRecentBooksRatings } from "@/requests/ratings"
 
 import { Header } from "@/components/Header"
 import { TitleSection } from "@/components/TitleSection"
@@ -10,37 +11,6 @@ import { LastReviewByUserToBook } from "@/components/Books/LastReviewByUserToBoo
 import { ContainerPagesWithSidebar } from "@/components/ContainerPagesWithSidebar"
 
 import { getServerSession } from "@/hook/getServerSession"
-
-import { Rating } from "@/dtos/Rating"
-import { BookFormattedProps } from "@/dtos/Book"
-
-interface RatingResponse {
-  ratings: Rating[]
-}
-
-interface BookMostRatedResponse {
-  booksMostRated: BookFormattedProps[]
-}
-
-async function getRecentBooksRatings(): Promise<Rating[]> {
-  // const revalidate = 60 * 60 * 24 // 1 day
-  const data = await api<RatingResponse>("/ratings", {
-    // next: { revalidate }
-    cache: "no-cache",
-  })
-
-  return data.ratings
-}
-
-async function getBooksMostRated(): Promise<BookFormattedProps[]> {
-  // const revalidate = 60 * 60 * 24 // 1 day
-  const data = await api<BookMostRatedResponse>("/books/most-rated", {
-    // next: { revalidate },
-    cache: "no-cache",
-  })
-
-  return data.booksMostRated
-}
 
 export default async function Home() {
   const session = await getServerSession()

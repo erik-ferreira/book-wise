@@ -1,39 +1,19 @@
-import { api } from "@/lib/api"
+import { getBooks } from "@/requests/books"
+import { getCategories } from "@/requests/categories"
 
-import { Category } from "@/dtos/Category"
-import { BookFormattedProps, GetBooksResponse } from "@/dtos/Book"
+import { getServerSession } from "@/hook/getServerSession"
 
 import { ContentPage } from "./ContentPage"
 import { ContainerPagesWithSidebar } from "@/components/ContainerPagesWithSidebar"
-import { getServerSession } from "@/hook/getServerSession"
-
-interface GetCategoriesResponse {
-  categories: Category[]
-}
-
-async function getBooks(userId: string): Promise<BookFormattedProps[]> {
-  // const revalidate = 60 * 60 * 24 * 7 // 7 days
-  const data = await api<GetBooksResponse>(`/books?userId=${userId}`, {
-    // next: { revalidate },
-    cache: "no-cache",
-  })
-
-  return data.books
-}
-
-async function getCategories(): Promise<Category[]> {
-  const revalidate = 60 * 60 * 24 * 7 // 7 days
-  const data = await api<GetCategoriesResponse>("/categories", {
-    next: { revalidate },
-  })
-
-  return data.categories
-}
 
 export default async function Explorer() {
   const session = await getServerSession()
+
+  const paramsToGetBooks = new URLSearchParams()
+  paramsToGetBooks.append("userId", session?.user?.id || "")
+
   const [books, categories] = await Promise.all([
-    getBooks(session?.user?.id || ""),
+    getBooks(paramsToGetBooks),
     getCategories(),
   ])
 

@@ -1,9 +1,9 @@
-import { z } from "zod"
 import { useForm } from "react-hook-form"
 import { useSession } from "next-auth/react"
 import { zodResolver } from "@hookform/resolvers/zod"
 
 import { api } from "@/lib/api"
+import { searchFormSchema, SearchFormData } from "@/schemas/search-form"
 
 import { Input } from "./Input"
 
@@ -15,14 +15,6 @@ import { twMerge } from "@/utils/tw-merge"
 interface UserRatingsResponse {
   userRatings: UserRatingProps[]
 }
-
-const searchFormSchema = z.object({
-  search: z
-    .string()
-    .min(1, { message: "Preencha o campo para realizar a busca" }),
-})
-
-type SearchFormData = z.infer<typeof searchFormSchema>
 
 interface FormSearchBookOrAuthorProps {
   page?: "explorer" | "profile"

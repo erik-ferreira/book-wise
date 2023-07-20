@@ -1,4 +1,3 @@
-import { z } from "zod"
 import { useState } from "react"
 import { useForm, Controller } from "react-hook-form"
 import { useSession } from "next-auth/react"
@@ -6,6 +5,7 @@ import * as Dialog from "@radix-ui/react-dialog"
 import { zodResolver } from "@hookform/resolvers/zod"
 
 import { api } from "@/lib/api"
+import { evaluateFormSchema, EvaluateFormData } from "@/schemas/evaluate-form"
 
 import { Profile } from "../../Profile"
 import { TextArea } from "../../Form/TextArea"
@@ -13,15 +13,6 @@ import { TitleSection } from "../../TitleSection"
 import { ButtonAction } from "../../ButtonAction"
 import { DialogPortalSignIn } from "./DialogPortalSignIn"
 import { RatingStarsInput } from "../../RatingStars/Input"
-
-const evaluateFormSchema = z.object({
-  rate: z.number().int().min(1).max(5),
-  description: z
-    .string()
-    .min(1, { message: "Preencha o campo para realizar a avaliação" }),
-})
-
-type EvaluateFormData = z.infer<typeof evaluateFormSchema>
 
 interface ResponseCreateRating {
   message: string

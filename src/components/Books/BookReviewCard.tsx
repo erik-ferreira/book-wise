@@ -20,11 +20,15 @@ export function BookReviewCard({
   const isCommentNormal = variant === "normal"
 
   return (
-    <article className="w-full h-fit bg-gray-700 rounded-md p-6 space-y-8 max-[450px]:min-w-[230px]">
+    <article
+      className={twMerge("w-full h-fit bg-gray-700 rounded-md p-6 space-y-8", {
+        "max-[450px]:min-w-[230px] max-[450px]:h-[430px]": isCommentNormal,
+      })}
+    >
       <header
         className={twMerge("flex justify-between", {
-          isCommentNormal:
-            "max-[930px]:flex-col max-[930px]:items-center max-[930px]:gap-4",
+          "max-[870px]:flex-col max-[870px]:items-center max-[870px]:gap-4":
+            isCommentNormal,
         })}
       >
         <Profile
@@ -36,7 +40,11 @@ export function BookReviewCard({
         <RatingStars stars={rating?.rate || 0} />
       </header>
 
-      <main className="flex items-center gap-5 max-[1130px]:flex-col">
+      <main
+        className={twMerge("flex items-center gap-5", {
+          "max-[1130px]:flex-col": isCommentNormal,
+        })}
+      >
         {isCommentNormal && (
           <Image
             src={rating?.book?.cover_url || ""}

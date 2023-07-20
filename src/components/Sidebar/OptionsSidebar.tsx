@@ -64,6 +64,7 @@ export function OptionsSidebar({ onHandleNavigate }: OptionsSidebarProps) {
           <li key={option.id}>
             <Link
               href={option.href}
+              prefetch={false}
               className={classnames(
                 "flex gap-3 py-2 font-bold leading-base before:w-1 before:h-6 before:rounded-full before:bg-gradient-to-b hover:text-gray-100 transition-colors",
                 {

@@ -51,10 +51,13 @@ export default async function Profile() {
     <ContainerPagesWithSidebar className="max-xl:px-20">
       <Header label="Perfil" icon={IconUser} />
 
-      <div className="flex gap-16">
+      <div className="flex gap-16 max-[500px]:flex-col-reverse">
         <ContentUserRatings ratings={userRatings} />
 
-        <ProfileSection user={user} />
+        <ProfileSection
+          user={user}
+          className="max-[500px]:border-l-0 max-[500px]:border-b max-[500px]:border-b-gray-700 max-[500px]:w-full"
+        />
       </div>
     </ContainerPagesWithSidebar>
   )

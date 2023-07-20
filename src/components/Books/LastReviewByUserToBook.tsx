@@ -47,7 +47,7 @@ export async function LastReviewByUserToBook({
           alt=""
           className="w-[108px] h-[152px] rounded"
         />
-        <div className="w-full h-[152px]">
+        <div className="w-full h-full flex flex-col justify-between">
           <header>
             <div className="flex items-center justify-between mb-3">
               <time className="text-sm leading-base text-gray-300">

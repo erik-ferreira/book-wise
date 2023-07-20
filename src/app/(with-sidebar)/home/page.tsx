@@ -61,7 +61,7 @@ export default async function Home() {
 
           <TitleSection label="Avaliações mais recentes" />
 
-          <div className="flex flex-col gap-3 max-[450px]:flex-row max-[450px]:overflow-x-auto max-[450px]:pb-1">
+          <div className="flex flex-col gap-3 max-[450px]:flex-row max-[450px]:overflow-x-auto max-[450px]:pb-1 max-[450px]:w-[90%]">
             {recentBooksRatings.map((rating) => (
               <BookReviewCard key={rating.id} rating={rating} />
             ))}
@@ -71,7 +71,7 @@ export default async function Home() {
         <section className="w-[30%] h-fit max-[450px]:w-full">
           <TitleSection label="Livros populares" />
 
-          <div className="flex flex-col gap-3 max-[450px]:flex-row max-[450px]:overflow-x-auto max-[450px]:pb-1">
+          <div className="flex flex-col gap-3 max-[450px]:flex-row max-[450px]:overflow-x-auto max-[450px]:pb-1 max-[450px]:w-[90%]">
             {booksMostRated.map((book) => (
               <PopularBookCard key={book.id} book={book} cardBookInHome />
             ))}

@@ -1,4 +1,5 @@
 import Image from "next/image"
+import { useSession } from "next-auth/react"
 import * as Dialog from "@radix-ui/react-dialog"
 import { BookOpen, Bookmark } from "lucide-react"
 
@@ -16,6 +17,8 @@ interface DialogPortalDetailsBookProps {
 export function DialogPortalDetailsBook({
   book,
 }: DialogPortalDetailsBookProps) {
+  const session = useSession()
+  const userId = session?.data?.user?.id
   const formatCategories = book.categoriesNames.join(", ")
 
   return (
@@ -88,7 +91,12 @@ export function DialogPortalDetailsBook({
 
         <div className="space-y-3">
           {book?.ratings.map((rating) => (
-            <BookReviewCard key={rating.id} variant="short" rating={rating} />
+            <BookReviewCard
+              key={rating.id}
+              variant="short"
+              rating={rating}
+              userId={userId}
+            />
           ))}
         </div>
       </Dialog.Content>

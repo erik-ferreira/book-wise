@@ -11,18 +11,22 @@ import { formatDistanceDateToNow } from "../../utils/format-dates"
 interface BookReviewCardProps {
   variant?: "normal" | "short"
   rating: Rating
+  userId?: string
 }
 
 export function BookReviewCard({
   variant = "normal",
   rating,
+  userId,
 }: BookReviewCardProps) {
   const isCommentNormal = variant === "normal"
+  const wasAUserRating = userId === rating.user_id
 
   return (
     <article
       className={twMerge("w-full h-fit bg-gray-700 rounded-md p-6 space-y-8", {
         "max-[450px]:min-w-[230px] max-[450px]:h-[430px]": isCommentNormal,
+        "bg-gray-600": wasAUserRating,
       })}
     >
       <header

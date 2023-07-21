@@ -2,26 +2,24 @@ import { useForm } from "react-hook-form"
 import { useSession } from "next-auth/react"
 import { zodResolver } from "@hookform/resolvers/zod"
 
-import { getBooks } from "@/requests/books"
 import { getUserRatings } from "@/requests/profile"
-import { searchFormSchema, SearchFormData } from "@/schemas/search-form"
+import { SearchFormData, searchFormSchema } from "@/schemas/search-form"
 
 import { Input } from "./Input"
 
 import { UserRatingProps } from "@/dtos/User"
-import { BookFormattedProps } from "@/dtos/Book"
 
 import { twMerge } from "@/utils/tw-merge"
 
 interface FormSearchBookOrAuthorProps {
   page?: "explorer" | "profile"
-  onUpdateBooks?: (books: BookFormattedProps[]) => void
+  onRefetchBooks?: (search: string) => void
   onUpdateUserRatings?: (ratings: UserRatingProps[]) => void
 }
 
 export function FormSearchBookOrAuthor({
   page = "explorer",
-  onUpdateBooks = () => {},
+  onRefetchBooks = () => {},
   onUpdateUserRatings = () => {},
 }: FormSearchBookOrAuthorProps) {
   const session = useSession()
@@ -35,17 +33,8 @@ export function FormSearchBookOrAuthor({
     formState: { errors },
   } = useForm<SearchFormData>({
     resolver: zodResolver(searchFormSchema),
+    defaultValues: { search: "" },
   })
-
-  async function handleGetBooksWithSearch(search: string) {
-    const paramsToGetBooks = new URLSearchParams()
-    paramsToGetBooks.append("userId", userId)
-    paramsToGetBooks.append("bookOrAuthor", search)
-
-    const books = await getBooks(paramsToGetBooks)
-
-    onUpdateBooks(books)
-  }
 
   async function handleGetUserRatings(search: string) {
     const paramsToGetUserRatings = new URLSearchParams()
@@ -60,12 +49,13 @@ export function FormSearchBookOrAuthor({
     if (isPageProfile) {
       handleGetUserRatings(data.search)
     } else {
-      handleGetBooksWithSearch(data.search)
+      onRefetchBooks(data.search)
     }
   }
 
   function onChangeInput(value: string) {
     if (value === "") {
+      console.log("teste aqui")
       handleSubmitSearch({ search: "" })
     }
   }

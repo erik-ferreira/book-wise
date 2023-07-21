@@ -1,42 +1,57 @@
 "use client"
 
+import { useState } from "react"
 import { Glasses } from "lucide-react"
-import { useMemo, useState } from "react"
+import { useQuery } from "@tanstack/react-query"
+
+import { getBooks } from "@/requests/books"
 
 import { Category } from "@/dtos/Category"
 import { BookFormattedProps } from "@/dtos/Book"
 
 import { Header } from "@/components/Header"
 import { Categories } from "@/components/Categories"
+import { LoadingSpinner } from "@/components/LoadingSpinner"
 import { PopularBookCard } from "@/components/Books/PopularBookCard"
 import { FormSearchBookOrAuthor } from "@/components/Form/FormSearchBookOrAuthor"
 
 interface ContentPageProps {
   categories: Category[]
-  books: BookFormattedProps[]
+  userId: string
 }
 
-export function ContentPage({ categories, books }: ContentPageProps) {
-  const [categorySelected, setCategorySelected] = useState("")
-  const [listBooks, setListBooks] = useState(books)
+export function ContentPage({ categories, userId }: ContentPageProps) {
+  const [categoryNameSelected, setCategoryNameSelected] = useState("")
+  const [searchBookOrAuthor, setSearchBookOrAuthor] = useState("")
 
-  const filterBooks: BookFormattedProps[] = useMemo(() => {
-    const booksFiltered = categorySelected
-      ? listBooks.filter((book) =>
-          book.categoriesIds.includes(categorySelected)
-        )
-      : listBooks
+  const { data: books, isLoading: isLoadingBooks } = useQuery<
+    BookFormattedProps[]
+  >(["books", categoryNameSelected, searchBookOrAuthor], async () => {
+    const paramsToGetBooks = new URLSearchParams()
+    if (userId) {
+      paramsToGetBooks.append("userId", userId)
+    }
 
-    return booksFiltered
-  }, [categorySelected, listBooks])
+    if (searchBookOrAuthor) {
+      paramsToGetBooks.append("bookOrAuthor", searchBookOrAuthor)
+    }
 
-  function handleChangeCategorySelected(id: string) {
-    setCategorySelected((prevId) => {
-      if (prevId === id) {
+    if (categoryNameSelected) {
+      paramsToGetBooks.append("category", categoryNameSelected)
+    }
+
+    const books = await getBooks(paramsToGetBooks)
+
+    return books
+  })
+
+  function handleChangeCategoryNameSelected(name: string) {
+    setCategoryNameSelected((prevName) => {
+      if (prevName === name) {
         return ""
       }
 
-      return id
+      return name
     })
   }
 
@@ -45,20 +60,28 @@ export function ContentPage({ categories, books }: ContentPageProps) {
       <Header
         label="Explorar"
         icon={Glasses}
-        elementRight={<FormSearchBookOrAuthor onUpdateBooks={setListBooks} />}
+        elementRight={
+          <FormSearchBookOrAuthor onRefetchBooks={setSearchBookOrAuthor} />
+        }
       />
 
       <Categories
         categories={categories}
-        categorySelected={categorySelected}
-        onChangeCategorySelected={handleChangeCategorySelected}
+        categorySelected={categoryNameSelected}
+        onChangeCategorySelected={handleChangeCategoryNameSelected}
       />
 
-      <div className="grid grid-cols-books gap-5 mt-12">
-        {filterBooks.map((book) => (
-          <PopularBookCard key={book.id} book={book} />
-        ))}
-      </div>
+      {isLoadingBooks ? (
+        <div className="flex items-center justify-center py-10">
+          <LoadingSpinner />
+        </div>
+      ) : (
+        <div className="grid grid-cols-books gap-5 mt-12">
+          {books?.map((book) => (
+            <PopularBookCard key={book.id} book={book} />
+          ))}
+        </div>
+      )}
     </>
   )
 }

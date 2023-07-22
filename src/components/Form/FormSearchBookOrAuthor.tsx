@@ -55,7 +55,6 @@ export function FormSearchBookOrAuthor({
 
   function onChangeInput(value: string) {
     if (value === "") {
-      console.log("teste aqui")
       handleSubmitSearch({ search: "" })
     }
   }

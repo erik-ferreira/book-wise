@@ -4,26 +4,23 @@ import classnames from "classnames"
 import * as ToggleGroup from "@radix-ui/react-toggle-group"
 
 import { Category } from "@/dtos/Category"
+import { useBooks } from "@/contexts/BooksContext"
 
 interface CategoriesProps {
   categories: Category[]
-  categorySelected: string
-  onChangeCategorySelected: (value: string) => void
 }
 
-export function Categories({
-  categories,
-  categorySelected,
-  onChangeCategorySelected,
-}: CategoriesProps) {
+export function Categories({ categories }: CategoriesProps) {
+  const { categoryNameSelected, onUpdateCategoryNameSelected } = useBooks()
+
   return (
     <ToggleGroup.Root
       type="single"
       className="flex gap-3 flex-wrap list-none"
-      onValueChange={onChangeCategorySelected}
+      onValueChange={onUpdateCategoryNameSelected}
     >
       {categories?.map((category) => {
-        const isCategorySelected = category.name === categorySelected
+        const isCategorySelected = category.name === categoryNameSelected
 
         return (
           <ToggleGroup.Item

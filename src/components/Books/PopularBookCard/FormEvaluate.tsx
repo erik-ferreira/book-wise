@@ -1,7 +1,7 @@
 import { useState } from "react"
-import { useForm, Controller } from "react-hook-form"
 import { useSession } from "next-auth/react"
 import * as Dialog from "@radix-ui/react-dialog"
+import { useForm, Controller } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 
 import { createRating } from "@/requests/ratings"
@@ -16,9 +16,10 @@ import { RatingStarsInput } from "../../RatingStars/Input"
 
 interface FormEvaluateProps {
   bookId: string
+  onRefetchRatings: () => void
 }
 
-export function FormEvaluate({ bookId }: FormEvaluateProps) {
+export function FormEvaluate({ bookId, onRefetchRatings }: FormEvaluateProps) {
   const session = useSession()
   const user = session.data?.user
   const isSigned = session.status === "authenticated"
@@ -51,6 +52,7 @@ export function FormEvaluate({ bookId }: FormEvaluateProps) {
       const message = await createRating(body)
 
       alert(message)
+      onRefetchRatings()
     } catch (err: any) {
       alert(err?.message)
     }

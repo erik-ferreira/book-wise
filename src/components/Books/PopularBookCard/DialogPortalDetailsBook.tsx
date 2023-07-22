@@ -1,21 +1,23 @@
 import Image from "next/image"
+import { ReactNode } from "react"
 import { useSession } from "next-auth/react"
 import * as Dialog from "@radix-ui/react-dialog"
 import { BookOpen, Bookmark } from "lucide-react"
 
 import { BookFormattedProps } from "@/dtos/Book"
 
-import { FormEvaluate } from "./FormEvaluate"
 import { RatingStars } from "../../RatingStars"
 import { ButtonXClose } from "../../ButtonXClose"
 import { BookReviewCard } from "../BookReviewCard"
 
 interface DialogPortalDetailsBookProps {
   book: BookFormattedProps
+  form: ReactNode
 }
 
 export function DialogPortalDetailsBook({
   book,
+  form,
 }: DialogPortalDetailsBookProps) {
   const session = useSession()
   const userId = session?.data?.user?.id
@@ -87,7 +89,7 @@ export function DialogPortalDetailsBook({
           </ul>
         </article>
 
-        <FormEvaluate bookId={book.id} />
+        {form}
 
         <div className="space-y-3">
           {book?.ratings.map((rating) => (

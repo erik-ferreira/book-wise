@@ -15,6 +15,7 @@ interface BooksContextData {
 
   books: BookFormattedProps[] | undefined
   isLoadingBooks: boolean
+  onRefetchBooks: () => void
 }
 
 export const BooksContext = createContext({} as BooksContextData)
@@ -30,26 +31,31 @@ export function BooksContextProvider({ children }: BooksContextProviderProps) {
   const [categoryNameSelected, setCategoryNameSelected] = useState("")
   const [searchBookOrAuthor, setSearchBookOrAuthor] = useState("")
 
-  const { data: books, isLoading: isLoadingBooks } = useQuery<
-    BookFormattedProps[]
-  >(["books", categoryNameSelected, searchBookOrAuthor], async () => {
-    const paramsToGetBooks = new URLSearchParams()
-    if (userId) {
-      paramsToGetBooks.append("userId", userId)
+  const {
+    data: books,
+    isLoading: isLoadingBooks,
+    refetch: onRefetchBooks,
+  } = useQuery<BookFormattedProps[]>(
+    ["books", categoryNameSelected, searchBookOrAuthor],
+    async () => {
+      const paramsToGetBooks = new URLSearchParams()
+      if (userId) {
+        paramsToGetBooks.append("userId", userId)
+      }
+
+      if (searchBookOrAuthor) {
+        paramsToGetBooks.append("bookOrAuthor", searchBookOrAuthor)
+      }
+
+      if (categoryNameSelected) {
+        paramsToGetBooks.append("category", categoryNameSelected)
+      }
+
+      const books = await getBooks(paramsToGetBooks)
+
+      return books
     }
-
-    if (searchBookOrAuthor) {
-      paramsToGetBooks.append("bookOrAuthor", searchBookOrAuthor)
-    }
-
-    if (categoryNameSelected) {
-      paramsToGetBooks.append("category", categoryNameSelected)
-    }
-
-    const books = await getBooks(paramsToGetBooks)
-
-    return books
-  })
+  )
 
   function onUpdateCategoryNameSelected(value: string) {
     setCategoryNameSelected(value)
@@ -70,6 +76,7 @@ export function BooksContextProvider({ children }: BooksContextProviderProps) {
 
         books,
         isLoadingBooks,
+        onRefetchBooks,
       }}
     >
       {children}

@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { useState } from "react"
+import { Fragment, useState } from "react"
 import * as Dialog from "@radix-ui/react-dialog"
 
 import { useBooks } from "@/contexts/BooksContext"
@@ -23,8 +23,9 @@ export function PopularBookCard({
   cardBookInHome = false,
   book,
 }: PopularBookCardProps) {
-  const { onRefetchBooks } = useBooks()
+  const Element = cardBookInHome ? Fragment : Dialog.Trigger
 
+  const { onRefetchBooks } = useBooks()
   const [openDialog, setOpenDialog] = useState(false)
 
   function onRefetchRatingsAfterCreateNewRating() {
@@ -34,14 +35,15 @@ export function PopularBookCard({
 
   return (
     <Dialog.Root open={openDialog} onOpenChange={setOpenDialog}>
-      <Dialog.Trigger className="w-full text-start">
+      <Element>
         <article
           className={twMerge(
-            "bg-gray-700 w-full h-fit rounded-md py-[1.125rem] px-5 flex gap-5 card-primary-animation",
-            { relative: book.wasRead },
+            "bg-gray-700 w-full h-fit rounded-md py-[1.125rem] px-5 flex gap-5 text-start",
             {
+              relative: book.wasRead,
               "max-[1200px]:flex-col max-[1200px]:items-center max-[450px]:w-[120px]":
                 cardBookInHome,
+              "card-primary-animation": !cardBookInHome,
             }
           )}
         >
@@ -85,7 +87,7 @@ export function PopularBookCard({
             />
           </div>
         </article>
-      </Dialog.Trigger>
+      </Element>
 
       <DialogPortalDetailsBook
         book={book}

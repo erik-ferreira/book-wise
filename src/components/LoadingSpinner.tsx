@@ -1,9 +1,18 @@
-export function LoadingSpinner() {
+const sizes = {
+  small: "w-8 h-8",
+  normal: "w-14 h-14",
+}
+
+interface LoadingSpinnerProps {
+  size?: keyof typeof sizes
+}
+
+export function LoadingSpinner({ size = "normal" }: LoadingSpinnerProps) {
   return (
     <div role="status">
       <svg
         aria-hidden="true"
-        className="w-14 h-14 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+        className={`${sizes[size]} mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600`}
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

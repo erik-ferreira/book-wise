@@ -1,12 +1,13 @@
 import Image from "next/image"
 
-import { Profile } from "../Profile"
-import { RatingStars } from "../RatingStars"
+import { Profile } from "@/components/Profile"
+import { DescriptionBook } from "./DescriptionBook"
+import { RatingStars } from "@/components/RatingStars"
 
 import { Rating } from "@/dtos/Rating"
 
-import { twMerge } from "../../utils/tw-merge"
-import { formatDistanceDateToNow } from "../../utils/format-dates"
+import { twMerge } from "@/utils/tw-merge"
+import { formatDistanceDateToNow } from "@/utils/format-dates"
 
 interface BookReviewCardProps {
   variant?: "normal" | "short"
@@ -73,12 +74,10 @@ export function BookReviewCard({
             </>
           )}
 
-          <div className="w-full text-gray-300 text-sm leading-base overflow-hidden">
-            {rating?.description}
-            {rating?.description.endsWith("...") && (
-              <strong className="text-purple-100">ver mais</strong>
-            )}
-          </div>
+          <DescriptionBook
+            ratingId={rating?.id}
+            descriptionDefault={rating?.description}
+          />
         </div>
       </main>
     </article>

@@ -6,6 +6,7 @@ import {
   GetRecentBooksRatingsResponse,
   GetLastUserRating,
   ResponseCreateRating,
+  GetFullRatingDescriptionResponse,
 } from "@/dtos/Rating"
 
 export async function getRecentBooksRatings(): Promise<Rating[]> {
@@ -39,4 +40,16 @@ export async function createRating(body: string): Promise<string> {
   })
 
   return response.message
+}
+
+// ----------------------------------------------------
+
+export async function getFullRatingDescription(
+  ratingId: string
+): Promise<GetFullRatingDescriptionResponse> {
+  const response = await api<GetFullRatingDescriptionResponse>(
+    `/ratings/description/${ratingId}`
+  )
+
+  return response
 }

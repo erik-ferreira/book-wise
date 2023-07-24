@@ -21,3 +21,15 @@ export interface GetLastUserRating {
 export interface ResponseCreateRating {
   message: string
 }
+
+interface SuccessResponseGetFullRatingDescription {
+  description: string
+}
+
+interface ErrorResponseGetFullRatingDescription {
+  message: string
+}
+
+export type GetFullRatingDescriptionResponse =
+  | SuccessResponseGetFullRatingDescription
+  | ErrorResponseGetFullRatingDescription

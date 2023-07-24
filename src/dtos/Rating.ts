@@ -15,7 +15,7 @@ export interface GetRecentBooksRatingsResponse {
 }
 
 export interface GetLastUserRating {
-  lastUserRating: UserRatingProps
+  lastUserRating: UserRatingProps | null
 }
 
 export interface ResponseCreateRating {

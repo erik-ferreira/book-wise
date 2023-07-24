@@ -22,7 +22,7 @@ export async function getRecentBooksRatings(): Promise<Rating[]> {
 
 export async function getLastUserRating(
   userId: string
-): Promise<UserRatingProps> {
+): Promise<UserRatingProps | null> {
   // const revalidate = 60 * 60 * 24 // 1 day
   const data = await api<GetLastUserRating>(`/profile/${userId}/last-rating`, {
     // next: { revalidate },

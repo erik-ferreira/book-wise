@@ -1,3 +1,4 @@
+import { Metadata } from "next"
 import { LineChart } from "lucide-react"
 
 import { getBooksMostRated } from "@/requests/books"
@@ -11,6 +12,10 @@ import { LastReviewByUserToBook } from "@/components/Books/LastReviewByUserToBoo
 import { ContainerPagesWithSidebar } from "@/components/ContainerPagesWithSidebar"
 
 import { getServerSession } from "@/hook/getServerSession"
+
+export const metadata: Metadata = {
+  title: "Book wise | Home",
+}
 
 export default async function Home() {
   const session = await getServerSession()

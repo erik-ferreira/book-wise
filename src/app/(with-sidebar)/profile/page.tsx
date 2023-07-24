@@ -1,3 +1,4 @@
+import { Metadata } from "next"
 import { User as IconUser } from "lucide-react"
 
 import { getServerSession } from "@/hook/getServerSession"
@@ -7,6 +8,10 @@ import { Header } from "@/components/Header"
 import { ContentUserRatings } from "./ContentUserRatings"
 import { ProfileSection } from "@/components/ProfileSection"
 import { ContainerPagesWithSidebar } from "@/components/ContainerPagesWithSidebar"
+
+export const metadata: Metadata = {
+  title: "Book wise | Perfil",
+}
 
 export default async function Profile() {
   const session = await getServerSession()

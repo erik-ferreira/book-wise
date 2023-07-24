@@ -7,10 +7,9 @@ import {
 } from "@/dtos/Book"
 
 export async function getBooksMostRated(): Promise<BookFormattedProps[]> {
-  // const revalidate = 60 * 60 * 24 // 1 day
+  const revalidate = 60 * 60 * 24 // 1 day
   const data = await api<GetBooksMostRatedResponse>("/books/most-rated", {
-    // next: { revalidate },
-    cache: "no-cache",
+    next: { revalidate },
   })
 
   return data.booksMostRated
@@ -21,10 +20,9 @@ export async function getBooksMostRated(): Promise<BookFormattedProps[]> {
 export async function getBooks(
   params?: URLSearchParams
 ): Promise<BookFormattedProps[]> {
-  // const revalidate = 60 * 60 * 24 * 7 // 7 days
+  const revalidate = 60 * 60 * 24 * 7 // 7 days
   const data = await api<GetBooksResponse>(`/books?${params?.toString()}`, {
-    // next: { revalidate },
-    cache: "no-cache",
+    next: { revalidate },
   })
 
   return data.books

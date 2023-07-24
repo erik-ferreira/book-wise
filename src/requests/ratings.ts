@@ -9,10 +9,9 @@ import {
 } from "@/dtos/Rating"
 
 export async function getRecentBooksRatings(): Promise<Rating[]> {
-  // const revalidate = 60 * 60 * 24 // 1 day
+  const revalidate = 60 * 60 * 24 // 1 day
   const data = await api<GetRecentBooksRatingsResponse>("/ratings", {
-    // next: { revalidate }
-    cache: "no-cache",
+    next: { revalidate },
   })
 
   return data.ratings
@@ -23,10 +22,9 @@ export async function getRecentBooksRatings(): Promise<Rating[]> {
 export async function getLastUserRating(
   userId: string
 ): Promise<UserRatingProps | null> {
-  // const revalidate = 60 * 60 * 24 // 1 day
+  const revalidate = 60 * 60 * 24 // 1 day
   const data = await api<GetLastUserRating>(`/profile/${userId}/last-rating`, {
-    // next: { revalidate },
-    cache: "no-cache",
+    next: { revalidate },
   })
 
   return data.lastUserRating

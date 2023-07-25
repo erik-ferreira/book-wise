@@ -52,3 +52,5 @@ NEXTAUTH_URL=http://localhost:3000
 3. Segue o mesmo raciocínio para `GITHUB_ID` e `GITHUB_SECRET`, configurando nas [developers settings](https://github.com/settings/developers) do Github
 
 4. Para a `NEXTAUTH_SECRET`, gere um hash qualquer em um site e coloque nele
+
+5. Rodar o comando `npm run dev`

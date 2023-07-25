@@ -6,7 +6,7 @@
 
 ## :computer: Projeto
 
-Este projeto foi construído com Next.js e faz o gerenciamento de leituras. A construção do frontend foi feita toda em cima do Next 13, e além disso pude desenvolver o backend com prisma, banco de dados mysql com docker e etc. O deploy do banco de dados foi feito no PlanetScale e o projeto em si foi feito na Vercel, acesse através desse link [https://ignite-call-7688nkhmy-erikferreira.vercel.app](https://ignite-call-7688nkhmy-erikferreira.vercel.app)
+Este projeto foi construído com Next.js e faz o gerenciamento de leituras. A construção do frontend foi feita toda em cima do Next 13, e além disso pude desenvolver o backend com prisma, banco de dados mysql com docker e etc.
 
 ## :rocket: Tecnologias
 
